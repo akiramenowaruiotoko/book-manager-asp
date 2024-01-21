@@ -1,20 +1,44 @@
-﻿@{
+﻿@model book_manager_asp.Models.AuthModel
+@{
     ViewBag.Title = "Home Page";
 }
 
 <main>
     <div class="text-center">
         <h1 class="display-4">Book Manager</h1>
-        <form action="/Privacy.cshtml" method="post">
-            <p>
-                employee number<br>
-                <input type="text" name="empNum" size="15" value="00000" maxlength="7" style="text-align:center">
-            </p>
-            <p> password<br>
-                <input type="text" name="empPass" size="30" value="testpass">
-            </p>
-            <p><input type="button" value="login" id="buttonLogin"></p>
-            <button>@Html.ActionLink("login test", "About", "Home", new { area = "" }, new { @class = "nav-link" })</button>
-        </form>
+        @using (@Html.BeginForm())
+        {
+            <div class="form-item">
+                <p>
+                    @Html.LabelFor(model => model.EmpNum)<br>
+                    @Html.TextBoxFor(model => model.EmpNum)<br>
+                </p>
+            </div>
+            <div class="form-item">
+                <p>
+                    @Html.LabelFor(model => model.EmpPass)<br>
+                    @Html.PasswordFor(model => model.EmpPass)<br>
+                </p>
+            </div>
+            <div class="button-panel">
+                <input type="submit" 　class="button" value="login" />
+            </div>
+            <br />
+            <label style="color:#ff0000">@Html.ValidationSummary()</label>
+        }
+        <!--
+            <form action="/Privacy.cshtml" method="post">
+                <p>
+                    employee number<br>
+                    <input type="text" name="empNum" size="15" value="00000" maxlength="7" style="text-align:center">
+                </p>
+                <p>
+                    password<br>
+                    <input type="text" name="empPass" size="30" value="testpass">
+                </p>
+                <p><input type="button" value="login" id="buttonLogin"></p>
+                <button>@Html.ActionLink("login test", "About", "Home", new { area = "" }, new { @class = "nav-link" })</button>
+            </form>
+        -->
     </div>
 </main>

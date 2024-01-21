@@ -24,7 +24,7 @@
 								
 ## screen list								
 	pageName	itemName		itemClass	viewAuthority				
-	index							
+	home							
 			Book Manager		label				
 			employee number		textBox				
 			password		textBox				
@@ -126,7 +126,7 @@
 			delete			button		editorOnly		
 								
 ## transition diagram								
-	index >	< login > main page page >	log out >		 index
+	home >	< login > main page page >	log out >		 home
 						< list display >	 < rent
 						< list display >	 < edit book
 						< list display >	 < purchase
