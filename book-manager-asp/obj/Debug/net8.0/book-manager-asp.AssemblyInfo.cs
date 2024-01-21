@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("book-manager-asp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c98cc60ac63176e870c6f83f3e497181c15f5cf")]
 [assembly: System.Reflection.AssemblyProductAttribute("book-manager-asp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("book-manager-asp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

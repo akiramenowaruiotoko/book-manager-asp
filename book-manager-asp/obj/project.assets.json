@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\book-manager-asp\\book-manager-asp\\book-manager-asp.csproj",
+      "projectUniqueName": "C:\\Users\\akiramenowaruiotoko\\Desktop\\github\\book-manager-asp\\book-manager-asp\\book-manager-asp.csproj",
       "projectName": "book-manager-asp",
-      "projectPath": "C:\\book-manager-asp\\book-manager-asp\\book-manager-asp.csproj",
+      "projectPath": "C:\\Users\\akiramenowaruiotoko\\Desktop\\github\\book-manager-asp\\book-manager-asp\\book-manager-asp.csproj",
       "packagesPath": "C:\\Users\\akiramenowaruiotoko\\.nuget\\packages\\",
-      "outputPath": "C:\\book-manager-asp\\book-manager-asp\\obj\\",
+      "outputPath": "C:\\Users\\akiramenowaruiotoko\\Desktop\\github\\book-manager-asp\\book-manager-asp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\akiramenowaruiotoko\\AppData\\Roaming\\NuGet\\NuGet.Config",
