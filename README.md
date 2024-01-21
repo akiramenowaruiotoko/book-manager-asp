@@ -69,19 +69,19 @@
 			delete			button		editorOnly		
 								
 	edit							
-			main page			button		editorOnly		
+			main page		button		editorOnly		
 			add account		button		editorOnly		
 			edit account		button		editorOnly		
-			add book			button		editorOnly		
+			add book		button		editorOnly		
 			edit book		button		editorOnly		
 								
 	add account							
 			back			button		editorOnly		
-			employee number			textBox		editorOnly		
+			employee number		textBox		editorOnly		
 			lastName		textBox		editorOnly		
 			firstName		textBox		editorOnly		
 			affiliation		dropDownList	editorOnly		
-			password			textBox		editorOnly		
+			password		textBox		editorOnly		
 			authorityEditor		checkBox	editorOnly		
 			confirm			button		editorOnly		
 								
@@ -89,11 +89,11 @@
 			back			button		editorOnly		
 			serchText		textBox		editorOnly		
 			serch			button		editorOnly		
-			employee number			textBox		editorOnly		
+			employee number		textBox		editorOnly		
 			lastName		textBox		editorOnly		
 			firstName		textBox		editorOnly		
 			affiliation		dropDownList	editorOnly		
-			password			textBox		editorOnly		
+			password		textBox		editorOnly		
 			authority editor	checkBox	editorOnly		
 			confirm			button		editorOnly		
 			delete			button		editorOnly		
@@ -126,12 +126,12 @@
 			delete			button		editorOnly		
 								
 ## transition diagram								
-	index >	< login > main page page >  	log out >	 index
-					< list display >	 < rent
-					< list display >	 < edit book
-					< list display >	 < purchase
-					< purchase		
-					< edit >	 < add account
-							 < edit account
-							 < add book
-							 < edit book
+	index >	< login > main page page >	log out >		 index
+						< list display >	 < rent
+						< list display >	 < edit book
+						< list display >	 < purchase
+						< purchase		
+						< edit >		 < add account
+									 < edit account
+									 < add book
+									 < edit book
