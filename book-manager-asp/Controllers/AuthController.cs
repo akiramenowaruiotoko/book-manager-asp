@@ -8,36 +8,15 @@ using System.Web.Security;
 
 namespace book_manager_asp.Controllers
 {
-	public class HomeController : Controller
-	{
-		/*
-		public ActionResult Index()
-		{
-			return View();
-		}
-		*/
-
+    public class AuthController : Controller
+    {
 		/// <summary>
-		/// home page (login) 表示
+		/// ログイン 表示
 		/// </summary>
 		/// <returns></returns>
 		[HttpGet]
 		public ActionResult Index()
 		{
-			return View();
-		}
-
-		public ActionResult About()
-		{
-			ViewBag.Message = "Your application description page.";
-
-			return View();
-		}
-
-		public ActionResult Contact()
-		{
-			ViewBag.Message = "Your contact page.";
-
 			return View();
 		}
 
@@ -60,7 +39,7 @@ namespace book_manager_asp.Controllers
 			{
 				// ユーザー認証 失敗
 				this.ModelState.AddModelError(string.Empty, "指定されたユーザー名またはパスワードが正しくありません。");
-				return RedirectToAction("Index", "Home");
+				return RedirectToAction("Index", "Auth");
 			}
 		}
 

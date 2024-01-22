@@ -16,18 +16,17 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-            @if (!Request.IsAuthenticated)
-            {
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("ホーム", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("詳細", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("問い合わせ", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li style="display: flex; align-items: center;">@Html.ActionLink("ログアウト", "Logout", "Auth")</li>
-                </ul>
-            }
-
-        </div>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("ホーム", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("詳細", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("問い合わせ", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li style="display: flex; align-items: center;">@Html.ActionLink("ログアウト", "Logout", "Home")</li>
+                    </ul>
+                }
+            </div>
         </div>
     </nav>
     <div class="container body-content">
