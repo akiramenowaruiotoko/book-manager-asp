@@ -1,4 +1,5 @@
-# book-manager-asp						
+# book-manager-win-form
+
 ## over view						
 	compatibility							
 		enable book management						
@@ -10,19 +11,19 @@
 		everyone can see and edit the file.
 		degreation does not occur.
 								
-## functional requirements								
-	account							
+## functional requirements
+	account
 			add		edit		delete		authority
-	login, logout							
-	list display							
+	login, logout
+	list display
 			basic		rent		purchase	all
-	serch							
-	rent							
-			application	approval	delete		
-	purchase							
-			application	approval	delete		
-								
-## screen list								
+	serch
+	rent
+			application	approval	delete
+	purchase
+			application	approval	delete
+
+## screen list
 	pageName	itemName		itemClass	viewAuthority				
 	home							
 			Book Manager		label				

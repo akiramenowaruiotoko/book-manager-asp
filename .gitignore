@@ -1,5 +1,5 @@
 .git
 .vs
-book-manager/bin
-book-manager/obj
-book-manager/App.config
+BookManagerWinForm/bin
+BookManagerWinForm/obj
+BookManagerWinForm/App.config
