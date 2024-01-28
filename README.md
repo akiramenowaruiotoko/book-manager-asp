@@ -58,7 +58,7 @@
 			back			button				
 			id			textBox				
 			bookName		textBox				
-			subBook Manager		textBox				
+			subTitle		textBox				
 			auther			textBox				
 			classification		dropDownList				
 			target			dropDownList				
@@ -103,7 +103,7 @@
 			back			button		editorOnly		
 			id			textBox		editorOnly		
 			bookName		textBox		editorOnly		
-			subBook Manager		textBox		editorOnly		
+			subTitle		textBox		editorOnly		
 			auther			textBox		editorOnly		
 			classification		dropDownList	editorOnly		
 			target			dropDownList	editorOnly		
@@ -117,7 +117,7 @@
 			serch			button		editorOnly		
 			id			textBox		editorOnly		
 			bookName		textBox		editorOnly		
-			subBook Manager		textBox		editorOnly		
+			subTitle		textBox		editorOnly		
 			auther			textBox		editorOnly		
 			classification		dropDownList	editorOnly		
 			target			dropDownList	editorOnly		
