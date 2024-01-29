@@ -54,6 +54,7 @@
             buttonLogIn.TabIndex = 1;
             buttonLogIn.Text = "log in";
             buttonLogIn.UseVisualStyleBackColor = true;
+            buttonLogIn.Click += ButtonLogIn_Click;
             // 
             // textBoxEmpNum
             // 

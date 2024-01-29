@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BookManagerWinForm
 {
-    public partial class Main : Form
+    public partial class MainMenu : Form
     {
-        public Main()
+        public MainMenu()
         {
             InitializeComponent();
         }

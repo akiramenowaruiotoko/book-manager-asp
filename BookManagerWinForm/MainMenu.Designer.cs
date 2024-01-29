@@ -1,6 +1,6 @@
 ﻿namespace BookManagerWinForm
 {
-    partial class Main
+    partial class MainMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -81,7 +81,7 @@
             buttonEdit.Text = "edit";
             buttonEdit.UseVisualStyleBackColor = true;
             // 
-            // Main
+            // MainMenu
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -91,8 +91,8 @@
             Controls.Add(buttonList);
             Controls.Add(buttonLogOut);
             Controls.Add(labelTitle);
-            Name = "Main";
-            Text = "Main";
+            Name = "MainMenu";
+            Text = "MainMenu";
             ResumeLayout(false);
             PerformLayout();
         }
