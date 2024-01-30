@@ -1,4 +1,5 @@
 ﻿
+
 namespace BookManagerWinForm
 {
     partial class MainMenu
@@ -31,7 +32,7 @@ namespace BookManagerWinForm
         {
             labelTitle = new Label();
             buttonLogOut = new Button();
-            buttonList = new Button();
+            buttonListDisplay = new Button();
             buttonPurchase = new Button();
             buttonEdit = new Button();
             SuspendLayout();
@@ -54,16 +55,17 @@ namespace BookManagerWinForm
             buttonLogOut.TabIndex = 2;
             buttonLogOut.Text = "log out";
             buttonLogOut.UseVisualStyleBackColor = true;
-            buttonLogOut.Click += this.ButtonLogOut_Click;
+            buttonLogOut.Click += ButtonLogOut_Click;
             // 
-            // buttonList
+            // buttonListDisplay
             // 
-            buttonList.Location = new Point(48, 113);
-            buttonList.Name = "buttonList";
-            buttonList.Size = new Size(232, 62);
-            buttonList.TabIndex = 3;
-            buttonList.Text = "list";
-            buttonList.UseVisualStyleBackColor = true;
+            buttonListDisplay.Location = new Point(48, 113);
+            buttonListDisplay.Name = "buttonListDisplay";
+            buttonListDisplay.Size = new Size(232, 62);
+            buttonListDisplay.TabIndex = 3;
+            buttonListDisplay.Text = "list display";
+            buttonListDisplay.UseVisualStyleBackColor = true;
+            buttonListDisplay.Click += this.ButtonListDisplay_Click;
             // 
             // buttonPurchase
             // 
@@ -90,7 +92,7 @@ namespace BookManagerWinForm
             ClientSize = new Size(369, 450);
             Controls.Add(buttonEdit);
             Controls.Add(buttonPurchase);
-            Controls.Add(buttonList);
+            Controls.Add(buttonListDisplay);
             Controls.Add(buttonLogOut);
             Controls.Add(labelTitle);
             Name = "MainMenu";
@@ -103,7 +105,7 @@ namespace BookManagerWinForm
 
         private Label labelTitle;
         private Button buttonLogOut;
-        private Button buttonList;
+        private Button buttonListDisplay;
         private Button buttonPurchase;
         private Button buttonEdit;
     }
