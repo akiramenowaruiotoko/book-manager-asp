@@ -83,7 +83,7 @@
 			firstName		textBox		editorOnly		
 			affiliation		dropDownList	editorOnly		
 			password		textBox		editorOnly		
-			authorityEditor		checkBox	editorOnly		
+			editor			checkBox	editorOnly		
 			confirm			button		editorOnly		
 								
 	edit account							
@@ -95,7 +95,7 @@
 			firstName		textBox		editorOnly		
 			affiliation		dropDownList	editorOnly		
 			password		textBox		editorOnly		
-			authority editor	checkBox	editorOnly		
+			editor	checkBox	editorOnly		
 			confirm			button		editorOnly		
 			delete			button		editorOnly		
 								

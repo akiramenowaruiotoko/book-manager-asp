@@ -9,7 +9,7 @@ namespace BookManagerWinForm
 
         private void ButtonLogIn_Click(object sender, EventArgs e)
         {
-            int empNum = 0;
+            string empNum = "0000";
             string empPass = "";
 
             // check account information

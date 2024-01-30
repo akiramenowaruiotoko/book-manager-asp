@@ -62,6 +62,7 @@
             textBoxEmpNum.Name = "textBoxEmpNum";
             textBoxEmpNum.Size = new Size(302, 39);
             textBoxEmpNum.TabIndex = 2;
+            textBoxEmpNum.Text = "0000";
             // 
             // textBoxEmpPass
             // 

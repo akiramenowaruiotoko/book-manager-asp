@@ -1,4 +1,5 @@
-﻿namespace BookManagerWinForm
+﻿
+namespace BookManagerWinForm
 {
     partial class MainMenu
     {
@@ -53,6 +54,7 @@
             buttonLogOut.TabIndex = 2;
             buttonLogOut.Text = "log out";
             buttonLogOut.UseVisualStyleBackColor = true;
+            buttonLogOut.Click += this.ButtonLogOut_Click;
             // 
             // buttonList
             // 
