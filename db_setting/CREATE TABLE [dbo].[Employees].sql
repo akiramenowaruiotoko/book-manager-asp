@@ -1,7 +1,7 @@
 USE [book_manager]
 GO
 
-/****** Object:  Table [dbo].[employees]    Script Date: 2024/02/1 23:03:24 ******/
+/****** Object:  Table [dbo].[employees]    Script Date: 2024/02/10 22:44:33 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,7 +9,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[employees](
-	[employee_number] [char](10) NOT NULL,
+	[employee_number] [int] NOT NULL,
 	[employee_password] [varchar](50) NOT NULL,
 	[first_name] [varchar](50) NULL,
 	[editor] [bit] NOT NULL,

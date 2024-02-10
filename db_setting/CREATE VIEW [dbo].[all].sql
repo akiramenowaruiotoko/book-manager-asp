@@ -1,7 +1,7 @@
 USE [book_manager]
 GO
 
-/****** Object:  View [dbo].[viewAll]    Script Date: 2024/01/31 21:56:43 ******/
+/****** Object:  View [dbo].[viewAll]    Script Date: 2024/02/10 22:56:45 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -12,9 +12,14 @@ GO
 CREATE VIEW [dbo].[viewAll]
 AS
 	select
+		b.book_id,
 		b.book_name,
+		e.employee_number,
+		e.first_name,
+		s.status_id,
 		s.status_num,
-		e.first_name
+		s.rent_date,
+		s.return_date
 	from
 		books AS b
 		left join statuses AS s

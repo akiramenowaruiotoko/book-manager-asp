@@ -24,18 +24,18 @@
 			application	approval	delete
 
 ## screen list
-	pageName	itemName		itemClass	viewAuthority				
-	home							
-			Book Manager		label				
-			employee number		textBox				
-			password		textBox				
-			login			button				
-	main page page							
-			Book Manager		label		
-			logout			button				
-			list display		button				
-			purchase		button				
-			edit			button		editorOnly		
+	pageName	itemName		itemClass	viewAuthority
+	home
+			Book Manager		label
+			employee number		textBox
+			password		textBox
+			login			button
+	main page page
+			Book Manager		label
+			logout			button
+			list display		button
+			purchase		button
+			edit			button		editorOnly
 	list display							
 			main page		button				
 			serchText		textBox				
