@@ -17,10 +17,6 @@ namespace BookManagerWinForm
             // データベースマネージャーの初期化
             connectionString = ConfigurationManager.ConnectionStrings["sqlsvr"].ConnectionString;
             viewName = "View_all";
-        }
-
-        private void ListDisplay_Load(object sender, EventArgs e)
-        {
             LoadDataFromView();
         }
 
@@ -45,7 +41,6 @@ namespace BookManagerWinForm
                 }
             }
         }
-
         private void ButtonBack_Click(object sender, EventArgs e)
         {
             this.Close();

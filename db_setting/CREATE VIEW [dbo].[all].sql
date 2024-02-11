@@ -1,7 +1,7 @@
 USE [book_manager]
 GO
 
-/****** Object:  View [dbo].[viewAll]    Script Date: 2024/02/10 22:56:45 ******/
+/****** Object:  View [dbo].[view_all]    Script Date: 2024/02/10 22:56:45 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,7 +9,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-CREATE VIEW [dbo].[viewAll]
+CREATE VIEW [dbo].[view_all]
 AS
 	select
 		b.book_id,
