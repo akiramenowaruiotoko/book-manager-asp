@@ -21,6 +21,7 @@ namespace BookManagerWinForm
         {
             // show Home
             Home home = new Home();
+            home.Show();
             this.Close();
         }
 

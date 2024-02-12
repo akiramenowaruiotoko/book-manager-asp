@@ -76,6 +76,7 @@
             Controls.Add(labelTitle);
             Name = "ListDisplay";
             Text = "ListDisplay";
+            Load += ListDisplay_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
