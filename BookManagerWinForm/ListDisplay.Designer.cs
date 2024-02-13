@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             labelTitle = new Label();
-            buttonBack = new Button();
+            buttonBackList = new Button();
             dataGridView1 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -44,15 +44,15 @@
             labelTitle.TabIndex = 2;
             labelTitle.Text = "Book Manager";
             // 
-            // buttonBack
+            // buttonBackList
             // 
-            buttonBack.Location = new Point(430, 27);
-            buttonBack.Name = "buttonBack";
-            buttonBack.Size = new Size(302, 60);
-            buttonBack.TabIndex = 3;
-            buttonBack.Text = "back";
-            buttonBack.UseVisualStyleBackColor = true;
-            buttonBack.Click += ButtonBack_Click;
+            buttonBackList.Location = new Point(430, 27);
+            buttonBackList.Name = "buttonBackList";
+            buttonBackList.Size = new Size(302, 60);
+            buttonBackList.TabIndex = 3;
+            buttonBackList.Text = "back";
+            buttonBackList.UseVisualStyleBackColor = true;
+            buttonBackList.Click += ButtonBack_Click;
             // 
             // dataGridView1
             // 
@@ -72,7 +72,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1139, 921);
             Controls.Add(dataGridView1);
-            Controls.Add(buttonBack);
+            Controls.Add(buttonBackList);
             Controls.Add(labelTitle);
             Name = "ListDisplay";
             Text = "ListDisplay";
@@ -85,7 +85,7 @@
         #endregion
 
         private Label labelTitle;
-        private Button buttonBack;
+        private Button buttonBackList;
         private DataGridView dataGridView1;
     }
 }
