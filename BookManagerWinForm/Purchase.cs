@@ -16,5 +16,10 @@ namespace BookManagerWinForm
         {
             InitializeComponent();
         }
+
+        private void buttonBackPurchase_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

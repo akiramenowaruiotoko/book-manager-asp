@@ -77,6 +77,7 @@
             buttonBackPurchase.TabIndex = 9;
             buttonBackPurchase.Text = "back";
             buttonBackPurchase.UseVisualStyleBackColor = true;
+            buttonBackPurchase.Click += buttonBackPurchase_Click;
             // 
             // labelBookId
             // 
