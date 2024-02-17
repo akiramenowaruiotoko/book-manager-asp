@@ -85,6 +85,7 @@ namespace BookManagerWinForm
             buttonEdit.TabIndex = 5;
             buttonEdit.Text = "edit";
             buttonEdit.UseVisualStyleBackColor = true;
+            buttonEdit.Click += buttonEdit_Click;
             // 
             // MainMenu
             // 

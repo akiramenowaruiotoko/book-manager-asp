@@ -54,6 +54,7 @@
             buttonBackPurchase.TabIndex = 10;
             buttonBackPurchase.Text = "back";
             buttonBackPurchase.UseVisualStyleBackColor = true;
+            buttonBackPurchase.Click += buttonBackPurchase_Click;
             // 
             // buttonEditAccount
             // 
