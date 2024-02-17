@@ -14,12 +14,14 @@ CREATE OR ALTER PROCEDURE [dbo].[CheckCredentials]
 AS
 BEGIN
     SET NOCOUNT ON;
-    
+
+      -- 初期値を設定
+    SET @IsEditor = 0;
+
     IF EXISTS (SELECT 1
                FROM View_employees 
                WHERE employee_number = @EmpNum AND employee_password = @EmpPass)
 		BEGIN
-			-- 対応するレコードがある場合、@IsEditorにeditorの値を割り当てる
 			SELECT @IsEditor = editor
 			FROM View_employees 
 			WHERE employee_number = @EmpNum AND employee_password = @EmpPass;

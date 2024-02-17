@@ -18,72 +18,81 @@ namespace BookManagerWinForm
         // 指定したビューからデータを取得するメソッド
         public DataTable GetDataFromView(string viewName)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            // ストアドプロシージャのコマンドを作成
-            using (SqlCommand command = new SqlCommand("GetDataFromView", connection))
+            DataTable dataTable = new DataTable();
+
+            try
             {
-                // コマンドのタイプをストアドプロシージャに設定
-                command.CommandType = CommandType.StoredProcedure;
-                // パラメータを追加
-                command.Parameters.AddWithValue("@ViewName", viewName);
-
-                // アダプタを使用してデータをフェッチ
-                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
+                    connection.Open();
 
-                    return dataTable;
+                    // SQL文を作成
+                    string sql = $"SELECT * FROM {viewName}";
+
+                    // コマンドを作成
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        // アダプタを使用してデータをフェッチ
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                // 例外処理
+                Console.WriteLine($"データの取得中にエラーが発生しました: {ex.Message}");
+            }
+
+            return dataTable;
         }
 
         // 従業員の認証を行うメソッド
         public bool CheckCredentials(int empNum, string empPass, out bool isEditor)
         {
-            bool isAuthenticated = false;
-            isEditor = false;
-
             // SqlConnectionのインスタンスを作成
             using (SqlConnection connection = new SqlConnection(connectionString))
+            // SqlCommandのインスタンスを作成し、ストアドプロシージャを指定
+            using (SqlCommand command = new SqlCommand("CheckCredentials", connection))
             {
-                // SqlCommandのインスタンスを作成し、ストアドプロシージャを指定
-                using (SqlCommand command = new SqlCommand("CheckCredentials", connection))
+                // コマンドのタイプをストアドプロシージャに設定
+                command.CommandType = CommandType.StoredProcedure;
+
+                // パラメータを追加
+                command.Parameters.AddWithValue("@EmpNum", empNum);
+                command.Parameters.AddWithValue("@EmpPass", empPass);
+
+                // OUTPUTパラメータを設定
+                SqlParameter outputParam = new SqlParameter("@IsEditor", SqlDbType.Bit);
+                outputParam.Direction = ParameterDirection.Output;
+                command.Parameters.Add(outputParam);
+
+                // @return_valueパラメータを設定
+                SqlParameter returnParam = command.Parameters.Add("@return_value", SqlDbType.Int);
+                returnParam.Direction = ParameterDirection.ReturnValue;
+
+                try
                 {
-                    // コマンドのタイプをストアドプロシージャに設定
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    // パラメータを追加
-                    command.Parameters.AddWithValue("@EmpNum", empNum);
-                    command.Parameters.AddWithValue("@EmpPass", empPass);
-
-                    // OUTPUTパラメータを設定
-                    SqlParameter outputParam = new SqlParameter("@IsEditor", SqlDbType.Bit);
-                    outputParam.Direction = ParameterDirection.Output;
-                    command.Parameters.Add(outputParam);
-
-                    // @return_valueを取得
-                    SqlParameter returnParam = command.Parameters.Add("@return_value", SqlDbType.Int);
-                    returnParam.Direction = ParameterDirection.ReturnValue;
-
                     // 接続を開く
                     connection.Open();
 
                     // ストアードプロシージャ実行して認証を行う
                     command.ExecuteNonQuery();
-
-                    // OUTPUT値取得
-                    isEditor = (bool)outputParam.Value;
-
-                    // 戻り値取得
-                    int returnValue = (int)returnParam.Value;
-                    if (returnValue == 1)
-                    {
-                        isAuthenticated = true;
-                    }
                 }
+                catch (Exception ex)
+                {
+                    // 例外処理
+                    Console.WriteLine($"データの取得中にエラーが発生しました: {ex.Message}");
+                }
+
+                // OUTPUT値取得
+                isEditor = (bool)outputParam.Value;
+
+                // 戻り値取得、認証結果を返す
+                return ((int)returnParam.Value) == 1 ? true : false;
             }
-            return isAuthenticated;
         }
 
     }

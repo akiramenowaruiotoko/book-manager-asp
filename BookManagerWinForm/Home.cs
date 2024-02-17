@@ -21,7 +21,8 @@ namespace BookManagerWinForm
 
             // データベースとの比較を行う
             if (dbManager.CheckCredentials(empNum, empPass, out isEditor))
-            {                                                                                              // 認証成功時はメインメニュー画面を表示
+            {
+                // 認証成功時はメインメニュー画面を表示
                 MainMenu mainMenu = new MainMenu(empNum, isEditor, this); // 引数を渡す
                 mainMenu.Show();
                 // ログイン画面を非表示
@@ -34,5 +35,4 @@ namespace BookManagerWinForm
             }
         }
     }
-
 }
