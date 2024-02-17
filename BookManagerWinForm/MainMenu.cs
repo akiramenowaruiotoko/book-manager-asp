@@ -2,19 +2,23 @@
 {
     public partial class MainMenu : Form
     {
-        public MainMenu()
+        private int employeeNumber;
+        private bool isEditor;
+
+        public MainMenu(int employeeNumber, bool isEditor)
         {
             InitializeComponent();
+            this.employeeNumber = employeeNumber;
+            this.isEditor = isEditor;
         }
 
+        // ログアウトボタンのクリックイベントの例
         private void ButtonLogOut_Click(object sender, EventArgs e)
         {
-            // show Home
             Home home = new Home();
             home.Show();
             this.Close();
         }
-
         private void ButtonListDisplay_Click(object sender, EventArgs e)
         {
             ListDisplay listDisplay = new ListDisplay();

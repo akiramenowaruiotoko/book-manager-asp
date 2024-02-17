@@ -1,10 +1,10 @@
-using System;
-using System.Windows.Forms;
-
 namespace BookManagerWinForm
 {
     public partial class Home : Form
     {
+        private int? employeeNumber;
+        private bool isEditor;
+
         private DatabaseManager dbManager;
 
         public Home()
@@ -23,8 +23,9 @@ namespace BookManagerWinForm
             // データベースとの比較を行う
             if (dbManager.CheckCredentials(empNum, empPass))
             {
-                // 認証成功時はメインメニュー画面を表示
-                MainMenu mainMenu = new MainMenu();
+                int employeeNumberValue = employeeNumber.HasValue ? employeeNumber.Value : 0; // Nullable<int> から int への変換
+                                                                                              // 認証成功時はメインメニュー画面を表示
+                MainMenu mainMenu = new MainMenu(employeeNumberValue, isEditor); // 引数を渡す
                 mainMenu.Show();
                 // ログイン画面を非表示
                 this.Hide();
@@ -36,4 +37,5 @@ namespace BookManagerWinForm
             }
         }
     }
+
 }
