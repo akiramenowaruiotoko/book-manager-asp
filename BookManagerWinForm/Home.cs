@@ -4,7 +4,6 @@ namespace BookManagerWinForm
     {
         private int empNum = 0;
         private bool isEditor = false;
-
         private readonly DatabaseManager dbManager;
 
         public Home()
@@ -21,7 +20,7 @@ namespace BookManagerWinForm
             string empPass = textBoxEmpPass.Text;
 
             // データベースとの比較を行う
-            if (dbManager.CheckCredentials(empNum, empPass))
+            if (dbManager.CheckCredentials(empNum, empPass, out isEditor))
             {                                                                                              // 認証成功時はメインメニュー画面を表示
                 MainMenu mainMenu = new MainMenu(empNum, isEditor, this); // 引数を渡す
                 mainMenu.Show();
