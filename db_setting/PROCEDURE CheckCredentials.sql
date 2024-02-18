@@ -26,12 +26,12 @@ BEGIN
 			FROM View_employees 
 			WHERE employee_number = @EmpNum AND employee_password = @EmpPass;
         
-			-- 成功を示す戻り値として1を返す
-			RETURN 1;
+			-- 成功を示す戻り値として0を返す
+			RETURN 0;
 		END
     ELSE
 		BEGIN
-			-- 失敗を示す戻り値として0を返す
-			RETURN 0;
+			-- 失敗を示す戻り値として-1を返す
+			RETURN -1;
 		END
 END;

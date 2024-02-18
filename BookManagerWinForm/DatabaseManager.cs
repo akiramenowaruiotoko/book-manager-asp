@@ -69,7 +69,7 @@ namespace BookManagerWinForm
                     command.ExecuteNonQuery();
 
                     isEditor = (bool)outputParam.Value;
-                    return (int)returnParam.Value == 1;
+                    return (int)returnParam.Value == 0;
                 }
             }
             catch (Exception ex)
