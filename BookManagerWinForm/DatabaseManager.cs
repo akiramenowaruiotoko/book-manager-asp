@@ -79,5 +79,35 @@ namespace BookManagerWinForm
                 return false;
             }
         }
+
+        // 購入申請処理
+        public bool RequestBookPurchase(string bookId, string bookName, int employeeNumber, int statusNum)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("RequestBookPurchase", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@BookId", bookId);
+                command.Parameters.AddWithValue("@BookName", bookName);
+                command.Parameters.AddWithValue("@EmployeeNumber", employeeNumber);
+                command.Parameters.AddWithValue("@StatusNum", statusNum);
+
+                SqlParameter returnParam = command.Parameters.Add("@return_value", SqlDbType.Int);
+                returnParam.Direction = ParameterDirection.ReturnValue;
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    return (int)returnParam.Value == 1;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"申請中にエラーが発生しました: {ex.Message}");
+                    return false;
+                }
+            }
+        }
+
     }
 }
