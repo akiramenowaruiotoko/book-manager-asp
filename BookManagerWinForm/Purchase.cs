@@ -33,7 +33,7 @@
             string bookName = textBoxBookName.Text.Trim();
 
             // 書籍申請を行い、結果を直接条件式で使用
-            if (dbManager.RequestBookPurchase(bookId, bookName, empNum, statusNum))
+            if (dbManager.RequestBook(bookId, bookName, empNum, statusNum))
             {
                 MessageBox.Show("申請が完了しました。");
             }
