@@ -42,6 +42,5 @@
             homeForm.Show(); // MainMenuに保持されたHomeクラスのインスタンスを表示
             this.Close();
         }
-
     }
 }

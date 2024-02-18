@@ -130,6 +130,7 @@
             buttonApplication.TabIndex = 15;
             buttonApplication.Text = "application";
             buttonApplication.UseVisualStyleBackColor = true;
+            buttonApplication.Click += buttonApplication_Click;
             // 
             // Purchase
             // 

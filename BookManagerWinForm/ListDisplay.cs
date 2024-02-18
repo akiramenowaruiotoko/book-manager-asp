@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Windows.Forms;
+﻿using System.Data;
 
 namespace BookManagerWinForm
 {
@@ -21,11 +19,6 @@ namespace BookManagerWinForm
             this.mainMenuForm = mainMenuForm;
             dbManager = new DatabaseManager();
             viewName = "View_all";
-        }
-
-        private void ListDisplay_Load(object sender, EventArgs e)
-        {
-            // フォームがロードされた時点でデータを表示
             LoadDataFromView();
         }
 
