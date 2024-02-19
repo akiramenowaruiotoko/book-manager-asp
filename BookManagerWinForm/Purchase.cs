@@ -6,7 +6,6 @@
         private bool isEditor;
         private MainMenu mainMenuForm;
         private DatabaseManager dbManager;
-        private string viewName;
 
         public Purchase(int empNum, bool isEditor, MainMenu mainMenuForm)
         {
@@ -15,7 +14,6 @@
             this.isEditor = isEditor;
             this.mainMenuForm = mainMenuForm;
             dbManager = new DatabaseManager();
-            viewName = "View_all";
         }
 
         private void buttonBackPurchase_Click(object sender, EventArgs e)

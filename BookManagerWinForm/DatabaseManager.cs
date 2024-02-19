@@ -1,5 +1,4 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -69,6 +68,7 @@ namespace BookManagerWinForm
                     command.ExecuteNonQuery();
 
                     isEditor = (bool)outputParam.Value;
+                    // 認証が成功(0)した場合TRUE, 失敗(-1)した場合FALSE
                     return (int)returnParam.Value == 0;
                 }
             }
@@ -80,6 +80,7 @@ namespace BookManagerWinForm
             }
         }
 
+        // 書籍の申請を行うメソッド
         public bool RequestBook(string bookId, string bookName, int employeeNumber, int statusNum)
         {
             try
@@ -99,17 +100,8 @@ namespace BookManagerWinForm
                     connection.Open();
                     command.ExecuteNonQuery();
                     int returnValue = (int)returnParam.Value;
-
-                    if (returnValue == 0)
-                    {
-                        // 申請が成功した場合の処理
-                        return true;
-                    }
-                    else
-                    {
-                        // 申請が失敗した場合の処理
-                        return false;
-                    }
+                    // 申請が成功(0)した場合 TRUE, 失敗(-1)した場合FALSE
+                    return (int)returnParam.Value == 0;
                 }
             }
             catch (Exception ex)

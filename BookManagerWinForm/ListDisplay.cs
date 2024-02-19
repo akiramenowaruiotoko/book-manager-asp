@@ -2,7 +2,6 @@
 
 namespace BookManagerWinForm
 {
-
     public partial class ListDisplay : Form
     {
         private int empNum;

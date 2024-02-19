@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace BookManagerWinForm
+﻿namespace BookManagerWinForm
 {
     public partial class Edit : Form
     {
@@ -16,7 +6,6 @@ namespace BookManagerWinForm
         private bool isEditor;
         private MainMenu mainMenuForm;
         private DatabaseManager dbManager;
-        private string viewName;
 
         public Edit(int empNum, bool isEditor, MainMenu mainMenuForm)
         {
@@ -25,7 +14,6 @@ namespace BookManagerWinForm
             this.isEditor = isEditor;
             this.mainMenuForm = mainMenuForm;
             dbManager = new DatabaseManager();
-            viewName = "View_all";
         }
 
         private void buttonBackPurchase_Click(object sender, EventArgs e)

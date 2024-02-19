@@ -34,7 +34,7 @@
             this.Hide();
         }
 
-        // ログアウトボタンのクリックイベントの例
+        // ログアウトボタンのクリックイベント
         private void ButtonLogOut_Click(object sender, EventArgs e)
         {
             empNum = 0;

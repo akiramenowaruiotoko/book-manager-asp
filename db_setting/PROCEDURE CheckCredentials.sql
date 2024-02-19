@@ -1,12 +1,6 @@
 USE [book_manager]
 GO
 
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
 CREATE OR ALTER PROCEDURE [dbo].[CheckCredentials]
     @EmpNum INT,
     @EmpPass VARCHAR(50),
@@ -14,24 +8,21 @@ CREATE OR ALTER PROCEDURE [dbo].[CheckCredentials]
 AS
 BEGIN
     SET NOCOUNT ON;
-
-      -- 初期値を設定
-    SET @IsEditor = 0;
-
+    -- 対象レコードが存在するか確認。
     IF EXISTS (SELECT 1
                FROM View_employees 
                WHERE employee_number = @EmpNum AND employee_password = @EmpPass)
 		BEGIN
+		    -- 対象レコードが存在する場合、レコードのeditor値と承認成功(0)を返す。
 			SELECT @IsEditor = editor
 			FROM View_employees 
 			WHERE employee_number = @EmpNum AND employee_password = @EmpPass;
-        
-			-- 成功を示す戻り値として0を返す
 			RETURN 0;
 		END
     ELSE
 		BEGIN
-			-- 失敗を示す戻り値として-1を返す
+			-- 対象レコードが存在しない場合、編集権限なし(0)と承認失敗(-1)を返す。
+		    SET @IsEditor = 0;
 			RETURN -1;
 		END
 END;
