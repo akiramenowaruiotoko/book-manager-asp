@@ -4,7 +4,7 @@
     {
         private int empNum;
         private bool isEditor;
-        private Home homeForm; // Homeクラスのインスタンスを保持するフィールド
+        private readonly Home homeForm; // Homeクラスのインスタンスを保持するフィールド
 
         public MainMenu(int empNum, bool isEditor, Home home)
         {
@@ -16,20 +16,20 @@
 
         private void ButtonListDisplay_Click(object sender, EventArgs e)
         {
-            ListDisplay listDisplay = new ListDisplay(empNum, isEditor, this);
+            ListDisplay listDisplay = new(empNum, isEditor, this);
             listDisplay.Show();
             this.Hide();
         }
 
-        private void buttonPurchase_Click(object sender, EventArgs e)
+        private void ButtonPurchase_Click(object sender, EventArgs e)
         {
-            Purchase purchase = new Purchase(empNum, isEditor, this);
+            Purchase purchase = new(empNum, isEditor, this);
             purchase.Show();
             this.Hide();
         }
-        private void buttonEdit_Click(object sender, EventArgs e)
+        private void ButtonEdit_Click(object sender, EventArgs e)
         {
-            Edit edit = new Edit(empNum, isEditor, this);
+            Edit edit = new(empNum, isEditor, this);
             edit.Show();
             this.Hide();
         }

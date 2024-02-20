@@ -75,7 +75,7 @@ namespace BookManagerWinForm
             buttonPurchase.TabIndex = 4;
             buttonPurchase.Text = "purchase";
             buttonPurchase.UseVisualStyleBackColor = true;
-            buttonPurchase.Click += buttonPurchase_Click;
+            buttonPurchase.Click += ButtonPurchase_Click;
             // 
             // buttonEdit
             // 
@@ -85,7 +85,7 @@ namespace BookManagerWinForm
             buttonEdit.TabIndex = 5;
             buttonEdit.Text = "edit";
             buttonEdit.UseVisualStyleBackColor = true;
-            buttonEdit.Click += buttonEdit_Click;
+            buttonEdit.Click += ButtonEdit_Click;
             // 
             // MainMenu
             // 
