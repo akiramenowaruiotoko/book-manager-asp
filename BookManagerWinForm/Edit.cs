@@ -21,5 +21,12 @@
             mainMenuForm.Show();
             this.Close();
         }
+
+        private void buttonAddAccount_Click(object sender, EventArgs e)
+        {
+            AddAccount addAccount = new(empNum, isEditor, this);
+            addAccount.Show();
+            this.Hide();
+        }
     }
 }

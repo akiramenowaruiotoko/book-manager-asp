@@ -82,6 +82,7 @@
             buttonAddAccount.TabIndex = 13;
             buttonAddAccount.Text = "add account";
             buttonAddAccount.UseVisualStyleBackColor = true;
+            buttonAddAccount.Click += buttonAddAccount_Click;
             // 
             // buttonAddBook
             // 
