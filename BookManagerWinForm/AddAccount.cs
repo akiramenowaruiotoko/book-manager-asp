@@ -25,5 +25,11 @@ namespace BookManagerWinForm
             dbManager = new DatabaseManager();
             InitializeComponent();
         }
+
+        private void buttonBackAddAcocunt_Click(object sender, EventArgs e)
+        {
+            editForm.Show();
+            this.Close();
+        }
     }
 }
