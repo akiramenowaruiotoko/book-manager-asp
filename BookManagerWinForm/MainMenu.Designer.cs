@@ -73,7 +73,7 @@ namespace BookManagerWinForm
             buttonPurchase.Name = "buttonPurchase";
             buttonPurchase.Size = new Size(232, 62);
             buttonPurchase.TabIndex = 4;
-            buttonPurchase.Text = "purchase";
+            buttonPurchase.Text = "request purchase";
             buttonPurchase.UseVisualStyleBackColor = true;
             buttonPurchase.Click += ButtonPurchase_Click;
             // 
