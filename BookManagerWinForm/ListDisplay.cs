@@ -10,7 +10,7 @@ namespace BookManagerWinForm
         private bool isEditor;
         private MainMenu mainMenuForm;
         private DatabaseManager dbManager;
-        private string viewName = "View_all";
+        private string viewName = "view_all"; // ビュー名を正確に指定する
 
         public ListDisplay(int empNum, bool isEditor, MainMenu mainMenuForm)
         {
@@ -18,45 +18,28 @@ namespace BookManagerWinForm
             this.empNum = empNum;
             this.isEditor = isEditor;
             this.mainMenuForm = mainMenuForm;
-            dbManager = new DatabaseManager();
+            dbManager = new DatabaseManager(); // DatabaseManagerクラスのインスタンス化
             LoadDataFromView();
         }
 
         private void LoadDataFromView()
         {
-            DataTable dataTable = dbManager.GetDataFromView(viewName);
+            // データを取得する処理
+            DataTable data = dbManager.GetDataFromView(viewName);
 
-            // カスタムボタン列を追加
-            DataGridViewColumn buttonColumn = new DataGridViewColumn(new DataGridViewButtonCell());
-            buttonColumn.HeaderText = "ボタン";
-            buttonColumn.Name = "customButtonColumn"; // 列の名前を設定
-            dataGridView1.Columns.Insert(0, buttonColumn); // 0番目の位置に挿入
+            // ボタン列を作成し、DataGridViewの一番左に追加
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.HeaderText = "ボタン列";
+            buttonColumn.Text = "ボタン"; // ボタンのデフォルトテキスト
+            buttonColumn.UseColumnTextForButtonValue = true; // ボタン列にテキストを表示するための設定
+            dataGridView1.Columns.Insert(0, buttonColumn);
 
-            // データをバインド
-            dataGridView1.DataSource = dataTable;
+            // DataGridViewにデータをロード
+            dataGridView1.DataSource = data;
 
-            // 各行のボタンのテキストをstatus_numに応じて設定
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.Cells["status_num"].Value != null)
-                {
-                    int statusNum = Convert.ToInt32(row.Cells["status_num"].Value);
-                    switch (statusNum)
-                    {
-                        case 0:
-                            (row.Cells["customButtonColumn"] as DataGridViewButtonCell).Value = "A";
-                            break;
-                        case 1:
-                            (row.Cells["customButtonColumn"] as DataGridViewButtonCell).Value = "B";
-                            break;
-                        default:
-                            (row.Cells["customButtonColumn"] as DataGridViewButtonCell).Value = "Other";
-                            break;
-                    }
-                }
-            }
+            // DataGridViewの最初の列を非表示にする
+            dataGridView1.RowHeadersVisible = false;
         }
-
 
         private void ButtonBack_Click(object sender, EventArgs e)
         {
