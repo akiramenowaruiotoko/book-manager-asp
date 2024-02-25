@@ -26,36 +26,56 @@ namespace BookManagerWinForm
         {
             // NO列をボタン列に変更する
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            buttonColumn.HeaderText = "TEST";
-            buttonColumn.Name = "テスト";
-            buttonColumn.FlatStyle = FlatStyle.Popup;
+            buttonColumn.HeaderText = "ActionButton";
+            buttonColumn.Name = "アクションボタン";
+            buttonColumn.FlatStyle = FlatStyle.Flat; // FlatStyleをFlatに設定する
             buttonColumn.DataPropertyName = "Button";
+
+            // ボタンの外観をカスタマイズする
+            buttonColumn.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray; // 薄い青
+            buttonColumn.DefaultCellStyle.ForeColor = System.Drawing.Color.Black; // テキストカラーを黒に設定
+            buttonColumn.FlatStyle = FlatStyle.Popup;
+
             this.dataGridView1.Columns.Add(buttonColumn);
 
             // データを取得する処理
             DataTable data = dbManager.GetDataFromView(viewName);
 
-            // NO列を追加し、ボタンを設定する
+            // TEST列を追加し、ボタンを設定する
             var button = new DataColumn("Button");
             button.DataType = typeof(string);
             data.Columns.Add(button);
 
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                data.Rows[i]["Button"] = "Click Here"+i;
+                // s.status_numの値に応じてボタンのテキストを設定する
+                int statusNum = Convert.ToInt32(data.Rows[i]["status_num"]);
+                if (statusNum == 0)
+                {
+                    data.Rows[i]["Button"] = "購入確認";
+                }
+                else if (statusNum == 1)
+                {
+                    data.Rows[i]["Button"] = "貸出申請";
+                }
+                else
+                {
+                    // 他の状態に応じた処理を追加する
+                    // data.Rows[i]["Button"] = "他の状態のテキスト";
+                }
             }
 
             // DataGridViewにデータをロード
             dataGridView1.DataSource = data;
 
-            // セルの編集を可能にする
-            dataGridView1.ReadOnly = false;
-            // 編集モードを設定する（EditOnEnterやEditOnKeystrokeOrF2など）
-            dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
+            // セルの編集を不可にする
+            dataGridView1.ReadOnly = true;
 
-            // 行ヘッダーを表示して行番号を表示する
-            dataGridView1.RowHeadersVisible = true;
-            dataGridView1.Visible = true;
+            // 行ヘッダーを非表示にして左の編集列を非表示にする
+            dataGridView1.RowHeadersVisible = false;
+
+            // 最初の編集列を非表示にする
+            dataGridView1.Columns[0].Visible = false;
         }
 
 
