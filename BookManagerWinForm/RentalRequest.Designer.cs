@@ -53,6 +53,7 @@
             buttonApplication.TabIndex = 16;
             buttonApplication.Text = "application";
             buttonApplication.UseVisualStyleBackColor = true;
+            buttonApplication.Click += buttonApplication_Click;
             // 
             // dataGridView1
             // 

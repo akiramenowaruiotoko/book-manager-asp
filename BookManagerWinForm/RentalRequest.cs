@@ -21,5 +21,10 @@ namespace BookManagerWinForm
         {
 
         }
+
+        private void buttonApplication_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
