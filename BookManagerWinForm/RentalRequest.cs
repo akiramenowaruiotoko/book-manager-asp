@@ -16,15 +16,5 @@ namespace BookManagerWinForm
         {
             InitializeComponent();
         }
-
-        private void buttonBackList_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonApplication_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

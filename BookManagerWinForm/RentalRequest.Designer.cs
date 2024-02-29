@@ -53,7 +53,6 @@
             buttonApplication.TabIndex = 16;
             buttonApplication.Text = "application";
             buttonApplication.UseVisualStyleBackColor = true;
-            buttonApplication.Click += buttonApplication_Click;
             // 
             // dataGridView1
             // 
@@ -74,7 +73,6 @@
             buttonBackList.TabIndex = 18;
             buttonBackList.Text = "back";
             buttonBackList.UseVisualStyleBackColor = true;
-            buttonBackList.Click += buttonBackList_Click;
             // 
             // RentalRequest
             // 
