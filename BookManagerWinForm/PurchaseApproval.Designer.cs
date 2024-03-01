@@ -50,6 +50,7 @@
             buttonBackList.TabIndex = 4;
             buttonBackList.Text = "back";
             buttonBackList.UseVisualStyleBackColor = true;
+            buttonBackList.Click += buttonBackList_Click;
             // 
             // PurchaseApproval
             // 
