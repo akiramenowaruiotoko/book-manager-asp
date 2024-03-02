@@ -30,6 +30,9 @@
         {
             labelTitle = new Label();
             buttonBackList = new Button();
+            dataGridView1 = new DataGridView();
+            buttonPurchaseApplication = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // labelTitle
@@ -52,15 +55,40 @@
             buttonBackList.UseVisualStyleBackColor = true;
             buttonBackList.Click += buttonBackPurchaseCheck_Click;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dataGridView1.Location = new Point(64, 118);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidth = 82;
+            dataGridView1.Size = new Size(1901, 93);
+            dataGridView1.TabIndex = 18;
+            // 
+            // buttonPurchaseApplication
+            // 
+            buttonPurchaseApplication.Location = new Point(64, 276);
+            buttonPurchaseApplication.Name = "buttonPurchaseApplication";
+            buttonPurchaseApplication.Size = new Size(211, 48);
+            buttonPurchaseApplication.TabIndex = 19;
+            buttonPurchaseApplication.Text = "application";
+            buttonPurchaseApplication.UseVisualStyleBackColor = true;
+            // 
             // PurchaseCheck
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(2165, 450);
+            Controls.Add(buttonPurchaseApplication);
+            Controls.Add(dataGridView1);
             Controls.Add(buttonBackList);
             Controls.Add(labelTitle);
             Name = "PurchaseCheck";
             Text = "PurchaseCheck";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -69,5 +97,7 @@
 
         private Label labelTitle;
         private Button buttonBackList;
+        private DataGridView dataGridView1;
+        private Button buttonPurchaseApplication;
     }
 }

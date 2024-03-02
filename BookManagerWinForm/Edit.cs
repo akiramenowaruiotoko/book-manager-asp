@@ -5,7 +5,6 @@
         private int empNum;
         private bool isEditor;
         private MainMenu mainMenuForm;
-        private DatabaseManager dbManager;
 
         public Edit(int empNum, bool isEditor, MainMenu mainMenu)
         {
@@ -13,7 +12,6 @@
             this.empNum = empNum;
             this.isEditor = isEditor;
             this.mainMenuForm = mainMenu;
-            dbManager = new DatabaseManager();
         }
 
         private void buttonBackEdit_Click(object sender, EventArgs e)

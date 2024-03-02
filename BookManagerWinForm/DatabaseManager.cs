@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net;
 
 namespace BookManagerWinForm
 {
@@ -27,6 +28,35 @@ namespace BookManagerWinForm
 
                     // SQL 文を作成してパラメータ化
                     string sql = "SELECT * FROM " + viewName;
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // 例外処理：ユーザーにエラーメッセージを表示する
+                Console.WriteLine($"データの取得中にエラーが発生しました: {ex.Message}");
+            }
+
+            return dataTable;
+        }
+
+        // ビューと行を指定してデータを取得するメソッド
+        public DataTable GetDataFromRowView(string viewName, string bookId)
+        {
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // SQL 文を作成してパラメータ化
+                    string sql = "SELECT * FROM " + viewName + " where book_id = " + bookId;
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {

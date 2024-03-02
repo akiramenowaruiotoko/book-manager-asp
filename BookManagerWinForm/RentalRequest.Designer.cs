@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             labelTitle = new Label();
-            buttonApplication = new Button();
+            buttonRentalRequest = new Button();
             dataGridView1 = new DataGridView();
             buttonBackList = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -45,25 +45,28 @@
             labelTitle.TabIndex = 3;
             labelTitle.Text = "Book Manager";
             // 
-            // buttonApplication
+            // buttonRentalRequest
             // 
-            buttonApplication.Location = new Point(12, 312);
-            buttonApplication.Name = "buttonApplication";
-            buttonApplication.Size = new Size(211, 48);
-            buttonApplication.TabIndex = 16;
-            buttonApplication.Text = "application";
-            buttonApplication.UseVisualStyleBackColor = true;
+            buttonRentalRequest.Location = new Point(12, 312);
+            buttonRentalRequest.Name = "buttonRentalRequest";
+            buttonRentalRequest.Size = new Size(211, 48);
+            buttonRentalRequest.TabIndex = 16;
+            buttonRentalRequest.Text = "request";
+            buttonRentalRequest.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
-            dataGridView1.AllowUserToOrderColumns = true;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView1.Location = new Point(12, 158);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 82;
-            dataGridView1.Size = new Size(1194, 93);
+            dataGridView1.Size = new Size(650, 93);
             dataGridView1.TabIndex = 17;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // buttonBackList
             // 
@@ -79,10 +82,10 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1334, 450);
+            ClientSize = new Size(692, 450);
             Controls.Add(buttonBackList);
             Controls.Add(dataGridView1);
-            Controls.Add(buttonApplication);
+            Controls.Add(buttonRentalRequest);
             Controls.Add(labelTitle);
             Name = "RentalRequest";
             Text = "RentalRequest";
@@ -94,7 +97,7 @@
         #endregion
 
         private Label labelTitle;
-        private Button buttonApplication;
+        private Button buttonRentalRequest;
         private DataGridView dataGridView1;
         private Button buttonBackList;
     }

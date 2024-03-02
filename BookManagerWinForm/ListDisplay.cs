@@ -81,17 +81,8 @@ namespace BookManagerWinForm
             // DataGridViewにデータをロード
             dataGridView1.DataSource = data;
 
-            // セルの編集を不可にする
-            dataGridView1.ReadOnly = true;
-
             // 行ヘッダーを非表示にして左の編集列を非表示にする
             dataGridView1.RowHeadersVisible = false;
-
-            // 最初の編集列を非表示にする
-            dataGridView1.Columns[0].Visible = false;
-
-            // 追加行を非表示にする
-            dataGridView1.AllowUserToAddRows = false;
         }
 
         // DataGridView のセルがクリックされたときの処理
@@ -117,6 +108,10 @@ namespace BookManagerWinForm
             if (rowIndex >= 0 && rowIndex < dataGridView1.Rows.Count &&
                 dataGridView1.Rows[rowIndex].Cells["アクションボタン"].Selected)
             {
+
+                // クリックされた行の book_id の値を取得
+                string book_id = dataGridView1.Rows[rowIndex].Cells["book_id"].Value.ToString();
+
                 // クリックされた行の status_num の値を取得
                 ActionNum actionNum = (ActionNum)Convert.ToInt32(dataGridView1.Rows[rowIndex].Cells["status_num"].Value);
 
@@ -125,17 +120,19 @@ namespace BookManagerWinForm
                 {
                     case ActionNum.purchaseCheck:
                         // purchaseCheckに対する処理
-                        PurchaseCheck purchaseCheck = new(empNum, isEditor, this);
+                        PurchaseCheck purchaseCheck = new(empNum, isEditor, book_id, this);
                         purchaseCheck.Show();
                         this.Hide();
                         break;
 
                     case ActionNum.rentalRequest:
                         // rentalRequestに対する処理
-                        RentalRequest rentalRequest = new(empNum, isEditor, this);
+                        RentalRequest rentalRequest = new(empNum, isEditor, book_id, this);
                         rentalRequest.Show();
                         this.Hide();
                         break;
+
+                    default: break;
                 }
             }
         }
