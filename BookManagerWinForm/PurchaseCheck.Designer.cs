@@ -1,6 +1,6 @@
 ﻿namespace BookManagerWinForm
 {
-    partial class PurchaseApproval
+    partial class PurchaseCheck
     {
         /// <summary>
         /// Required designer variable.
@@ -50,16 +50,17 @@
             buttonBackList.TabIndex = 4;
             buttonBackList.Text = "back";
             buttonBackList.UseVisualStyleBackColor = true;
+            buttonBackList.Click += buttonBackPurchaseCheck_Click;
             // 
-            // PurchaseApproval
+            // PurchaseCheck
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(buttonBackList);
             Controls.Add(labelTitle);
-            Name = "PurchaseApproval";
-            Text = "PurchaseApproval";
+            Name = "PurchaseCheck";
+            Text = "PurchaseCheck";
             ResumeLayout(false);
             PerformLayout();
         }

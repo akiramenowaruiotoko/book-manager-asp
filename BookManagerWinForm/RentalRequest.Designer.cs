@@ -73,6 +73,7 @@
             buttonBackList.TabIndex = 18;
             buttonBackList.Text = "back";
             buttonBackList.UseVisualStyleBackColor = true;
+            buttonBackList.Click += buttonBackList_Click;
             // 
             // RentalRequest
             // 

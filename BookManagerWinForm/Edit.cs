@@ -7,16 +7,16 @@
         private MainMenu mainMenuForm;
         private DatabaseManager dbManager;
 
-        public Edit(int empNum, bool isEditor, MainMenu mainMenuForm)
+        public Edit(int empNum, bool isEditor, MainMenu mainMenu)
         {
             InitializeComponent();
             this.empNum = empNum;
             this.isEditor = isEditor;
-            this.mainMenuForm = mainMenuForm;
+            this.mainMenuForm = mainMenu;
             dbManager = new DatabaseManager();
         }
 
-        private void buttonBackPurchase_Click(object sender, EventArgs e)
+        private void buttonBackEdit_Click(object sender, EventArgs e)
         {
             mainMenuForm.Show();
             this.Close();
@@ -24,8 +24,8 @@
 
         private void buttonAddAccount_Click(object sender, EventArgs e)
         {
-            AddAccount addAccount = new(empNum, isEditor, this);
-            addAccount.Show();
+            AddAccount form = new(empNum, isEditor, this);
+            form.Show();
             this.Hide();
         }
     }

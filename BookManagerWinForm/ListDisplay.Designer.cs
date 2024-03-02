@@ -52,7 +52,7 @@
             buttonBackList.TabIndex = 3;
             buttonBackList.Text = "back";
             buttonBackList.UseVisualStyleBackColor = true;
-            buttonBackList.Click += ButtonBack_Click;
+            buttonBackList.Click += ButtonBackListDisplay_Click;
             // 
             // dataGridView1
             // 

@@ -19,7 +19,7 @@
     <Compile Update="Purchase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="PurchaseApproval.cs">
+    <Compile Update="PurchaseCheck.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="RentalRequest.cs">

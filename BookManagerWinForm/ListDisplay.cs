@@ -12,16 +12,25 @@ namespace BookManagerWinForm
         private DatabaseManager dbManager;
         private string viewName = "view_all";
 
-        public ListDisplay(int empNum, bool isEditor, MainMenu mainMenuForm)
+        enum ActionNum
+        {
+            purchaseCheck = 0,
+            rentalRequest = 1
+        }
+
+        public ListDisplay(int empNum, bool isEditor, MainMenu mainMenu)
         {
             InitializeComponent();
             this.empNum = empNum;
             this.isEditor = isEditor;
-            this.mainMenuForm = mainMenuForm;
+            this.mainMenuForm = mainMenu;
             dbManager = new DatabaseManager(); // DatabaseManagerクラスのインスタンス化
 
             // DataGridView の CellContentClick イベントハンドラを設定
             dataGridView1.CellContentClick += DataGridView1_CellContentClick;
+
+            // DataGridView の KeyDown イベントハンドラを設定
+            dataGridView1.KeyDown += DataGridView1_KeyDown;
 
             LoadDataFromView();
         }
@@ -80,24 +89,59 @@ namespace BookManagerWinForm
 
             // 最初の編集列を非表示にする
             dataGridView1.Columns[0].Visible = false;
+
+            // 追加行を非表示にする
+            dataGridView1.AllowUserToAddRows = false;
         }
 
         // DataGridView のセルがクリックされたときの処理
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            HandleAction(e.RowIndex);
+        }
+
+        // DataGridView のセルがキーダウンされたときの処理
+        private void DataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                int rowIndex = dataGridView1.CurrentCell.RowIndex;
+                HandleAction(rowIndex);
+            }
+        }
+
+        // アクションを処理するメソッド
+        private void HandleAction(int rowIndex)
+        {
             // ボタンがクリックされたことを確認する
-            if (e.ColumnIndex == dataGridView1.Columns["アクションボタン"].Index && e.RowIndex != -1)
+            if (rowIndex >= 0 && rowIndex < dataGridView1.Rows.Count &&
+                dataGridView1.Rows[rowIndex].Cells["アクションボタン"].Selected)
             {
                 // クリックされた行の status_num の値を取得
-                int statusNum = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["status_num"].Value);
+                ActionNum actionNum = (ActionNum)Convert.ToInt32(dataGridView1.Rows[rowIndex].Cells["status_num"].Value);
 
-                // status_num の値をポップアップで表示
-                MessageBox.Show($"Status Num: {statusNum}", "Status Num", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // actionNumの値で分岐
+                switch (actionNum)
+                {
+                    case ActionNum.purchaseCheck:
+                        // purchaseCheckに対する処理
+                        PurchaseCheck purchaseCheck = new(empNum, isEditor, this);
+                        purchaseCheck.Show();
+                        this.Hide();
+                        break;
+
+                    case ActionNum.rentalRequest:
+                        // rentalRequestに対する処理
+                        RentalRequest rentalRequest = new(empNum, isEditor, this);
+                        rentalRequest.Show();
+                        this.Hide();
+                        break;
+                }
             }
         }
 
         // 戻るボタンがクリックされたときの処理
-        private void ButtonBack_Click(object sender, EventArgs e)
+        private void ButtonBackListDisplay_Click(object sender, EventArgs e)
         {
             mainMenuForm.Show();
             this.Close();

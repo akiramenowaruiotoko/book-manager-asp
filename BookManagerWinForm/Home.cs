@@ -23,8 +23,8 @@ namespace BookManagerWinForm
             if (dbManager.CheckCredentials(empNum, empPass, out isEditor))
             {
                 // 認証成功時はメインメニュー画面を表示
-                MainMenu mainMenu = new MainMenu(empNum, isEditor, this);
-                mainMenu.Show();
+                MainMenu form = new MainMenu(empNum, isEditor, this);
+                form.Show();
                 // ログイン画面を非表示
                 this.Hide();
             }

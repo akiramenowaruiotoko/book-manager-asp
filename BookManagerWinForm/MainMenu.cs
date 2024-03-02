@@ -16,21 +16,21 @@
 
         private void ButtonListDisplay_Click(object sender, EventArgs e)
         {
-            ListDisplay listDisplay = new(empNum, isEditor, this);
-            listDisplay.Show();
+            ListDisplay form = new(empNum, isEditor, this);
+            form.Show();
             this.Hide();
         }
 
         private void ButtonPurchase_Click(object sender, EventArgs e)
         {
-            Purchase purchase = new(empNum, isEditor, this);
-            purchase.Show();
+            Purchase form = new(empNum, isEditor, this);
+            form.Show();
             this.Hide();
         }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
-            Edit edit = new(empNum, isEditor, this);
-            edit.Show();
+            Edit form = new(empNum, isEditor, this);
+            form.Show();
             this.Hide();
         }
 
