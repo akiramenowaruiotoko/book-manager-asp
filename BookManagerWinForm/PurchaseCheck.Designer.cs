@@ -76,6 +76,7 @@
             buttonPurchaseApplication.TabIndex = 19;
             buttonPurchaseApplication.Text = "application";
             buttonPurchaseApplication.UseVisualStyleBackColor = true;
+            buttonPurchaseApplication.Click += buttonPurchaseApplication_Click;
             // 
             // PurchaseCheck
             // 

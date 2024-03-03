@@ -39,5 +39,10 @@ namespace BookManagerWinForm
             listDisplayFrom.Show();
             this.Close();
         }
+
+        private void buttonPurchaseApplication_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
