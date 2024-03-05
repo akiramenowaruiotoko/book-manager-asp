@@ -15,7 +15,9 @@ namespace BookManagerWinForm
         enum ActionNum
         {
             purchaseCheck = 0,
-            rentalRequest = 1
+            rentalRequest = 1,
+            rentalCheck = 2,
+            renting = 3
         }
 
         public ListDisplay(int empNum, bool isEditor, MainMenu mainMenu)
