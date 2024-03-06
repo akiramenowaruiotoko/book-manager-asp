@@ -33,7 +33,7 @@ namespace BookManagerWinForm
             labelTitle = new Label();
             buttonLogOut = new Button();
             buttonListDisplay = new Button();
-            buttonPurchase = new Button();
+            buttonPurchaseRequest = new Button();
             buttonEdit = new Button();
             SuspendLayout();
             // 
@@ -67,15 +67,15 @@ namespace BookManagerWinForm
             buttonListDisplay.UseVisualStyleBackColor = true;
             buttonListDisplay.Click += ButtonListDisplay_Click;
             // 
-            // buttonPurchase
+            // buttonPurchaseRequest
             // 
-            buttonPurchase.Location = new Point(48, 197);
-            buttonPurchase.Name = "buttonPurchase";
-            buttonPurchase.Size = new Size(232, 62);
-            buttonPurchase.TabIndex = 4;
-            buttonPurchase.Text = "request purchase";
-            buttonPurchase.UseVisualStyleBackColor = true;
-            buttonPurchase.Click += ButtonPurchase_Click;
+            buttonPurchaseRequest.Location = new Point(48, 197);
+            buttonPurchaseRequest.Name = "buttonPurchaseRequest";
+            buttonPurchaseRequest.Size = new Size(232, 62);
+            buttonPurchaseRequest.TabIndex = 4;
+            buttonPurchaseRequest.Text = "purchase request";
+            buttonPurchaseRequest.UseVisualStyleBackColor = true;
+            buttonPurchaseRequest.Click += buttonPurchaseRequest_Click;
             // 
             // buttonEdit
             // 
@@ -93,7 +93,7 @@ namespace BookManagerWinForm
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(369, 450);
             Controls.Add(buttonEdit);
-            Controls.Add(buttonPurchase);
+            Controls.Add(buttonPurchaseRequest);
             Controls.Add(buttonListDisplay);
             Controls.Add(buttonLogOut);
             Controls.Add(labelTitle);
@@ -108,7 +108,7 @@ namespace BookManagerWinForm
         private Label labelTitle;
         private Button buttonLogOut;
         private Button buttonListDisplay;
-        private Button buttonPurchase;
+        private Button buttonPurchaseRequest;
         private Button buttonEdit;
     }
 }

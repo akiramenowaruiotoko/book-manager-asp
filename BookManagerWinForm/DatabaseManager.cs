@@ -111,12 +111,12 @@ namespace BookManagerWinForm
         }
 
         // 書籍の申請を行うメソッド
-        public bool RequestBook(string bookId, string bookName, int employeeNumber, int statusNum)
+        public bool PurchaseRequest(string bookId, string bookName, int employeeNumber, int statusNum)
         {
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
-                using (SqlCommand command = new SqlCommand("RequestBookPurchase", connection))
+                using (SqlCommand command = new SqlCommand("PurchaseRequest", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@BookId", bookId);

@@ -21,12 +21,6 @@
             this.Hide();
         }
 
-        private void ButtonPurchase_Click(object sender, EventArgs e)
-        {
-            Purchase form = new(empNum, isEditor, this);
-            form.Show();
-            this.Hide();
-        }
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
             Edit form = new(empNum, isEditor, this);
@@ -41,6 +35,13 @@
             isEditor = false;
             homeForm.Show(); // MainMenuに保持されたHomeクラスのインスタンスを表示
             this.Close();
+        }
+
+        private void buttonPurchaseRequest_Click(object sender, EventArgs e)
+        {
+            PurchaseRequest form = new(empNum, isEditor, this);
+            form.Show();
+            this.Hide();
         }
     }
 }

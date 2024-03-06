@@ -1,6 +1,6 @@
 ﻿namespace BookManagerWinForm
 {
-    partial class Purchase
+    partial class PurchaseRequest
     {
         /// <summary>
         /// Required designer variable.
@@ -132,7 +132,7 @@
             buttonApplication.UseVisualStyleBackColor = true;
             buttonApplication.Click += buttonApplication_Click;
             // 
-            // Purchase
+            // PurchaseRequest
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -147,8 +147,8 @@
             Controls.Add(label1);
             Controls.Add(buttonBack);
             Controls.Add(labelTitle);
-            Name = "Purchase";
-            Text = "Purchase";
+            Name = "PurchaseRequest";
+            Text = "PurchaseRequest";
             ResumeLayout(false);
             PerformLayout();
         }

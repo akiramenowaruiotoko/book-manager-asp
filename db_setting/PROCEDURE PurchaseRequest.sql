@@ -1,7 +1,7 @@
 USE [book_manager]
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].[RequestBookPurchase]
+CREATE OR ALTER PROCEDURE [dbo].[PurchaseRequest]
     @BookId CHAR(10),
     @BookName VARCHAR(50),
     @EmployeeNumber INT,

@@ -1,13 +1,13 @@
 ﻿namespace BookManagerWinForm
 {
-    public partial class Purchase : Form
+    public partial class PurchaseRequest : Form
     {
         private int empNum;
         private bool isEditor;
         private MainMenu mainMenuForm;
         private DatabaseManager dbManager;
 
-        public Purchase(int empNum, bool isEditor, MainMenu mainMenuForm)
+        public PurchaseRequest(int empNum, bool isEditor, MainMenu mainMenuForm)
         {
             InitializeComponent();
             this.empNum = empNum;
@@ -31,7 +31,7 @@
             string bookName = textBoxBookName.Text.Trim();
 
             // 書籍申請を行い、結果を直接条件式で使用
-            if (dbManager.RequestBook(bookId, bookName, empNum, statusNum))
+            if (dbManager.PurchaseRequest(bookId, bookName, empNum, statusNum))
             {
                 MessageBox.Show("申請が完了しました。");
             }
