@@ -32,6 +32,10 @@
             buttonRentalRequest = new Button();
             dataGridView1 = new DataGridView();
             buttonBackList = new Button();
+            dateTimePicker1 = new DateTimePicker();
+            dateTimePicker2 = new DateTimePicker();
+            label1 = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -78,11 +82,49 @@
             buttonBackList.UseVisualStyleBackColor = true;
             buttonBackList.Click += buttonBackList_Click;
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            dateTimePicker1.Location = new Point(695, 201);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(266, 50);
+            dateTimePicker1.TabIndex = 20;
+            // 
+            // dateTimePicker2
+            // 
+            dateTimePicker2.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            dateTimePicker2.Location = new Point(987, 201);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(266, 50);
+            dateTimePicker2.TabIndex = 21;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(695, 158);
+            label1.Name = "label1";
+            label1.Size = new Size(129, 32);
+            label1.TabIndex = 22;
+            label1.Text = "rental date";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(987, 158);
+            label2.Name = "label2";
+            label2.Size = new Size(133, 32);
+            label2.TabIndex = 23;
+            label2.Text = "return date";
+            // 
             // RentalRequest
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(692, 450);
+            ClientSize = new Size(1370, 450);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(dateTimePicker2);
+            Controls.Add(dateTimePicker1);
             Controls.Add(buttonBackList);
             Controls.Add(dataGridView1);
             Controls.Add(buttonRentalRequest);
@@ -100,5 +142,9 @@
         private Button buttonRentalRequest;
         private DataGridView dataGridView1;
         private Button buttonBackList;
+        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateTimePicker2;
+        private Label label1;
+        private Label label2;
     }
 }
