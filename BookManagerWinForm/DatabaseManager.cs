@@ -7,7 +7,7 @@ namespace BookManagerWinForm
 {
     public class DatabaseManager
     {
-        private string connectionString;
+        private readonly string connectionString;
 
         public DatabaseManager()
         {
@@ -18,21 +18,19 @@ namespace BookManagerWinForm
         // 指定したビューからデータを取得するメソッド
         public DataTable GetDataFromView(string viewName)
         {
-            DataTable dataTable = new DataTable();
+            DataTable dataTable = new();
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new(connectionString))
                 {
                     connection.Open();
 
                     // SQL 文を作成してパラメータ化
                     string sql = "SELECT * FROM " + viewName;
-                    using (SqlCommand command = new SqlCommand(sql, connection))
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                    {
-                        adapter.Fill(dataTable);
-                    }
+                    using SqlCommand command = new(sql, connection);
+                    using SqlDataAdapter adapter = new(command);
+                    adapter.Fill(dataTable);
                 }
             }
             catch (Exception ex)
@@ -47,21 +45,19 @@ namespace BookManagerWinForm
         // ビューと行を指定してデータを取得するメソッド
         public DataTable GetDataFromRowView(string viewName, string bookId)
         {
-            DataTable dataTable = new DataTable();
+            DataTable dataTable = new();
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new(connectionString))
                 {
                     connection.Open();
 
                     // SQL 文を作成してパラメータ化
                     string sql = "SELECT * FROM " + viewName + " where book_id = " + bookId;
-                    using (SqlCommand command = new SqlCommand(sql, connection))
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                    {
-                        adapter.Fill(dataTable);
-                    }
+                    using SqlCommand command = new(sql, connection);
+                    using SqlDataAdapter adapter = new(command);
+                    adapter.Fill(dataTable);
                 }
             }
             catch (Exception ex)
@@ -80,27 +76,25 @@ namespace BookManagerWinForm
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                using (SqlCommand command = new SqlCommand("CheckCredentials", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@EmpNum", empNum);
-                    command.Parameters.AddWithValue("@EmpPass", empPass);
+                using SqlConnection connection = new(connectionString);
+                using SqlCommand command = new("CheckCredentials", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@EmpNum", empNum);
+                command.Parameters.AddWithValue("@EmpPass", empPass);
 
-                    SqlParameter outputParam = new SqlParameter("@IsEditor", SqlDbType.Bit);
-                    outputParam.Direction = ParameterDirection.Output;
-                    command.Parameters.Add(outputParam);
+                SqlParameter outputParam = new("@IsEditor", SqlDbType.Bit);
+                outputParam.Direction = ParameterDirection.Output;
+                command.Parameters.Add(outputParam);
 
-                    SqlParameter returnParam = command.Parameters.Add("@return_value", SqlDbType.Int);
-                    returnParam.Direction = ParameterDirection.ReturnValue;
+                SqlParameter returnParam = command.Parameters.Add("@return_value", SqlDbType.Int);
+                returnParam.Direction = ParameterDirection.ReturnValue;
 
-                    connection.Open();
-                    command.ExecuteNonQuery();
+                connection.Open();
+                command.ExecuteNonQuery();
 
-                    isEditor = (bool)outputParam.Value;
-                    // 認証が成功(0)した場合TRUE, 失敗(-1)した場合FALSE
-                    return (int)returnParam.Value == 0;
-                }
+                isEditor = (bool)outputParam.Value;
+                // 認証が成功(0)した場合TRUE, 失敗(-1)した場合FALSE
+                return (int)returnParam.Value == 0;
             }
             catch (Exception ex)
             {
@@ -115,8 +109,8 @@ namespace BookManagerWinForm
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                using (SqlCommand command = new SqlCommand("PurchaseRequest", connection))
+                using (SqlConnection connection = new(connectionString))
+                using (SqlCommand command = new("PurchaseRequest", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@BookId", bookId);
