@@ -1,8 +1,10 @@
 USE [book_manager]
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].[PurchaseCheck]
-    @BookId CHAR(10)
+CREATE OR ALTER PROCEDURE [dbo].[PurchaseComplete]
+    @BookId CHAR(10),
+	@EmployeeNumber INT,
+    @StatusNum INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -11,7 +13,7 @@ BEGIN
     IF EXISTS (SELECT 1 FROM statuses WHERE book_id = @BookId and status_num = 0)
 		BEGIN
 			-- 書籍が存在しステータスが０の場合はstatusesテーブルを更新、RETURN 0を返す
-			UPDATE statuses set status_num = 1 where book_id = @BookId;
+			INSERT INTO statuses (book_id, employee_number, status_num) VALUES (@BookId, @EmployeeNumber, @StatusNum);
 			RETURN 0;
 		END
     ELSE

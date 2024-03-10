@@ -64,14 +64,14 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 82;
-            dataGridView1.Size = new Size(1655, 693);
+            dataGridView1.Size = new Size(2341, 693);
             dataGridView1.TabIndex = 4;
             // 
             // ListDisplay
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1716, 921);
+            ClientSize = new Size(2386, 921);
             Controls.Add(dataGridView1);
             Controls.Add(buttonBackList);
             Controls.Add(labelTitle);

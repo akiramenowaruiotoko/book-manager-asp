@@ -135,5 +135,34 @@ namespace BookManagerWinForm
             }
         }
 
+        // 購入完了を行うメソッド
+        public bool PurchaseComplete(string bookId, int employeeNumber, int statusNum)
+        {
+            try
+            {
+                using (SqlConnection connection = new(connectionString))
+                using (SqlCommand command = new("PurchaseComplete", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@BookId", bookId);
+                    command.Parameters.AddWithValue("@EmployeeNumber", employeeNumber);
+                    command.Parameters.AddWithValue("@StatusNum", statusNum);
+
+                    SqlParameter returnParam = command.Parameters.Add("@return_value", SqlDbType.Int);
+                    returnParam.Direction = ParameterDirection.ReturnValue;
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    int returnValue = (int)returnParam.Value;
+                    // 申請が成功(0)した場合 TRUE, 失敗(-1)した場合FALSE
+                    return (int)returnParam.Value == 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"申請中にエラーが発生しました: {ex.Message}");
+                return false;
+            }
+        }
     }
 }

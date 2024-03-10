@@ -67,7 +67,7 @@ namespace BookManagerWinForm
                 int statusNum = Convert.ToInt32(data.Rows[i]["status_num"]);
                 if (statusNum == 0)
                 {
-                    data.Rows[i]["Button"] = "購入確認";
+                    data.Rows[i]["Button"] = "購入完了処理";
                 }
                 else if (statusNum == 1)
                 {
@@ -122,7 +122,7 @@ namespace BookManagerWinForm
                 {
                     case ActionNum.purchaseCheck:
                         // purchaseCheckに対する処理
-                        PurchaseCheck purchaseCheck = new(empNum, isEditor, book_id, this);
+                        PurchaseComplete purchaseCheck = new(empNum, isEditor, book_id, this);
                         purchaseCheck.Show();
                         this.Hide();
                         break;
