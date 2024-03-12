@@ -1,31 +1,29 @@
 USE [book_manager]
 GO
 
-/****** Object:  View [dbo].[view_all]    Script Date: 2024/03/09 11:21:59 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-
 CREATE OR ALTER VIEW [dbo].[view_all]
 AS
 SELECT
-    b.book_id,
-    b.book_name,
-    e.employee_number,
-    e.first_name,
-    s.status_id,
-    s.status_num,
-    s.rent_date,
-    s.return_date,
-	s.update_datetime
+    b.book_id, -- 書籍ID
+    b.book_name, -- 書籍名
+    e.employee_number, -- 従業員番号
+    e.first_name, -- 従業員の名前
+    s.status_id, -- ステータスID
+    s.status_num, -- ステータス番号
+    s.rent_date, -- 貸出日
+    s.return_date, -- 返却日
+    s.update_datetime -- ステータスの更新日時
 FROM
     books AS b
 LEFT JOIN
     statuses AS s ON b.book_id = s.book_id
 LEFT JOIN
-    employees AS e ON s.employee_number = e.employee_number;
+    employees AS e ON s.employee_number = e.employee_number
+WHERE
+    s.update_datetime = (
+        -- 各書籍の最新の更新日時を持つレコードのみを取得
+        SELECT MAX(update_datetime)
+        FROM statuses
+        WHERE book_id = b.book_id
+    );
 GO
-

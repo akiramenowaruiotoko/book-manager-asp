@@ -52,7 +52,7 @@ namespace BookManagerWinForm
             }
             else
             {
-                MessageBox.Show("購入依頼なし。または書籍済みです。申請を中止します。");
+                MessageBox.Show("購入依頼なし。または書籍購入済みです。申請を中止します。");
             }
         }
     }
