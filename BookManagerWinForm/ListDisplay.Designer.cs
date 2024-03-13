@@ -77,6 +77,7 @@
             Controls.Add(labelTitle);
             Name = "ListDisplay";
             Text = "ListDisplay";
+            VisibleChanged += ListDisplay_VisibleChanged;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

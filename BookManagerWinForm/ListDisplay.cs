@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace BookManagerWinForm
 {
@@ -14,10 +15,11 @@ namespace BookManagerWinForm
 
         enum ActionNum
         {
-            purchaseCheck = 0,
+            purchaseComplete = 0,
             rentalRequest = 1,
-            rentalCheck = 2,
-            renting = 3
+            rentalApproval = 2,
+            returned = 3,
+            notPurchaseApproval = 4
         }
 
         public ListDisplay(int empNum, bool isEditor, MainMenu mainMenu)
@@ -33,12 +35,19 @@ namespace BookManagerWinForm
 
             // DataGridView の KeyDown イベントハンドラを設定
             dataGridView1.KeyDown += DataGridView1_KeyDown;
+        }
 
+        // フォームが表示されたらdataをロード
+        private void ListDisplay_VisibleChanged(object sender, EventArgs e)
+        {
             LoadDataFromView();
         }
 
         private void LoadDataFromView()
         {
+            // データグリッドビューの列をクリアする
+            dataGridView1.Columns.Clear();
+
             // NO列をボタン列に変更する
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
             buttonColumn.HeaderText = "ActionButton";
@@ -52,6 +61,9 @@ namespace BookManagerWinForm
             buttonColumn.FlatStyle = FlatStyle.Popup;
 
             this.dataGridView1.Columns.Add(buttonColumn);
+
+            // 行ヘッダーを非表示にして左の編集列を非表示にする
+            dataGridView1.RowHeadersVisible = false;
 
             // データを取得する処理
             DataTable data = dbManager.GetDataFromView(viewName);
@@ -79,13 +91,10 @@ namespace BookManagerWinForm
                     // data.Rows[i]["Button"] = "他の状態のテキスト";
                 }
             }
-
             // DataGridViewにデータをロード
             dataGridView1.DataSource = data;
-
-            // 行ヘッダーを非表示にして左の編集列を非表示にする
-            dataGridView1.RowHeadersVisible = false;
         }
+
 
         // DataGridView のセルがクリックされたときの処理
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -120,7 +129,7 @@ namespace BookManagerWinForm
                 // actionNumの値で分岐
                 switch (actionNum)
                 {
-                    case ActionNum.purchaseCheck:
+                    case ActionNum.purchaseComplete:
                         // purchaseCheckに対する処理
                         PurchaseComplete purchaseCheck = new(empNum, isEditor, book_id, this);
                         purchaseCheck.Show();
