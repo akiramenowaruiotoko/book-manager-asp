@@ -97,13 +97,13 @@ namespace BookManagerWinForm
 
 
         // DataGridView のセルがクリックされたときの処理
-        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView1_CellContentClick(object? sender, DataGridViewCellEventArgs e)
         {
             HandleAction(e.RowIndex);
         }
 
         // DataGridView のセルがキーダウンされたときの処理
-        private void DataGridView1_KeyDown(object sender, KeyEventArgs e)
+        private void DataGridView1_KeyDown(object? sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -120,8 +120,8 @@ namespace BookManagerWinForm
                 dataGridView1.Rows[rowIndex].Cells["アクションボタン"].Selected)
             {
 
-                // クリックされた行の book_id の値を取得
-                string book_id = dataGridView1.Rows[rowIndex].Cells["book_id"].Value.ToString();
+                // クリックされた行の book_id の値を取得し、null の場合はデフォルト値を設定する
+                string book_id = dataGridView1.Rows[rowIndex].Cells["book_id"].Value.ToString() ?? string.Empty;
 
                 // クリックされた行の status_num の値を取得
                 ActionNum actionNum = (ActionNum)Convert.ToInt32(dataGridView1.Rows[rowIndex].Cells["status_num"].Value);
@@ -149,7 +149,7 @@ namespace BookManagerWinForm
         }
 
         // 戻るボタンがクリックされたときの処理
-        private void ButtonBackListDisplay_Click(object sender, EventArgs e)
+        private void ButtonBackListDisplay_Click(object? sender, EventArgs e)
         {
             mainMenuForm.Show();
             this.Close();
