@@ -57,6 +57,7 @@
             buttonRentalRequest.TabIndex = 16;
             buttonRentalRequest.Text = "request";
             buttonRentalRequest.UseVisualStyleBackColor = true;
+            buttonRentalRequest.Click += ButtonRentalRequest_Click;
             // 
             // dataGridView1
             // 
@@ -79,7 +80,7 @@
             buttonBackList.TabIndex = 18;
             buttonBackList.Text = "back";
             buttonBackList.UseVisualStyleBackColor = true;
-            buttonBackList.Click += buttonBackList_Click;
+            buttonBackList.Click += ButtonBackList_Click;
             // 
             // dateTimePicker1
             // 

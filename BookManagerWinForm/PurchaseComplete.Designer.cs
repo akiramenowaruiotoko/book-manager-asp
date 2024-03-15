@@ -76,7 +76,7 @@
             buttonPurchaseComplete.TabIndex = 19;
             buttonPurchaseComplete.Text = "purchase complete";
             buttonPurchaseComplete.UseVisualStyleBackColor = true;
-            buttonPurchaseComplete.Click += buttonPurchaseComplete_Click;
+            buttonPurchaseComplete.Click += ButtonPurchaseComplete_Click;
             // 
             // PurchaseComplete
             // 

@@ -2,10 +2,10 @@
 {
     public partial class PurchaseRequest : Form
     {
-        private int empNum;
-        private bool isEditor;
-        private MainMenu mainMenuForm;
-        private DatabaseManager dbManager;
+        private readonly int empNum;
+        private readonly bool isEditor;
+        private readonly MainMenu mainMenuForm;
+        private readonly DatabaseManager dbManager;
 
         public PurchaseRequest(int empNum, bool isEditor, MainMenu mainMenuForm)
         {
@@ -16,13 +16,13 @@
             dbManager = new DatabaseManager();
         }
 
-        private void buttonBackPurchase_Click(object sender, EventArgs e)
+        private void ButtonBackPurchase_Click(object sender, EventArgs e)
         {
             mainMenuForm.Show();
             this.Close();
         }
 
-        private void buttonApplication_Click(object sender, EventArgs e)
+        private void ButtonApplication_Click(object sender, EventArgs e)
         {
             // ステータス番号を0で初期化
             int statusNum = 0;

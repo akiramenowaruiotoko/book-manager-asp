@@ -75,7 +75,7 @@ namespace BookManagerWinForm
             buttonPurchaseRequest.TabIndex = 4;
             buttonPurchaseRequest.Text = "purchase request";
             buttonPurchaseRequest.UseVisualStyleBackColor = true;
-            buttonPurchaseRequest.Click += buttonPurchaseRequest_Click;
+            buttonPurchaseRequest.Click += ButtonPurchaseRequest_Click;
             // 
             // buttonEdit
             // 

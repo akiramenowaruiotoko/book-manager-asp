@@ -7,11 +7,11 @@ namespace BookManagerWinForm
 {
     public partial class ListDisplay : Form
     {
-        private int empNum;
-        private bool isEditor;
-        private MainMenu mainMenuForm;
-        private DatabaseManager dbManager;
-        private string viewName = "view_all";
+        private readonly int empNum;
+        private readonly bool isEditor;
+        private readonly MainMenu mainMenuForm;
+        private readonly DatabaseManager dbManager;
+        private readonly string viewName = "view_all";
 
         enum ActionNum
         {
@@ -49,11 +49,13 @@ namespace BookManagerWinForm
             dataGridView1.Columns.Clear();
 
             // NO列をボタン列に変更する
-            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            buttonColumn.HeaderText = "ActionButton";
-            buttonColumn.Name = "アクションボタン";
-            buttonColumn.FlatStyle = FlatStyle.Flat; // FlatStyleをFlatに設定する
-            buttonColumn.DataPropertyName = "Button";
+            DataGridViewButtonColumn buttonColumn = new()
+            {
+                HeaderText = "ActionButton",
+                Name = "アクションボタン",
+                FlatStyle = FlatStyle.Flat, // FlatStyleをFlatに設定する
+                DataPropertyName = "Button"
+            };
 
             // ボタンの外観をカスタマイズする
             buttonColumn.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
@@ -69,8 +71,10 @@ namespace BookManagerWinForm
             DataTable data = dbManager.GetDataFromView(viewName);
 
             // ActionButton列を追加し、ボタンを設定する
-            var button = new DataColumn("Button");
-            button.DataType = typeof(string);
+            DataColumn button = new("Button")
+            {
+                DataType = typeof(string)
+            };
             data.Columns.Add(button);
 
             for (int i = 0; i < data.Rows.Count; i++)

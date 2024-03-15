@@ -12,12 +12,12 @@ namespace BookManagerWinForm
 {
     public partial class PurchaseComplete : Form
     {
-        private int empNum;
-        private bool isEditor;
-        private string book_id;
-        private ListDisplay listDisplayFrom;
-        private DatabaseManager dbManager;
-        private string viewName = "view_all";
+        private readonly int empNum;
+        private readonly bool isEditor;
+        private readonly string book_id;
+        private readonly ListDisplay listDisplayFrom;
+        private readonly DatabaseManager dbManager;
+        private readonly string viewName = "view_all";
 
         public PurchaseComplete(int empNum, bool isEditor, string book_id, ListDisplay listDisplay)
         {
@@ -40,7 +40,7 @@ namespace BookManagerWinForm
             this.Close();
         }
 
-        private void buttonPurchaseComplete_Click(object sender, EventArgs e)
+        private void ButtonPurchaseComplete_Click(object sender, EventArgs e)
         {
             // ステータス番号を貸出可(1)に設定
             int statusNum = 1;

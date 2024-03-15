@@ -37,7 +37,7 @@
             this.Close();
         }
 
-        private void buttonPurchaseRequest_Click(object sender, EventArgs e)
+        private void ButtonPurchaseRequest_Click(object sender, EventArgs e)
         {
             PurchaseRequest form = new(empNum, isEditor, this);
             form.Show();
