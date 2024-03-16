@@ -144,7 +144,7 @@ namespace BookManagerWinForm
             try
             {
                 using (SqlConnection connection = new(connectionString))
-                using (SqlCommand command = new("PurchaseComplete", connection))
+                using (SqlCommand command = new("PurchaseResponse", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@BookId", bookId);
