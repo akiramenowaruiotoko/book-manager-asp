@@ -1,6 +1,6 @@
 ﻿namespace BookManagerWinForm
 {
-    partial class PurchaseComplete
+    partial class PurchaseResponse
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             labelTitle = new Label();
-            buttonBackPurchaseComplete = new Button();
+            buttonBack = new Button();
             dataGridView1 = new DataGridView();
+            buttonPurchaseDisapproved = new Button();
+            buttonPurchaseApproval = new Button();
             buttonPurchaseComplete = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -45,15 +47,15 @@
             labelTitle.TabIndex = 3;
             labelTitle.Text = "Book Manager";
             // 
-            // buttonBackPurchaseComplete
+            // buttonBack
             // 
-            buttonBackPurchaseComplete.Location = new Point(371, 16);
-            buttonBackPurchaseComplete.Name = "buttonBackPurchaseComplete";
-            buttonBackPurchaseComplete.Size = new Size(302, 60);
-            buttonBackPurchaseComplete.TabIndex = 4;
-            buttonBackPurchaseComplete.Text = "back";
-            buttonBackPurchaseComplete.UseVisualStyleBackColor = true;
-            buttonBackPurchaseComplete.Click += ButtonBackPurchaseComplete_Click;
+            buttonBack.Location = new Point(371, 16);
+            buttonBack.Name = "buttonBack";
+            buttonBack.Size = new Size(302, 60);
+            buttonBack.TabIndex = 4;
+            buttonBack.Text = "back";
+            buttonBack.UseVisualStyleBackColor = true;
+            buttonBack.Click += ButtonBack_Click;
             // 
             // dataGridView1
             // 
@@ -68,27 +70,49 @@
             dataGridView1.Size = new Size(1901, 93);
             dataGridView1.TabIndex = 18;
             // 
+            // buttonPurchaseDisapproved
+            // 
+            buttonPurchaseDisapproved.Location = new Point(548, 222);
+            buttonPurchaseDisapproved.Name = "buttonPurchaseDisapproved";
+            buttonPurchaseDisapproved.Size = new Size(359, 48);
+            buttonPurchaseDisapproved.TabIndex = 19;
+            buttonPurchaseDisapproved.Text = "purchase Disapproved";
+            buttonPurchaseDisapproved.UseVisualStyleBackColor = true;
+            buttonPurchaseDisapproved.Click += buttonPurchaseDisapproved_Click;
+            // 
+            // buttonPurchaseApproval
+            // 
+            buttonPurchaseApproval.Location = new Point(64, 222);
+            buttonPurchaseApproval.Name = "buttonPurchaseApproval";
+            buttonPurchaseApproval.Size = new Size(359, 48);
+            buttonPurchaseApproval.TabIndex = 20;
+            buttonPurchaseApproval.Text = "purchase Approval";
+            buttonPurchaseApproval.UseVisualStyleBackColor = true;
+            buttonPurchaseApproval.Click += ButtonPurchaseApproval_Click;
+            // 
             // buttonPurchaseComplete
             // 
-            buttonPurchaseComplete.Location = new Point(64, 276);
+            buttonPurchaseComplete.Location = new Point(999, 222);
             buttonPurchaseComplete.Name = "buttonPurchaseComplete";
             buttonPurchaseComplete.Size = new Size(359, 48);
-            buttonPurchaseComplete.TabIndex = 19;
-            buttonPurchaseComplete.Text = "purchase complete";
+            buttonPurchaseComplete.TabIndex = 21;
+            buttonPurchaseComplete.Text = "purchase Complete";
             buttonPurchaseComplete.UseVisualStyleBackColor = true;
-            buttonPurchaseComplete.Click += ButtonPurchaseComplete_Click;
+            buttonPurchaseComplete.Click += buttonPurchaseComplete_Click;
             // 
-            // PurchaseComplete
+            // PurchaseResponse
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2165, 450);
             Controls.Add(buttonPurchaseComplete);
+            Controls.Add(buttonPurchaseApproval);
+            Controls.Add(buttonPurchaseDisapproved);
             Controls.Add(dataGridView1);
-            Controls.Add(buttonBackPurchaseComplete);
+            Controls.Add(buttonBack);
             Controls.Add(labelTitle);
-            Name = "PurchaseComplete";
-            Text = "PurchaseComplete";
+            Name = "PurchaseResponse";
+            Text = "PurchaseResponse";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -99,6 +123,10 @@
         private Label labelTitle;
         private Button buttonBackPurchaseComplete;
         private DataGridView dataGridView1;
+        private Button buttonPurchaseDisapproved;
+        private Button button1;
         private Button buttonPurchaseComplete;
+        private Button buttonBack;
+        private Button buttonPurchaseApproval;
     }
 }

@@ -113,6 +113,10 @@ namespace BookManagerWinForm
                         data.Rows[i]["Button"] = "購入完了処理";
                         data.Rows[i]["Status"] = "購入承認済み 購入待ち";
                         break;
+                    case StatusNum.Purchase_Disapproved: //購入不承認
+                        data.Rows[i]["Button"] = "購入不承認変更";
+                        data.Rows[i]["Status"] = "購入不承認";
+                        break;
                     case StatusNum.Available_Rent: //貸出可能
                         data.Rows[i]["Button"] = "貸出申請";
                         data.Rows[i]["Status"] = "貸出可能";
@@ -174,14 +178,12 @@ namespace BookManagerWinForm
                 // statusNumの値で分岐
                 switch (statusNum)
                 {
-                    case StatusNum.Applying_Purchase: // purchaseCheckに対する処理
-                        PurchaseCheck purchaseCheck = new(empNum, isEditor, book_id, this);
-                        purchaseCheck.Show();
-                        this.Hide();
-                        break;
-                    case StatusNum.Purchase_Approved: // purchaseCompleteに対する処理
-                        PurchaseComplete purchaseComplete = new(empNum, isEditor, book_id, this);
-                        purchaseComplete.Show();
+                    case StatusNum.Applying_Purchase: // 購入依頼
+                    case StatusNum.Purchase_Approved: // 購入承認
+                    case StatusNum.Purchase_Disapproved: // 購入不承認
+
+                        PurchaseResponse purchaseResponse = new(empNum, isEditor, book_id, this);
+                        purchaseResponse.Show();
                         this.Hide();
                         break;
                     case StatusNum.Available_Rent: // rentalRequestに対する処理

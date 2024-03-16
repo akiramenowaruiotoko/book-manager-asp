@@ -69,7 +69,7 @@ namespace BookManagerWinForm
             return dataTable;
         }
 
-        // 従業員の認証を行うメソッド
+        #region 従業員の認証を行うメソッド
         public bool CheckCredentials(int empNum, string empPass, out bool isEditor)
         {
             isEditor = false; // デフォルト値を設定
@@ -103,8 +103,9 @@ namespace BookManagerWinForm
                 return false;
             }
         }
+        #endregion
 
-        // 書籍の申請を行うメソッド
+        #region 書籍の申請を行うメソッド
         public bool PurchaseRequest(string bookId, string bookName, int employeeNumber, int statusNum)
         {
             try
@@ -134,9 +135,11 @@ namespace BookManagerWinForm
                 return false;
             }
         }
+        #endregion
 
-        // 購入完了を行うメソッド
-        public bool PurchaseComplete(string bookId, int employeeNumber, int statusNum)
+
+        #region 購入依頼に関する返答（ステータス更新）を行うメソッド
+        public bool PurchaseResponse(string bookId, int employeeNumber, int statusNum)
         {
             try
             {
@@ -164,5 +167,6 @@ namespace BookManagerWinForm
                 return false;
             }
         }
+        #endregion
     }
 }

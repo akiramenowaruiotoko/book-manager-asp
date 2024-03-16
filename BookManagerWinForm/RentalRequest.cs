@@ -40,7 +40,7 @@ namespace BookManagerWinForm
             int statusNum = 1;
 
             // 購入承認を行い、結果を表示
-            if (dbManager.PurchaseComplete(book_id, empNum, statusNum))
+            if (dbManager.PurchaseResponse(book_id, empNum, statusNum))
             {
                 MessageBox.Show("購入完了処理が完了しました。");
             }
