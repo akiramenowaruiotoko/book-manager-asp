@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace BookManagerWinForm
 {
-    public partial class PurchaseComplete : Form
+    public partial class PurchaseCheck : Form
     {
         private readonly int empNum;
         private readonly bool isEditor;
@@ -19,7 +19,7 @@ namespace BookManagerWinForm
         private readonly DatabaseManager dbManager;
         private readonly string viewName = "view_all";
 
-        public PurchaseComplete(int empNum, bool isEditor, string book_id, ListDisplay listDisplay)
+        public PurchaseCheck(int empNum, bool isEditor, string book_id, ListDisplay listDisplay)
         {
             InitializeComponent();
             this.empNum = empNum;
