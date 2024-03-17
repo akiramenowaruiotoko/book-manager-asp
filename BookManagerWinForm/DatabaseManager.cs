@@ -204,7 +204,7 @@ namespace BookManagerWinForm
             }
         }
         #endregion
-        public bool RentalManagement(string bookId, int employeeNumber, int statusNum)
+        public bool RentalManagement(string bookId, int employeeNumber, int statusNum, DateTime? rentalDate, DateTime? returnDate)
         {
             try
             {
@@ -215,7 +215,8 @@ namespace BookManagerWinForm
                     command.Parameters.AddWithValue("@BookId", bookId);
                     command.Parameters.AddWithValue("@EmployeeNumber", employeeNumber);
                     command.Parameters.AddWithValue("@StatusNum", statusNum);
-
+                    command.Parameters.AddWithValue("@RentalDate", (object)rentalDate ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@ReturnDate", (object)returnDate ?? DBNull.Value);
                     SqlParameter returnParam = command.Parameters.Add("@return_value", SqlDbType.Int);
                     returnParam.Direction = ParameterDirection.ReturnValue;
 

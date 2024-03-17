@@ -97,7 +97,7 @@
             buttonReturned.Name = "buttonReturned";
             buttonReturned.Size = new Size(359, 48);
             buttonReturned.TabIndex = 21;
-            buttonReturned.Text = "Returned";
+            buttonReturned.Text = "Returned or Available Rental";
             buttonReturned.UseVisualStyleBackColor = true;
             buttonReturned.Click += buttonReturned_Click;
             // 
