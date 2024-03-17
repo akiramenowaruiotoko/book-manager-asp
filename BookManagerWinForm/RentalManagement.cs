@@ -35,54 +35,70 @@ namespace BookManagerWinForm
             dataGridView1.DataSource = data;
         }
 
-        private void ButtonPurchaseApproval_Click(object sender, EventArgs e)
+        private void ButtonRentalApproval_Click(object sender, EventArgs e)
         {
-            // ステータス番号を購入承認済み(1)に設定
-            int statusNum = 1;
-            // 購入承認処理を行い、結果を表示
+            // ステータス番号を貸出承認済(5)に設定
+            int statusNum = 5;
+            // 貸出承認処理を行い、結果を表示
             if (dbManager.RentalManagement(book_id, empNum, statusNum))
             {
-                MessageBox.Show("購入承認処理が完了しました。");
+                MessageBox.Show("貸出承認処理が完了しました。");
             }
             else
             {
-                MessageBox.Show("購入依頼なし。申請を中止します。");
+                MessageBox.Show("貸出依頼なし。申請を中止します。");
             }
         }
-        private void buttonPurchaseDisapproved_Click(object sender, EventArgs e)
+        private void buttonUnavailableRental_Click(object sender, EventArgs e)
         {
-            // ステータス番号を購入不承認(2)に設定
-            int statusNum = 2;
-            // 購入不承認処理を行い、結果を表示
+            // ステータス番号を貸出不可(6)に設定
+            int statusNum = 6;
+            // 貸出不可処理を行い、結果を表示
             if (dbManager.RentalManagement(book_id, empNum, statusNum))
             {
-                MessageBox.Show("購入不承認処理が完了しました。");
+                MessageBox.Show("貸出不可処理が完了しました。");
             }
             else
             {
-                MessageBox.Show("購入依頼なし。申請を中止します。");
+                MessageBox.Show("貸出依頼なし。申請を中止します。");
             }
         }
 
-        private void buttonPurchaseComplete_Click(object sender, EventArgs e)
+        private void buttonCurrentlyRental_Click(object sender, EventArgs e)
+        {
+            // ステータス番号を貸出中(7)に設定
+            int statusNum = 7;
+            // 貸出承認処理を行い、結果を表示
+            if (dbManager.RentalManagement(book_id, empNum, statusNum))
+            {
+                MessageBox.Show("貸出処理が完了しました。");
+            }
+            else
+            {
+                MessageBox.Show("貸出依頼なし。申請を中止します。");
+            }
+        }
+
+
+        private void buttonReturned_Click(object sender, EventArgs e)
         {
             // ステータス番号を貸出可能(3)に設定
             int statusNum = 3;
-            // 購入完了処理を行い、結果を表示
+            // 貸出完了処理を行い、結果を表示
             if (dbManager.RentalManagement(book_id, empNum, statusNum))
             {
-                MessageBox.Show("購入完了認処理が完了しました。");
+                MessageBox.Show("貸出完了認処理が完了しました。");
             }
             else
             {
-                MessageBox.Show("購入依頼なし、または購入済み。申請を中止します。");
+                MessageBox.Show("貸出依頼なし、または貸出済み。申請を中止します。");
             }
         }
-
         private void ButtonBack_Click(object sender, EventArgs e)
         {
             listDisplayFrom.Show();
             this.Close();
         }
+
     }
 }

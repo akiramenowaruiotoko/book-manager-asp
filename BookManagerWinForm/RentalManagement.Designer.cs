@@ -31,9 +31,10 @@
             labelTitle = new Label();
             buttonBack = new Button();
             dataGridView1 = new DataGridView();
-            buttonRentalDisapproved = new Button();
+            buttonUnavailableRental = new Button();
             buttonRentalApproval = new Button();
             buttonReturned = new Button();
+            buttonCurrentlyRental = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -70,15 +71,15 @@
             dataGridView1.Size = new Size(1901, 93);
             dataGridView1.TabIndex = 18;
             // 
-            // buttonRentalDisapproved
+            // buttonUnavailableRental
             // 
-            buttonRentalDisapproved.Location = new Point(548, 222);
-            buttonRentalDisapproved.Name = "buttonRentalDisapproved";
-            buttonRentalDisapproved.Size = new Size(359, 48);
-            buttonRentalDisapproved.TabIndex = 19;
-            buttonRentalDisapproved.Text = "Rental Disapproved";
-            buttonRentalDisapproved.UseVisualStyleBackColor = true;
-            buttonRentalDisapproved.Click += buttonPurchaseDisapproved_Click;
+            buttonUnavailableRental.Location = new Point(467, 222);
+            buttonUnavailableRental.Name = "buttonUnavailableRental";
+            buttonUnavailableRental.Size = new Size(359, 48);
+            buttonUnavailableRental.TabIndex = 19;
+            buttonUnavailableRental.Text = "Unavailable　Rental";
+            buttonUnavailableRental.UseVisualStyleBackColor = true;
+            buttonUnavailableRental.Click += buttonUnavailableRental_Click;
             // 
             // buttonRentalApproval
             // 
@@ -88,26 +89,37 @@
             buttonRentalApproval.TabIndex = 20;
             buttonRentalApproval.Text = "Rental Approval";
             buttonRentalApproval.UseVisualStyleBackColor = true;
-            buttonRentalApproval.Click += ButtonPurchaseApproval_Click;
+            buttonRentalApproval.Click += ButtonRentalApproval_Click;
             // 
             // buttonReturned
             // 
-            buttonReturned.Location = new Point(999, 222);
+            buttonReturned.Location = new Point(1297, 222);
             buttonReturned.Name = "buttonReturned";
             buttonReturned.Size = new Size(359, 48);
             buttonReturned.TabIndex = 21;
             buttonReturned.Text = "Returned";
             buttonReturned.UseVisualStyleBackColor = true;
-            buttonReturned.Click += buttonPurchaseComplete_Click;
+            buttonReturned.Click += buttonReturned_Click;
+            // 
+            // buttonCurrentlyRental
+            // 
+            buttonCurrentlyRental.Location = new Point(860, 222);
+            buttonCurrentlyRental.Name = "buttonCurrentlyRental";
+            buttonCurrentlyRental.Size = new Size(359, 48);
+            buttonCurrentlyRental.TabIndex = 22;
+            buttonCurrentlyRental.Text = "Currently Rental";
+            buttonCurrentlyRental.UseVisualStyleBackColor = true;
+            buttonCurrentlyRental.Click += buttonCurrentlyRental_Click;
             // 
             // RentalManagement
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2165, 450);
+            Controls.Add(buttonCurrentlyRental);
             Controls.Add(buttonReturned);
             Controls.Add(buttonRentalApproval);
-            Controls.Add(buttonRentalDisapproved);
+            Controls.Add(buttonUnavailableRental);
             Controls.Add(dataGridView1);
             Controls.Add(buttonBack);
             Controls.Add(labelTitle);
@@ -121,12 +133,12 @@
         #endregion
 
         private Label labelTitle;
-        private Button buttonBackPurchaseComplete;
+        private Button buttonBackRentalComplete;
         private DataGridView dataGridView1;
-        private Button buttonRentalDisapproved;
-        private Button button1;
+        private Button buttonUnavailableRental;
         private Button buttonReturned;
         private Button buttonBack;
         private Button buttonRentalApproval;
+        private Button buttonCurrentlyRental;
     }
 }

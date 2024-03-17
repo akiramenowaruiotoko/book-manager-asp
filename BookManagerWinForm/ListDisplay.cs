@@ -22,6 +22,7 @@ namespace BookManagerWinForm
             Available_Rental = 3, //貸出可能
             Applying_Rental = 4, //貸出申請中
             Approved_Rental = 5, //貸出承認済み
+            Unavailable_Rental = 6, //貸出不可
             Currently_Rental = 7, //貸出中 期日何日
             Currently_Rental_Past = 8 //貸出中 期日超過
         }
@@ -129,6 +130,10 @@ namespace BookManagerWinForm
                         data.Rows[i]["Button"] = "貸出完了処理";
                         data.Rows[i]["Status"] = "貸出承認済み";
                         break;
+                    case StatusNum.Unavailable_Rental: //貸出不可
+                        data.Rows[i]["Button"] = "貸出不可変更";
+                        data.Rows[i]["Status"] = "貸出不可";
+                        break;
                     case StatusNum.Currently_Rental: //貸出中 期日何日
                     case StatusNum.Currently_Rental_Past: //貸出中 期日超過
                         data.Rows[i]["Button"] = "返却完了処理";
@@ -178,33 +183,28 @@ namespace BookManagerWinForm
                 // statusNumの値で分岐
                 switch (statusNum)
                 {
-                    case StatusNum.Applying_Purchase: // 購入依頼
-                    case StatusNum.Purchase_Approved: // 購入承認
-                    case StatusNum.Purchase_Disapproved: // 購入不承認
+                    case StatusNum.Applying_Purchase: // 購入申請中 0
+                    case StatusNum.Purchase_Approved: // 購入承認 1
+                    case StatusNum.Purchase_Disapproved: // 購入不承認 2
                         PurchaseResponse purchaseResponse = new(empNum, isEditor, book_id, this);
                         purchaseResponse.Show();
                         this.Hide();
                         break;
-                    case StatusNum.Available_Rental: // 貸出可能
+                    case StatusNum.Available_Rental: // 貸出可能 3
                         RentalRequest rentalRequest = new(empNum, isEditor, book_id, this);
                         rentalRequest.Show();
                         this.Hide();
                         break;
-                    case StatusNum.Applying_Rental: // 貸出申請中
-
-
+                    case StatusNum.Applying_Rental: // 貸出申請中 4
+                    case StatusNum.Approved_Rental: // 貸出承認済み 5
+                    case StatusNum.Unavailable_Rental: // 貸出不可 6
+                    case StatusNum.Currently_Rental: // 貸出中 期日何日 7
+                    case StatusNum.Currently_Rental_Past: //貸出中 期日超過 8
+                        RentalManagement rentalManagement = new(empNum, isEditor, book_id, this);
+                        rentalManagement.Show();
+                        this.Hide();
                         break;
                     default: break;
-                        /*
-            Applying_Purchase = 0, //購入申請中
-            Purchase_Approved = 1, //購入承認済み 購入待ち
-            Purchase_Disapproved = 2, //購入不承認
-            Available_Rental = 3, //貸出可能
-            Applying_Rental = 4, //貸出申請中
-            Approved_Rental = 5, //貸出承認済み
-            Currently_Rental = 7, //貸出中 期日何日
-            Currently_Rental_Past = 8 //貸出中 期日超過
-                        */
                 }
             }
         }
