@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Windows.Forms;
 
 namespace BookManagerWinForm
 {
@@ -35,18 +36,19 @@ namespace BookManagerWinForm
 
         private void ButtonRentalRequest_Click(object sender, EventArgs e)
         {
-            //修正予定
-            // ステータス番号を貸出可(1)に設定
-            int statusNum = 1;
+            DateTime rentalDate = dateTimePickerRental.Value;
+            DateTime returnDate = dateTimePickerReturn.Value;
 
-            // 購入承認を行い、結果を表示
-            if (dbManager.PurchaseResponse(book_id, empNum, statusNum))
+            // ステータス番号を貸出申請中(4)に設定
+            int statusNum = 4;
+            // 申請を行い、結果を表示
+            if (dbManager.RentalRequest(book_id, empNum, statusNum, rentalDate, returnDate))
             {
-                MessageBox.Show("購入完了処理が完了しました。");
+                MessageBox.Show("貸出申請処理が完了しました。");
             }
             else
             {
-                MessageBox.Show("購入依頼なし。または書籍購入済みです。申請を中止します。");
+                MessageBox.Show("貸出可能な書籍ではありません。申請を中止します。");
             }
         }
     }

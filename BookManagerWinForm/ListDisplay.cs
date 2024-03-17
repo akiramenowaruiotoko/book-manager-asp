@@ -19,11 +19,11 @@ namespace BookManagerWinForm
             Applying_Purchase = 0, //購入申請中
             Purchase_Approved = 1, //購入承認済み 購入待ち
             Purchase_Disapproved = 2, //購入不承認
-            Available_Rent = 3, //貸出可能
-            Applying_Loan = 4, //貸出申請中
-            Approved_Loan = 5, //貸出承認済み
-            Currently_Loan = 7, //貸出中 期日何日
-            Currently_loan_past_date = 8 //貸出中 期日超過
+            Available_Rental = 3, //貸出可能
+            Applying_Rental = 4, //貸出申請中
+            Approved_Rental = 5, //貸出承認済み
+            Currently_Rental = 7, //貸出中 期日何日
+            Currently_Rental_Past = 8 //貸出中 期日超過
         }
         #endregion
         #region Initialize
@@ -117,20 +117,20 @@ namespace BookManagerWinForm
                         data.Rows[i]["Button"] = "購入不承認変更";
                         data.Rows[i]["Status"] = "購入不承認";
                         break;
-                    case StatusNum.Available_Rent: //貸出可能
+                    case StatusNum.Available_Rental: //貸出可能
                         data.Rows[i]["Button"] = "貸出申請";
                         data.Rows[i]["Status"] = "貸出可能";
                         break;
-                    case StatusNum.Applying_Loan: //貸出申請中
+                    case StatusNum.Applying_Rental: //貸出申請中
                         data.Rows[i]["Button"] = "貸出確認";
                         data.Rows[i]["Status"] = "貸出申請中";
                         break;
-                    case StatusNum.Approved_Loan: //貸出承認済み
+                    case StatusNum.Approved_Rental: //貸出承認済み
                         data.Rows[i]["Button"] = "貸出完了処理";
                         data.Rows[i]["Status"] = "貸出承認済み";
                         break;
-                    case StatusNum.Currently_Loan: //貸出中 期日何日
-                    case StatusNum.Currently_loan_past_date: //貸出中 期日超過
+                    case StatusNum.Currently_Rental: //貸出中 期日何日
+                    case StatusNum.Currently_Rental_Past: //貸出中 期日超過
                         data.Rows[i]["Button"] = "返却完了処理";
                         data.Rows[i]["Status"] = "貸出中";
                         break;
@@ -181,27 +181,30 @@ namespace BookManagerWinForm
                     case StatusNum.Applying_Purchase: // 購入依頼
                     case StatusNum.Purchase_Approved: // 購入承認
                     case StatusNum.Purchase_Disapproved: // 購入不承認
-
                         PurchaseResponse purchaseResponse = new(empNum, isEditor, book_id, this);
                         purchaseResponse.Show();
                         this.Hide();
                         break;
-                    case StatusNum.Available_Rent: // rentalRequestに対する処理
+                    case StatusNum.Available_Rental: // 貸出可能
                         RentalRequest rentalRequest = new(empNum, isEditor, book_id, this);
                         rentalRequest.Show();
                         this.Hide();
                         break;
+                    case StatusNum.Applying_Rental: // 貸出申請中
+
+
+                        break;
                     default: break;
                         /*
-             Applying_Purchase = 0, //購入申請中
-             Purchase_Approved = 1, //購入承認済み 購入待ち
-             Purchase_Disapproved = 2, //購入不承認
-             Available_Rent = 3, //貸出可能
-             Applying_Loan = 4, //貸出申請中
-             Approved_Loan = 5, //貸出承認済み
-             Currently_Loan = 7, //貸出中 期日何日
-             Currently_loan_past_date = 8 //貸出中 期日超過
-                         */
+            Applying_Purchase = 0, //購入申請中
+            Purchase_Approved = 1, //購入承認済み 購入待ち
+            Purchase_Disapproved = 2, //購入不承認
+            Available_Rental = 3, //貸出可能
+            Applying_Rental = 4, //貸出申請中
+            Approved_Rental = 5, //貸出承認済み
+            Currently_Rental = 7, //貸出中 期日何日
+            Currently_Rental_Past = 8 //貸出中 期日超過
+                        */
                 }
             }
         }

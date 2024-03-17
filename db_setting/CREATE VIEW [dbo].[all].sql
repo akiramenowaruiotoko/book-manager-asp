@@ -10,7 +10,7 @@ SELECT
     e.first_name, -- 従業員の名前
     s.status_id, -- ステータスID
     s.status_num, -- ステータス番号
-    s.rent_date, -- 貸出日
+    s.rental_date, -- 貸出日
     s.return_date, -- 返却日
     s.update_datetime -- ステータスの更新日時
 FROM

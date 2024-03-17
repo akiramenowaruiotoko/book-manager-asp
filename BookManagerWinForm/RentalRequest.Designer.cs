@@ -32,8 +32,8 @@
             buttonRentalRequest = new Button();
             dataGridView1 = new DataGridView();
             buttonBackList = new Button();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
+            dateTimePickerRental = new DateTimePicker();
+            dateTimePickerReturn = new DateTimePicker();
             label1 = new Label();
             label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -82,21 +82,21 @@
             buttonBackList.UseVisualStyleBackColor = true;
             buttonBackList.Click += ButtonBackList_Click;
             // 
-            // dateTimePicker1
+            // dateTimePickerRental
             // 
-            dateTimePicker1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            dateTimePicker1.Location = new Point(695, 201);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(266, 50);
-            dateTimePicker1.TabIndex = 20;
+            dateTimePickerRental.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            dateTimePickerRental.Location = new Point(695, 201);
+            dateTimePickerRental.Name = "dateTimePickerRental";
+            dateTimePickerRental.Size = new Size(266, 50);
+            dateTimePickerRental.TabIndex = 20;
             // 
-            // dateTimePicker2
+            // dateTimePickerReturn
             // 
-            dateTimePicker2.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            dateTimePicker2.Location = new Point(987, 201);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(266, 50);
-            dateTimePicker2.TabIndex = 21;
+            dateTimePickerReturn.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            dateTimePickerReturn.Location = new Point(987, 201);
+            dateTimePickerReturn.Name = "dateTimePickerReturn";
+            dateTimePickerReturn.Size = new Size(266, 50);
+            dateTimePickerReturn.TabIndex = 21;
             // 
             // label1
             // 
@@ -123,8 +123,8 @@
             ClientSize = new Size(1370, 450);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dateTimePickerReturn);
+            Controls.Add(dateTimePickerRental);
             Controls.Add(buttonBackList);
             Controls.Add(dataGridView1);
             Controls.Add(buttonRentalRequest);
@@ -142,8 +142,8 @@
         private Button buttonRentalRequest;
         private DataGridView dataGridView1;
         private Button buttonBackList;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
+        private DateTimePicker dateTimePickerRental;
+        private DateTimePicker dateTimePickerReturn;
         private Label label1;
         private Label label2;
     }

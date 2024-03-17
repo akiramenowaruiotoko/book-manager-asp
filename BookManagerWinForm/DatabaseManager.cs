@@ -7,6 +7,7 @@ namespace BookManagerWinForm
 {
     public class DatabaseManager
     {
+        #region 初期設定
         private readonly string connectionString;
 
         public DatabaseManager()
@@ -14,8 +15,9 @@ namespace BookManagerWinForm
             // データベース接続文字列を取得
             connectionString = ConfigurationManager.ConnectionStrings["sqlsvr"].ConnectionString;
         }
+        #endregion
 
-        // 指定したビューからデータを取得するメソッド
+        #region 指定したビューからデータを取得するメソッド
         public DataTable GetDataFromView(string viewName)
         {
             DataTable dataTable = new();
@@ -41,8 +43,9 @@ namespace BookManagerWinForm
 
             return dataTable;
         }
+        #endregion
 
-        // ビューと行を指定してデータを取得するメソッド
+        #region ビューと行を指定してデータを取得するメソッド
         public DataTable GetDataFromRowView(string viewName, string bookId)
         {
             DataTable dataTable = new();
@@ -68,6 +71,7 @@ namespace BookManagerWinForm
 
             return dataTable;
         }
+        #endregion
 
         #region 従業員の認証を行うメソッド
         public bool CheckCredentials(int empNum, string empPass, out bool isEditor)
@@ -137,7 +141,6 @@ namespace BookManagerWinForm
         }
         #endregion
 
-
         #region 購入依頼に関する返答（ステータス更新）を行うメソッド
         public bool PurchaseResponse(string bookId, int employeeNumber, int statusNum)
         {
@@ -168,5 +171,40 @@ namespace BookManagerWinForm
             }
         }
         #endregion
-    }
+
+
+        #region 購入依頼に関する返答（ステータス更新）を行うメソッド
+        public bool RentalRequest(string bookId, int employeeNumber, int statusNum, DateTime rentalDate, DateTime returnDate)
+        {
+            try
+            {
+                using (SqlConnection connection = new(connectionString))
+                using (SqlCommand command = new("RentalRequest", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@BookId", bookId);
+                    command.Parameters.AddWithValue("@EmployeeNumber", employeeNumber);
+                    command.Parameters.AddWithValue("@StatusNum", statusNum);
+                    command.Parameters.AddWithValue("@RentalDate", rentalDate);
+                    command.Parameters.AddWithValue("@ReturnDate", returnDate);
+                    SqlParameter returnParam = command.Parameters.Add("@return_value", SqlDbType.Int);
+                    returnParam.Direction = ParameterDirection.ReturnValue;
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    int returnValue = (int)returnParam.Value;
+                    // 申請が成功(0)した場合 TRUE, 失敗(-1)した場合FALSE
+                    return (int)returnParam.Value == 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"申請中にエラーが発生しました: {ex.Message}");
+                return false;
+            }
+        }
+        #endregion
+        public bool RentalManagement(string bookId, int employeeNumber, int statusNum, DateTime rentalDate, DateTime returnDate)
+        {
+        }
 }
