@@ -17,6 +17,7 @@ namespace BookManagerWinForm
         private readonly string book_id;
         private DateTime? rental_date;
         private DateTime? return_date;
+        private int nowStatusNum;
         private readonly ListDisplay listDisplayFrom;
         private readonly DatabaseManager dbManager;
         private readonly string viewName = "view_all";
@@ -33,16 +34,23 @@ namespace BookManagerWinForm
             DataTable data = dbManager.GetDataFromRowView(viewName, book_id);
             // 行ヘッダーを非表示にして左の編集列を非表示にする
             dataGridView1.RowHeadersVisible = false;
-            // dataから貸出日と返却日を取得
+            // dataから貸出日と返却日、現在のステータスを取得
             rental_date = data.Rows[0]["rental_date"] as DateTime?;
             return_date = data.Rows[0]["return_date"] as DateTime?;
- 
+            nowStatusNum = (int)data.Rows[0]["status_num"];
             // DataGridViewにデータをロード
             dataGridView1.DataSource = data;
         }
 
         private void ButtonRentalApproval_Click(object sender, EventArgs e)
         {
+            // 現在のステータスが貸出不可の場合は、終了
+            if(nowStatusNum == 6)
+            {
+                MessageBox.Show("ステータスが貸出不可です。貸出可能に更新してください");
+               return;
+            }
+ 
             // ステータス番号を貸出承認済(5)に設定
             int statusNum = 5;
             // 貸出承認処理を行い、結果を表示
@@ -75,6 +83,13 @@ namespace BookManagerWinForm
 
         private void buttonCurrentlyRental_Click(object sender, EventArgs e)
         {
+            // 現在のステータスが貸出不可の場合は、終了
+            if (nowStatusNum == 6)
+            {
+                MessageBox.Show("ステータスが貸出不可です。貸出可能に更新してください");
+                return;
+            }
+
             // ステータス番号を貸出中(7)に設定
             int statusNum = 7;
             // 貸出承認処理を行い、結果を表示
@@ -106,6 +121,7 @@ namespace BookManagerWinForm
                 MessageBox.Show("貸出依頼なし、または貸出済み。申請を中止します。");
             }
         }
+
         private void ButtonBack_Click(object sender, EventArgs e)
         {
             listDisplayFrom.Show();
