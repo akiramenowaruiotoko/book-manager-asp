@@ -1,6 +1,6 @@
 ﻿namespace BookManagerWinForm
 {
-    partial class PurchaseResponse
+    partial class PurchaseManagement
     {
         /// <summary>
         /// Required designer variable.

@@ -1,7 +1,7 @@
 USE [book_manager]
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].[PurchaseResponse]
+CREATE OR ALTER PROCEDURE [dbo].[PurchaseManagement]
     @BookId CHAR(10), -- 書籍ID
     @EmployeeNumber INT, -- 従業員番号
     @StatusNum INT -- ステータス番号

@@ -186,8 +186,8 @@ namespace BookManagerWinForm
                     case StatusNum.Applying_Purchase: // 購入申請中 0
                     case StatusNum.Purchase_Approved: // 購入承認 1
                     case StatusNum.Purchase_Disapproved: // 購入不承認 2
-                        PurchaseResponse purchaseResponse = new(empNum, isEditor, book_id, this);
-                        purchaseResponse.Show();
+                        PurchaseManagement purchaseManagement = new(empNum, isEditor, book_id, this);
+                        purchaseManagement.Show();
                         this.Hide();
                         break;
                     case StatusNum.Available_Rental: // 貸出可能 3

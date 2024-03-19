@@ -142,12 +142,12 @@ namespace BookManagerWinForm
         #endregion
 
         #region 購入依頼に関する返答（ステータス更新）を行うメソッド
-        public bool PurchaseResponse(string bookId, int employeeNumber, int statusNum)
+        public bool PurchaseManagement(string bookId, int employeeNumber, int statusNum)
         {
             try
             {
                 using (SqlConnection connection = new(connectionString))
-                using (SqlCommand command = new("PurchaseResponse", connection))
+                using (SqlCommand command = new("PurchaseManagement", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@BookId", bookId);

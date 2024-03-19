@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace BookManagerWinForm
 {
-    public partial class PurchaseResponse : Form
+    public partial class PurchaseManagement : Form
     {
         private readonly int empNum;
         private readonly bool isEditor;
@@ -19,7 +19,7 @@ namespace BookManagerWinForm
         private readonly DatabaseManager dbManager;
         private readonly string viewName = "view_all";
 
-        public PurchaseResponse(int empNum, bool isEditor, string book_id, ListDisplay listDisplay)
+        public PurchaseManagement(int empNum, bool isEditor, string book_id, ListDisplay listDisplay)
         {
             InitializeComponent();
             this.empNum = empNum;
@@ -40,7 +40,7 @@ namespace BookManagerWinForm
             // ステータス番号を購入承認済み(1)に設定
             int statusNum = 1;
             // 購入承認処理を行い、結果を表示
-            if (dbManager.PurchaseResponse(book_id, empNum, statusNum))
+            if (dbManager.PurchaseManagement(book_id, empNum, statusNum))
             {
                 MessageBox.Show("購入承認処理が完了しました。");
             }
@@ -54,7 +54,7 @@ namespace BookManagerWinForm
             // ステータス番号を購入不承認(2)に設定
             int statusNum = 2;
             // 購入不承認処理を行い、結果を表示
-            if (dbManager.PurchaseResponse(book_id, empNum, statusNum))
+            if (dbManager.PurchaseManagement(book_id, empNum, statusNum))
             {
                 MessageBox.Show("購入不承認処理が完了しました。");
             }
@@ -69,7 +69,7 @@ namespace BookManagerWinForm
             // ステータス番号を貸出可能(3)に設定
             int statusNum = 3;
             // 購入完了処理を行い、結果を表示
-            if (dbManager.PurchaseResponse(book_id, empNum, statusNum))
+            if (dbManager.PurchaseManagement(book_id, empNum, statusNum))
             {
                 MessageBox.Show("購入完了認処理が完了しました。");
             }
