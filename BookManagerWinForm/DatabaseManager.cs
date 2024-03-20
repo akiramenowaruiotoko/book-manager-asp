@@ -46,6 +46,34 @@ namespace BookManagerWinForm
         }
         #endregion
 
+        #region 指定した従業員情報をビューから取得するメソッド
+        public DataTable GetRecordDataFromView(string viewName, int targetEmployeeNumber)
+        {
+            DataTable dataTable = new();
+
+            try
+            {
+                using (SqlConnection connection = new(connectionString))
+                {
+                    connection.Open();
+
+                    // SQL 文を作成してパラメータ化
+                    string sql = "SELECT * FROM " + viewName + " Where employee_number = " + targetEmployeeNumber;
+                    using SqlCommand command = new(sql, connection);
+                    using SqlDataAdapter adapter = new(command);
+                    adapter.Fill(dataTable);
+                }
+            }
+            catch (Exception ex)
+            {
+                // 例外処理：ユーザーにエラーメッセージを表示する
+                Console.WriteLine($"データの取得中にエラーが発生しました: {ex.Message}");
+            }
+
+            return dataTable;
+        }
+        #endregion
+
         #region ビューと行を指定してデータを取得するメソッド
         public DataTable GetDataFromRowView(string viewName, string bookId)
         {
@@ -141,6 +169,38 @@ namespace BookManagerWinForm
         }
         #endregion
 
+        #region 社員情報編集
+        public bool EditEmployee(int targetEmployeeNumber, int employeeNumber, string employeePassword, string firstName, bool editor)
+        {
+            try
+            {
+                using (SqlConnection connection = new(connectionString))
+                using (SqlCommand command = new("AddEmployee", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@TargetEmployeeNumber", targetEmployeeNumber);
+                    command.Parameters.AddWithValue("@EmployeeNumber", employeeNumber);
+                    command.Parameters.AddWithValue("@EmployeePassword", employeePassword);
+                    command.Parameters.AddWithValue("@FirstName", firstName);
+                    command.Parameters.AddWithValue("@Editor", editor);
+                    SqlParameter returnParam = command.Parameters.Add("@return_value", SqlDbType.Int);
+                    returnParam.Direction = ParameterDirection.ReturnValue;
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    int returnValue = (int)returnParam.Value;
+                    // 申請が成功(0)した場合 TRUE, 失敗(-1)した場合FALSE
+                    return (int)returnParam.Value == 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"申請中にエラーが発生しました: {ex.Message}");
+                return false;
+            }
+        }
+        #endregion
+
         #region 書籍の申請を行うメソッド
         public bool PurchaseRequest(string bookId, string bookName, int employeeNumber, int statusNum)
         {
@@ -203,7 +263,6 @@ namespace BookManagerWinForm
             }
         }
         #endregion
-
 
         #region 購入依頼に関する返答（ステータス更新）を行うメソッド
         public bool RentalRequest(string bookId, int employeeNumber, int statusNum, DateTime rentalDate, DateTime returnDate)
