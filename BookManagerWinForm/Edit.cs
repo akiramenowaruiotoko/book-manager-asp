@@ -14,17 +14,22 @@
             this.mainMenuForm = mainMenu;
         }
 
-        private void buttonBackEdit_Click(object sender, EventArgs e)
+        private void buttonBack_Click(object sender, EventArgs e)
         {
             mainMenuForm.Show();
             this.Close();
         }
-
-        private void buttonAddAccount_Click(object sender, EventArgs e)
+        private void buttonAddEmployee_Click(object sender, EventArgs e)
         {
-            AddAccount form = new(empNum, isEditor, this);
+            AddEmployee form = new(empNum, isEditor, this);
             form.Show();
             this.Hide();
         }
+
+        private void buttonEditEmployee_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            buttonBackPurchase = new Button();
-            buttonEditAccount = new Button();
+            buttonBack = new Button();
+            buttonEditEmployee = new Button();
             buttonEditBook = new Button();
-            buttonAddAccount = new Button();
+            buttonAddEmployee = new Button();
             buttonAddBook = new Button();
             SuspendLayout();
             // 
@@ -46,24 +46,25 @@
             label1.TabIndex = 9;
             label1.Text = "Book Manager";
             // 
-            // buttonBackPurchase
+            // buttonBack
             // 
-            buttonBackPurchase.Location = new Point(350, 16);
-            buttonBackPurchase.Name = "buttonBackPurchase";
-            buttonBackPurchase.Size = new Size(302, 60);
-            buttonBackPurchase.TabIndex = 10;
-            buttonBackPurchase.Text = "back";
-            buttonBackPurchase.UseVisualStyleBackColor = true;
-            buttonBackPurchase.Click += buttonBackEdit_Click;
+            buttonBack.Location = new Point(350, 16);
+            buttonBack.Name = "buttonBack";
+            buttonBack.Size = new Size(302, 60);
+            buttonBack.TabIndex = 10;
+            buttonBack.Text = "back";
+            buttonBack.UseVisualStyleBackColor = true;
+            buttonBack.Click += buttonBack_Click;
             // 
-            // buttonEditAccount
+            // buttonEditEmployee
             // 
-            buttonEditAccount.Location = new Point(82, 209);
-            buttonEditAccount.Name = "buttonEditAccount";
-            buttonEditAccount.Size = new Size(232, 62);
-            buttonEditAccount.TabIndex = 11;
-            buttonEditAccount.Text = "edit account";
-            buttonEditAccount.UseVisualStyleBackColor = true;
+            buttonEditEmployee.Location = new Point(82, 209);
+            buttonEditEmployee.Name = "buttonEditEmployee";
+            buttonEditEmployee.Size = new Size(232, 62);
+            buttonEditEmployee.TabIndex = 11;
+            buttonEditEmployee.Text = "edit employee";
+            buttonEditEmployee.UseVisualStyleBackColor = true;
+            buttonEditEmployee.Click += buttonEditEmployee_Click;
             // 
             // buttonEditBook
             // 
@@ -74,15 +75,15 @@
             buttonEditBook.Text = "edit book";
             buttonEditBook.UseVisualStyleBackColor = true;
             // 
-            // buttonAddAccount
+            // buttonAddEmployee
             // 
-            buttonAddAccount.Location = new Point(82, 109);
-            buttonAddAccount.Name = "buttonAddAccount";
-            buttonAddAccount.Size = new Size(232, 62);
-            buttonAddAccount.TabIndex = 13;
-            buttonAddAccount.Text = "add account";
-            buttonAddAccount.UseVisualStyleBackColor = true;
-            buttonAddAccount.Click += buttonAddAccount_Click;
+            buttonAddEmployee.Location = new Point(82, 109);
+            buttonAddEmployee.Name = "buttonAddEmployee";
+            buttonAddEmployee.Size = new Size(232, 62);
+            buttonAddEmployee.TabIndex = 13;
+            buttonAddEmployee.Text = "add employee";
+            buttonAddEmployee.UseVisualStyleBackColor = true;
+            buttonAddEmployee.Click += buttonAddEmployee_Click;
             // 
             // buttonAddBook
             // 
@@ -99,10 +100,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(697, 306);
             Controls.Add(buttonAddBook);
-            Controls.Add(buttonAddAccount);
+            Controls.Add(buttonAddEmployee);
             Controls.Add(buttonEditBook);
-            Controls.Add(buttonEditAccount);
-            Controls.Add(buttonBackPurchase);
+            Controls.Add(buttonEditEmployee);
+            Controls.Add(buttonBack);
             Controls.Add(label1);
             Name = "Edit";
             Text = "Edit";
@@ -113,10 +114,10 @@
         #endregion
 
         private Label label1;
-        private Button buttonBackPurchase;
-        private Button buttonEditAccount;
+        private Button buttonBack;
+        private Button buttonEditEmployee;
         private Button buttonEditBook;
-        private Button buttonAddAccount;
+        private Button buttonAddEmployee;
         private Button buttonAddBook;
     }
 }

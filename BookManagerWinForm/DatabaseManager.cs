@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Net;
@@ -109,6 +110,37 @@ namespace BookManagerWinForm
         }
         #endregion
 
+        #region 社員追加
+        public bool AddEmployee(int employeeNumber, string employeePassword, string firstName, bool editor)
+        {
+            try
+            {
+                using (SqlConnection connection = new(connectionString))
+                using (SqlCommand command = new("AddEmployee", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@EmployeeNumber", employeeNumber);
+                    command.Parameters.AddWithValue("@EmployeePassword", employeePassword);
+                    command.Parameters.AddWithValue("@FirstName", firstName);
+                    command.Parameters.AddWithValue("@Editor", editor);
+                    SqlParameter returnParam = command.Parameters.Add("@return_value", SqlDbType.Int);
+                    returnParam.Direction = ParameterDirection.ReturnValue;
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    int returnValue = (int)returnParam.Value;
+                    // 申請が成功(0)した場合 TRUE, 失敗(-1)した場合FALSE
+                    return (int)returnParam.Value == 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"申請中にエラーが発生しました: {ex.Message}");
+                return false;
+            }
+        }
+        #endregion
+
         #region 書籍の申請を行うメソッド
         public bool PurchaseRequest(string bookId, string bookName, int employeeNumber, int statusNum)
         {
@@ -204,6 +236,8 @@ namespace BookManagerWinForm
             }
         }
         #endregion
+
+        #region 貸出管理
         public bool RentalManagement(string bookId, int employeeNumber, int statusNum, DateTime? rentalDate, DateTime? returnDate)
         {
             try
@@ -233,5 +267,6 @@ namespace BookManagerWinForm
                 return false;
             }
         }
+        #endregion
     }
 }
