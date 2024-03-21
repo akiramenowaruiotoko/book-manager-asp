@@ -38,6 +38,12 @@ namespace BookManagerWinForm
 
         private void buttonEdditEmployee_Click(object sender, EventArgs e)
         {
+            if (targetEmployeeNumber == 0)
+            {
+                MessageBox.Show("編集する従業員番号を設定してください");
+                return;
+            }
+
             int employeeNumber = int.Parse(textBoxEmployeeNumber.Text);
             string employeePassword = textBoxEmployeePassword.Text;
             string firstName = textBoxFirstName.Text;
@@ -49,7 +55,7 @@ namespace BookManagerWinForm
             }
             else
             {
-                MessageBox.Show("未登録の従業員番号です。申請を中止します。");
+                MessageBox.Show("編集後の従業員番号は既に存在しています。\n申請を中止します。");
             }
 
         }
@@ -57,10 +63,19 @@ namespace BookManagerWinForm
         #region　編集　従業員情報　表示
         private void buttonTargetDisplay_Click(object sender, EventArgs e)
         {
-            int targetEmployeeNumber = int.Parse(textBoxTargetEmployeeNumber.Text);
-            // 指定の従業員データを取得する処理
+            if (!int.TryParse(textBoxTargetEmployeeNumber.Text, out targetEmployeeNumber))
+            {
+                MessageBox.Show("従業員番号を整数で入力してください。");
+                return;
+            }
+
             DataTable data = dbManager.GetRecordDataFromView(viewName, targetEmployeeNumber);
-            //int statusNum = (int)Convert.ToInt32(data.Rows[0]["status_num"]);
+            if (data.Rows.Count == 0)
+            {
+                MessageBox.Show("データが見つかりませんでした。");
+                return;
+            }
+
             textBoxEmployeeNumber.Text = data.Rows[0]["employee_number"].ToString();
             textBoxEmployeePassword.Text = data.Rows[0]["employee_password"].ToString();
             textBoxFirstName.Text = data.Rows[0]["first_name"].ToString();

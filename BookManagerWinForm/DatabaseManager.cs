@@ -175,7 +175,7 @@ namespace BookManagerWinForm
             try
             {
                 using (SqlConnection connection = new(connectionString))
-                using (SqlCommand command = new("AddEmployee", connection))
+                using (SqlCommand command = new("EditEmployee", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@TargetEmployeeNumber", targetEmployeeNumber);
