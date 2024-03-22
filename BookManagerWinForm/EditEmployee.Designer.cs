@@ -61,7 +61,7 @@
             buttonBack.TabIndex = 11;
             buttonBack.Text = "back";
             buttonBack.UseVisualStyleBackColor = true;
-            buttonBack.Click += buttonBack_Click;
+            buttonBack.Click += ButtonBack_Click;
             // 
             // buttonEditEmployee
             // 
@@ -71,7 +71,7 @@
             buttonEditEmployee.TabIndex = 12;
             buttonEditEmployee.Text = "EditEmployee";
             buttonEditEmployee.UseVisualStyleBackColor = true;
-            buttonEditEmployee.Click += buttonEdditEmployee_Click;
+            buttonEditEmployee.Click += ButtonEdditEmployee_Click;
             // 
             // textBoxEmployeeNumber
             // 
@@ -155,7 +155,7 @@
             buttonTargetDisplay.TabIndex = 23;
             buttonTargetDisplay.Text = "Target Display";
             buttonTargetDisplay.UseVisualStyleBackColor = true;
-            buttonTargetDisplay.Click += buttonTargetDisplay_Click;
+            buttonTargetDisplay.Click += ButtonTargetDisplay_Click;
             // 
             // EditEmployee
             // 

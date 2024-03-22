@@ -13,10 +13,10 @@ namespace BookManagerWinForm
 {
     public partial class EditEmployee : Form
     {
-        private int empNum;
-        private bool isEditor;
-        private Edit editForm;
-        private DatabaseManager dbManager;
+        private readonly int empNum;
+        private readonly bool isEditor;
+        private readonly Edit editForm;
+        private readonly DatabaseManager dbManager;
         private int targetEmployeeNumber = 0;
         private readonly string viewName = "view_employees";
 
@@ -30,13 +30,13 @@ namespace BookManagerWinForm
             dbManager = new DatabaseManager();
         }
 
-        private void buttonBack_Click(object sender, EventArgs e)
+        private void ButtonBack_Click(object sender, EventArgs e)
         {
             editForm.Show();
             this.Close();
         }
 
-        private void buttonEdditEmployee_Click(object sender, EventArgs e)
+        private void ButtonEdditEmployee_Click(object sender, EventArgs e)
         {
             if (targetEmployeeNumber == 0)
             {
@@ -61,7 +61,7 @@ namespace BookManagerWinForm
         }
 
         #region　編集　従業員情報　表示
-        private void buttonTargetDisplay_Click(object sender, EventArgs e)
+        private void ButtonTargetDisplay_Click(object sender, EventArgs e)
         {
             if (!int.TryParse(textBoxTargetEmployeeNumber.Text, out targetEmployeeNumber))
             {
