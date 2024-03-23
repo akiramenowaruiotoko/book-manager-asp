@@ -78,7 +78,7 @@
             buttonPurchaseDisapproved.TabIndex = 19;
             buttonPurchaseDisapproved.Text = "purchase Disapproved";
             buttonPurchaseDisapproved.UseVisualStyleBackColor = true;
-            buttonPurchaseDisapproved.Click += buttonPurchaseDisapproved_Click;
+            buttonPurchaseDisapproved.Click += ButtonPurchaseDisapproved_Click;
             // 
             // buttonPurchaseApproval
             // 
@@ -98,7 +98,7 @@
             buttonPurchaseComplete.TabIndex = 21;
             buttonPurchaseComplete.Text = "purchase Complete";
             buttonPurchaseComplete.UseVisualStyleBackColor = true;
-            buttonPurchaseComplete.Click += buttonPurchaseComplete_Click;
+            buttonPurchaseComplete.Click += ButtonPurchaseComplete_Click;
             // 
             // PurchaseResponse
             // 

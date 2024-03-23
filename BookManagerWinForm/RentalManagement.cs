@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 
 namespace BookManagerWinForm
 {
@@ -57,6 +49,8 @@ namespace BookManagerWinForm
             if (dbManager.RentalManagement(book_id, empNum, statusNum, rental_date, return_date))
             {
                 MessageBox.Show("貸出承認処理が完了しました。");
+                listDisplayFrom.Show();
+                this.Close();
             }
             else
             {
@@ -74,6 +68,8 @@ namespace BookManagerWinForm
             if (dbManager.RentalManagement(book_id, empNum, statusNum, rental_date, return_date))
             {
                 MessageBox.Show("貸出不可処理が完了しました。");
+                listDisplayFrom.Show();
+                this.Close();
             }
             else
             {
@@ -96,6 +92,8 @@ namespace BookManagerWinForm
             if (dbManager.RentalManagement(book_id, empNum, statusNum, rental_date, return_date))
             {
                 MessageBox.Show("貸出処理が完了しました。");
+                listDisplayFrom.Show();
+                this.Close();
             }
             else
             {
@@ -115,6 +113,8 @@ namespace BookManagerWinForm
             if (dbManager.RentalManagement(book_id, empNum, statusNum, rental_date, return_date))
             {
                 MessageBox.Show("貸出完了認処理が完了しました。");
+                listDisplayFrom.Show();
+                this.Close();
             }
             else
             {
@@ -127,6 +127,5 @@ namespace BookManagerWinForm
             listDisplayFrom.Show();
             this.Close();
         }
-
     }
 }

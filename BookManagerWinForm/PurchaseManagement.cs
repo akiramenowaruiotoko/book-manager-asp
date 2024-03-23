@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 
 namespace BookManagerWinForm
 {
@@ -43,13 +35,15 @@ namespace BookManagerWinForm
             if (dbManager.PurchaseManagement(book_id, empNum, statusNum))
             {
                 MessageBox.Show("購入承認処理が完了しました。");
+                listDisplayFrom.Show();
+                this.Close();
             }
             else
             {
                 MessageBox.Show("購入依頼なし。申請を中止します。");
             }
         }
-        private void buttonPurchaseDisapproved_Click(object sender, EventArgs e)
+        private void ButtonPurchaseDisapproved_Click(object sender, EventArgs e)
         {
             // ステータス番号を購入不承認(2)に設定
             int statusNum = 2;
@@ -57,6 +51,8 @@ namespace BookManagerWinForm
             if (dbManager.PurchaseManagement(book_id, empNum, statusNum))
             {
                 MessageBox.Show("購入不承認処理が完了しました。");
+                listDisplayFrom.Show();
+                this.Close();
             }
             else
             {
@@ -64,7 +60,7 @@ namespace BookManagerWinForm
             }
         }
 
-        private void buttonPurchaseComplete_Click(object sender, EventArgs e)
+        private void ButtonPurchaseComplete_Click(object sender, EventArgs e)
         {
             // ステータス番号を貸出可能(3)に設定
             int statusNum = 3;
@@ -72,6 +68,8 @@ namespace BookManagerWinForm
             if (dbManager.PurchaseManagement(book_id, empNum, statusNum))
             {
                 MessageBox.Show("購入完了認処理が完了しました。");
+                listDisplayFrom.Show();
+                this.Close();
             }
             else
             {
@@ -84,5 +82,6 @@ namespace BookManagerWinForm
             listDisplayFrom.Show();
             this.Close();
         }
+
     }
 }

@@ -28,12 +28,6 @@ namespace BookManagerWinForm
             dataGridView1.DataSource = data;
         }
 
-        private void ButtonBackList_Click(object sender, EventArgs e)
-        {
-            listDisplayFrom.Show();
-            this.Close();
-        }
-
         private void ButtonRentalRequest_Click(object sender, EventArgs e)
         {
             DateTime rentalDate = dateTimePickerRental.Value;
@@ -45,11 +39,19 @@ namespace BookManagerWinForm
             if (dbManager.RentalRequest(book_id, empNum, statusNum, rentalDate, returnDate))
             {
                 MessageBox.Show("貸出申請処理が完了しました。");
+                listDisplayFrom.Show();
+                this.Close();
             }
             else
             {
                 MessageBox.Show("貸出可能な書籍ではありません。申請を中止します。");
             }
         }
+        private void ButtonBackList_Click(object sender, EventArgs e)
+        {
+            listDisplayFrom.Show();
+            this.Close();
+        }
     }
 }
+

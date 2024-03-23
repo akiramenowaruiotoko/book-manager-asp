@@ -16,11 +16,6 @@
             dbManager = new DatabaseManager();
         }
 
-        private void ButtonBackPurchase_Click(object sender, EventArgs e)
-        {
-            mainMenuForm.Show();
-            this.Close();
-        }
 
         private void ButtonApplication_Click(object sender, EventArgs e)
         {
@@ -34,11 +29,18 @@
             if (dbManager.PurchaseRequest(bookId, bookName, empNum, statusNum))
             {
                 MessageBox.Show("申請が完了しました。");
+                mainMenuForm.Show();
+                this.Close();
             }
             else
             {
                 MessageBox.Show("書籍が既に存在しています。申請を中止します。");
             }
+        }
+        private void ButtonBackPurchase_Click(object sender, EventArgs e)
+        {
+            mainMenuForm.Show();
+            this.Close();
         }
     }
 }
