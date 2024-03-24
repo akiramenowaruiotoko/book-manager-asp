@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BookManagerWinForm
 {
@@ -12,8 +13,16 @@ namespace BookManagerWinForm
         private readonly bool isEditor;
         private readonly MainMenu mainMenuForm;
         private readonly DatabaseManager dbManager;
-        private readonly string viewName = "view_all";
+        private ViewNum viewNum;
+        private string viewName;
 
+        enum ViewNum
+        {
+            view_all = 0,
+            view_books = 1,
+            view_employees = 2,
+            view_statuses = 3
+        }
         enum StatusNum
         {
             Applying_Purchase = 0, //購入申請中
@@ -27,6 +36,7 @@ namespace BookManagerWinForm
             Currently_Rental_Past = 8 //貸出中 期日超過
         }
         #endregion
+
         #region Initialize
         public ListDisplay(int empNum, bool isEditor, MainMenu mainMenu)
         {
@@ -44,31 +54,108 @@ namespace BookManagerWinForm
         }
         #endregion
 
+        #region フォームデータ読み込み
         // フォームが表示されたらdataをロード
         private void ListDisplay_VisibleChanged(object sender, EventArgs e)
         {
-            LoadDataFromView();
+            viewSet();
+        }
+        // コンボボックスが変更されたらdataをロード
+        private void comboBoxList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            viewSet();
+        }
+        // コンボボックスの値を取得し、viewをセット
+        private void viewSet()
+        {
+            viewNum = (ViewNum)comboBoxList.SelectedIndex;
+            switch (viewNum)
+            {
+                case ViewNum.view_all:
+                    viewName = "view_all";
+                    LoadDataFromView();
+                    break;
+                case ViewNum.view_books:
+                    viewName = "view_books";
+                    LoadDataFromView();
+                    break;
+                case ViewNum.view_employees:
+                    viewName = "view_employees";
+                    LoadDataFromView();
+                    break;
+                case ViewNum.view_statuses:
+                    viewName = "view_statuses";
+                    LoadDataFromView();
+                    break;
+            }
         }
 
+        // viewのデータを読み込み、データグリッドビューに表示
         private void LoadDataFromView()
         {
             // データグリッドビューの列をクリアする
             dataGridView1.Columns.Clear();
+            // 行ヘッダーを非表示にして左の編集列を非表示にする
+            dataGridView1.RowHeadersVisible = false;
 
-            // NO列をボタン列に変更する
+            // DBデータを取得する処理
+            DataTable data = dbManager.GetDataFromView(viewName);
+
+            // viewNumごとに列を設定
+            switch (viewNum)
+            {
+                case ViewNum.view_all:
+                    data = addActionButton(data);
+                    data = addStatusColumn(data);
+                    data = setActionButton(data);
+                    data = setStatusColumn(data);
+                    break;
+                case ViewNum.view_books:
+                    data = addActionButton(data);
+                    data = setEditButton(data);
+                    break;
+                case ViewNum.view_employees:
+                    data = addActionButton(data);
+                    data = setEditButton(data);
+                    break;
+                case ViewNum.view_statuses:
+                    data = addStatusColumn(data);
+                    data = setStatusColumn(data);
+                    break;
+            }
+
+            // DataGridViewにデータをロード
+            dataGridView1.DataSource = data;
+        }
+        #endregion
+
+        #region 列追加
+        private DataTable addActionButton(DataTable data)
+        {
+            // アクションボタン列を追加する
             DataGridViewButtonColumn buttonColumn = new()
             {
                 HeaderText = "ActionButton",
                 Name = "アクションボタン",
-                FlatStyle = FlatStyle.Flat, // FlatStyleをFlatに設定する
+                FlatStyle = FlatStyle.Flat,
                 DataPropertyName = "Button"
             };
-
-            // ボタンの外観をカスタマイズする
+            // アクションボタンの外観をカスタマイズする
             buttonColumn.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
             buttonColumn.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             buttonColumn.FlatStyle = FlatStyle.Popup;
+            this.dataGridView1.Columns.Add(buttonColumn);
+            DataColumn button = new("Button")
+            {
+                DataType = typeof(string)
+            };
+            data.Columns.Add(button);
+            return data;
 
+        }
+
+        private DataTable addStatusColumn(DataTable data)
+        {
             // ステータス列を追加する
             DataGridViewTextBoxColumn statusColumn = new()
             {
@@ -76,82 +163,111 @@ namespace BookManagerWinForm
                 Name = "ステータス",
                 DataPropertyName = "Status"
             };
-
-            this.dataGridView1.Columns.Add(buttonColumn);
             this.dataGridView1.Columns.Add(statusColumn);
-
-            // 行ヘッダーを非表示にして左の編集列を非表示にする
-            dataGridView1.RowHeadersVisible = false;
-
-            // データを取得する処理
-            DataTable data = dbManager.GetDataFromView(viewName);
-
-            // ActionButton列を追加し、ボタンを設定する
-            DataColumn button = new("Button")
-            {
-                DataType = typeof(string)
-            };
-            data.Columns.Add(button);
-
-            // Status列を追加し、ステータスを設定する
             DataColumn status = new("Status")
             {
                 DataType = typeof(string)
             };
             data.Columns.Add(status);
+            return data;
+        }
+        #endregion
 
+        #region 追加した列のテキストをセット
+        private DataTable setActionButton(DataTable data)
+        {
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                // s.status_numの値に応じてボタンのテキストを設定する
+                // s.status_numの値に応じてテキストを設定する
                 StatusNum statusNum = (StatusNum)Convert.ToInt32(data.Rows[i]["status_num"]);
                 switch (statusNum)
                 {
                     case StatusNum.Applying_Purchase: //購入申請中
                         data.Rows[i]["Button"] = "購入確認";
-                        data.Rows[i]["Status"] = "購入申請中";
                         break;
                     case StatusNum.Purchase_Approved: //購入承認済み 購入待ち
                         data.Rows[i]["Button"] = "購入完了処理";
-                        data.Rows[i]["Status"] = "購入承認済み 購入待ち";
                         break;
                     case StatusNum.Purchase_Disapproved: //購入不承認
                         data.Rows[i]["Button"] = "購入不承認変更";
-                        data.Rows[i]["Status"] = "購入不承認";
                         break;
                     case StatusNum.Available_Rental: //貸出可能
                         data.Rows[i]["Button"] = "貸出申請";
-                        data.Rows[i]["Status"] = "貸出可能";
                         break;
                     case StatusNum.Applying_Rental: //貸出申請中
                         data.Rows[i]["Button"] = "貸出確認";
-                        data.Rows[i]["Status"] = "貸出申請中";
                         break;
                     case StatusNum.Approved_Rental: //貸出承認済み
                         data.Rows[i]["Button"] = "貸出完了処理";
-                        data.Rows[i]["Status"] = "貸出承認済み";
                         break;
                     case StatusNum.Unavailable_Rental: //貸出不可
                         data.Rows[i]["Button"] = "貸出不可変更";
-                        data.Rows[i]["Status"] = "貸出不可";
                         break;
                     case StatusNum.Currently_Rental: //貸出中 期日何日
                     case StatusNum.Currently_Rental_Past: //貸出中 期日超過
                         data.Rows[i]["Button"] = "返却完了処理";
-                        data.Rows[i]["Status"] = "貸出中";
                         break;
                     default:
                         data.Rows[i]["Button"] = "-";
+                        break;
+                }
+            }
+            return data;
+        }
+        private DataTable setStatusColumn(DataTable data)
+        {
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                // s.status_numの値に応じてテキストを設定する
+                StatusNum statusNum = (StatusNum)Convert.ToInt32(data.Rows[i]["status_num"]);
+                switch (statusNum)
+                {
+                    case StatusNum.Applying_Purchase: //購入申請中
+                        data.Rows[i]["Status"] = "購入申請中";
+                        break;
+                    case StatusNum.Purchase_Approved: //購入承認済み 購入待ち
+                        data.Rows[i]["Status"] = "購入承認済み 購入待ち";
+                        break;
+                    case StatusNum.Purchase_Disapproved: //購入不承認
+                        data.Rows[i]["Status"] = "購入不承認";
+                        break;
+                    case StatusNum.Available_Rental: //貸出可能
+                        data.Rows[i]["Status"] = "貸出可能";
+                        break;
+                    case StatusNum.Applying_Rental: //貸出申請中
+                        data.Rows[i]["Status"] = "貸出申請中";
+                        break;
+                    case StatusNum.Approved_Rental: //貸出承認済み
+                        data.Rows[i]["Status"] = "貸出承認済み";
+                        break;
+                    case StatusNum.Unavailable_Rental: //貸出不可
+                        data.Rows[i]["Status"] = "貸出不可";
+                        break;
+                    case StatusNum.Currently_Rental: //貸出中 期日何日
+                    case StatusNum.Currently_Rental_Past: //貸出中 期日超過
+                        data.Rows[i]["Status"] = "貸出中";
+                        break;
+                    default:
                         data.Rows[i]["Status"] = "不明";
                         break;
                 }
             }
-            // DataGridViewにデータをロード
-            dataGridView1.DataSource = data;
+            return data;
         }
 
+        private DataTable setEditButton(DataTable data)
+        {
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                data.Rows[i]["Button"] = "編集";
+            }
+            return data;
+        }
 
-        // DataGridView のセルがクリックされたときの処理
-        private void DataGridView1_CellContentClick(object? sender, DataGridViewCellEventArgs e)
+        #endregion
+        #region アクションを処理するメソッド
+            // DataGridView のセルがクリックされたときの処理
+            private void DataGridView1_CellContentClick(object? sender, DataGridViewCellEventArgs e)
         {
             HandleAction(e.RowIndex);
         }
@@ -165,8 +281,6 @@ namespace BookManagerWinForm
                 HandleAction(rowIndex);
             }
         }
-
-        // アクションを処理するメソッド
         private void HandleAction(int rowIndex)
         {
             // ボタンがクリックされたことを確認する
@@ -208,12 +322,15 @@ namespace BookManagerWinForm
                 }
             }
         }
+        #endregion
 
+        #region 戻るボタン
         // 戻るボタンがクリックされたときの処理
         private void ButtonBackListDisplay_Click(object? sender, EventArgs e)
         {
             mainMenuForm.Show();
             this.Close();
         }
+        #endregion
     }
 }

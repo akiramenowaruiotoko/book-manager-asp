@@ -31,6 +31,7 @@
             labelTitle = new Label();
             buttonBackList = new Button();
             dataGridView1 = new DataGridView();
+            comboBoxList = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -46,7 +47,7 @@
             // 
             // buttonBackList
             // 
-            buttonBackList.Location = new Point(430, 27);
+            buttonBackList.Location = new Point(793, 19);
             buttonBackList.Name = "buttonBackList";
             buttonBackList.Size = new Size(302, 60);
             buttonBackList.TabIndex = 3;
@@ -67,11 +68,23 @@
             dataGridView1.Size = new Size(2341, 693);
             dataGridView1.TabIndex = 4;
             // 
+            // comboBoxList
+            // 
+            comboBoxList.FormattingEnabled = true;
+            comboBoxList.Items.AddRange(new object[] { "all", "books", "employees", "statuses" });
+            comboBoxList.Location = new Point(33, 93);
+            comboBoxList.Name = "comboBoxList";
+            comboBoxList.Size = new Size(488, 40);
+            comboBoxList.TabIndex = 5;
+            comboBoxList.Text = "all";
+            comboBoxList.SelectedIndexChanged += comboBoxList_SelectedIndexChanged;
+            // 
             // ListDisplay
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2386, 921);
+            Controls.Add(comboBoxList);
             Controls.Add(dataGridView1);
             Controls.Add(buttonBackList);
             Controls.Add(labelTitle);
@@ -88,5 +101,6 @@
         private Label labelTitle;
         private Button buttonBackList;
         private DataGridView dataGridView1;
+        private ComboBox comboBoxList;
     }
 }

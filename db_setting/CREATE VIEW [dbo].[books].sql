@@ -1,7 +1,7 @@
 USE [book_manager]
 GO
 
-CREATE OR ALTER VIEW [dbo].[View_books]
+CREATE OR ALTER VIEW [dbo].[view_books]
 AS
 SELECT
     book_id,
