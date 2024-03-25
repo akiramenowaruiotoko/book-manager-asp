@@ -25,13 +25,5 @@
             form.Show();
             this.Hide();
         }
-
-        private void buttonEditEmployee_Click(object sender, EventArgs e)
-        {
-            EditEmployee form = new(empNum, isEditor, this);
-            form.Show();
-            this.Hide();
-        }
-
     }
 }

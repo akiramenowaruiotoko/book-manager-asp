@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 
 namespace BookManagerWinForm
 {
@@ -15,35 +6,35 @@ namespace BookManagerWinForm
     {
         private readonly int empNum;
         private readonly bool isEditor;
-        private readonly Edit editForm;
+        private readonly ListDisplay listDisplayForm;
         private readonly DatabaseManager dbManager;
-        private int targetEmployeeNumber = 0;
+        private int targetEmployeeNumber;
         private readonly string viewName = "view_employees";
 
 
-        public EditEmployee(int empNum, bool isEditor, Edit editForm)
+        public EditEmployee(int empNum, bool isEditor, int targetEmployeeNumber, ListDisplay listDisplayForm)
         {
             InitializeComponent();
             this.empNum = empNum;
             this.isEditor = isEditor;
-            this.editForm = editForm;
+            this.targetEmployeeNumber = targetEmployeeNumber;
+            this.listDisplayForm = listDisplayForm;
             dbManager = new DatabaseManager();
+            DataTable data = dbManager.GetRecordDataFromView(viewName, targetEmployeeNumber);
+            textBoxEmployeeNumber.Text = data.Rows[0]["employee_number"].ToString();
+            textBoxEmployeePassword.Text = data.Rows[0]["employee_password"].ToString();
+            textBoxFirstName.Text = data.Rows[0]["first_name"].ToString();
+            checkBoxEditor.Checked = Convert.ToBoolean(data.Rows[0]["editor"]);
         }
 
         private void ButtonBack_Click(object sender, EventArgs e)
         {
-            editForm.Show();
+            listDisplayForm.Show();
             this.Close();
         }
 
         private void ButtonEdditEmployee_Click(object sender, EventArgs e)
         {
-            if (targetEmployeeNumber == 0)
-            {
-                MessageBox.Show("編集する従業員番号を設定してください");
-                return;
-            }
-
             int employeeNumber = int.Parse(textBoxEmployeeNumber.Text);
             string employeePassword = textBoxEmployeePassword.Text;
             string firstName = textBoxFirstName.Text;
@@ -52,35 +43,13 @@ namespace BookManagerWinForm
             if (dbManager.EditEmployee(targetEmployeeNumber, employeeNumber, employeePassword, firstName, editor))
             {
                 MessageBox.Show("処理が完了しました。");
+                listDisplayForm.Show();
+                this.Close();
             }
             else
             {
                 MessageBox.Show("編集後の従業員番号は既に存在しています。\n申請を中止します。");
             }
-
         }
-
-        #region　編集　従業員情報　表示
-        private void ButtonTargetDisplay_Click(object sender, EventArgs e)
-        {
-            if (!int.TryParse(textBoxTargetEmployeeNumber.Text, out targetEmployeeNumber))
-            {
-                MessageBox.Show("従業員番号を整数で入力してください。");
-                return;
-            }
-
-            DataTable data = dbManager.GetRecordDataFromView(viewName, targetEmployeeNumber);
-            if (data.Rows.Count == 0)
-            {
-                MessageBox.Show("データが見つかりませんでした。");
-                return;
-            }
-
-            textBoxEmployeeNumber.Text = data.Rows[0]["employee_number"].ToString();
-            textBoxEmployeePassword.Text = data.Rows[0]["employee_password"].ToString();
-            textBoxFirstName.Text = data.Rows[0]["first_name"].ToString();
-            checkBoxEditor.Checked = Convert.ToBoolean(data.Rows[0]["editor"]);
-        }
-        #endregion
     }
 }

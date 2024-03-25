@@ -38,9 +38,6 @@
             label4 = new Label();
             textBoxFirstName = new TextBox();
             checkBoxEditor = new CheckBox();
-            label5 = new Label();
-            textBoxTargetEmployeeNumber = new TextBox();
-            buttonTargetDisplay = new Button();
             SuspendLayout();
             // 
             // label1
@@ -55,7 +52,7 @@
             // 
             // buttonBack
             // 
-            buttonBack.Location = new Point(486, 16);
+            buttonBack.Location = new Point(330, 16);
             buttonBack.Name = "buttonBack";
             buttonBack.Size = new Size(302, 60);
             buttonBack.TabIndex = 11;
@@ -65,7 +62,7 @@
             // 
             // buttonEditEmployee
             // 
-            buttonEditEmployee.Location = new Point(12, 499);
+            buttonEditEmployee.Location = new Point(28, 314);
             buttonEditEmployee.Name = "buttonEditEmployee";
             buttonEditEmployee.Size = new Size(294, 51);
             buttonEditEmployee.TabIndex = 12;
@@ -75,7 +72,7 @@
             // 
             // textBoxEmployeeNumber
             // 
-            textBoxEmployeeNumber.Location = new Point(12, 318);
+            textBoxEmployeeNumber.Location = new Point(28, 133);
             textBoxEmployeeNumber.Name = "textBoxEmployeeNumber";
             textBoxEmployeeNumber.Size = new Size(245, 39);
             textBoxEmployeeNumber.TabIndex = 13;
@@ -83,7 +80,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 283);
+            label2.Location = new Point(28, 98);
             label2.Name = "label2";
             label2.Size = new Size(211, 32);
             label2.TabIndex = 14;
@@ -92,7 +89,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(289, 283);
+            label3.Location = new Point(305, 98);
             label3.Name = "label3";
             label3.Size = new Size(226, 32);
             label3.TabIndex = 15;
@@ -100,7 +97,7 @@
             // 
             // textBoxEmployeePassword
             // 
-            textBoxEmployeePassword.Location = new Point(289, 318);
+            textBoxEmployeePassword.Location = new Point(305, 133);
             textBoxEmployeePassword.Name = "textBoxEmployeePassword";
             textBoxEmployeePassword.Size = new Size(245, 39);
             textBoxEmployeePassword.TabIndex = 16;
@@ -108,7 +105,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 385);
+            label4.Location = new Point(28, 200);
             label4.Name = "label4";
             label4.Size = new Size(122, 32);
             label4.TabIndex = 17;
@@ -116,7 +113,7 @@
             // 
             // textBoxFirstName
             // 
-            textBoxFirstName.Location = new Point(12, 420);
+            textBoxFirstName.Location = new Point(28, 235);
             textBoxFirstName.Name = "textBoxFirstName";
             textBoxFirstName.Size = new Size(245, 39);
             textBoxFirstName.TabIndex = 18;
@@ -124,47 +121,18 @@
             // checkBoxEditor
             // 
             checkBoxEditor.AutoSize = true;
-            checkBoxEditor.Location = new Point(314, 422);
+            checkBoxEditor.Location = new Point(330, 237);
             checkBoxEditor.Name = "checkBoxEditor";
             checkBoxEditor.Size = new Size(108, 36);
             checkBoxEditor.TabIndex = 20;
             checkBoxEditor.Text = "Editor";
             checkBoxEditor.UseVisualStyleBackColor = true;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(12, 118);
-            label5.Name = "label5";
-            label5.Size = new Size(281, 32);
-            label5.TabIndex = 22;
-            label5.Text = "target employee number";
-            // 
-            // textBoxTargetEmployeeNumber
-            // 
-            textBoxTargetEmployeeNumber.Location = new Point(12, 153);
-            textBoxTargetEmployeeNumber.Name = "textBoxTargetEmployeeNumber";
-            textBoxTargetEmployeeNumber.Size = new Size(245, 39);
-            textBoxTargetEmployeeNumber.TabIndex = 21;
-            // 
-            // buttonTargetDisplay
-            // 
-            buttonTargetDisplay.Location = new Point(299, 141);
-            buttonTargetDisplay.Name = "buttonTargetDisplay";
-            buttonTargetDisplay.Size = new Size(294, 51);
-            buttonTargetDisplay.TabIndex = 23;
-            buttonTargetDisplay.Text = "Target Display";
-            buttonTargetDisplay.UseVisualStyleBackColor = true;
-            buttonTargetDisplay.Click += ButtonTargetDisplay_Click;
-            // 
             // EditEmployee
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 586);
-            Controls.Add(buttonTargetDisplay);
-            Controls.Add(label5);
-            Controls.Add(textBoxTargetEmployeeNumber);
+            ClientSize = new Size(660, 389);
             Controls.Add(checkBoxEditor);
             Controls.Add(textBoxFirstName);
             Controls.Add(label4);
@@ -193,8 +161,5 @@
         private Label label4;
         private TextBox textBoxFirstName;
         private CheckBox checkBoxEditor;
-        private Label label5;
-        private TextBox textBoxTargetEmployeeNumber;
-        private Button buttonTargetDisplay;
     }
 }

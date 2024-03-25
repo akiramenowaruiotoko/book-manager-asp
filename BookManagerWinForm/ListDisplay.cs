@@ -283,11 +283,12 @@ namespace BookManagerWinForm
         }
         private void HandleAction(int rowIndex)
         {
-            // ボタンがクリックされたことを確認する
-            if (rowIndex >= 0 && rowIndex < dataGridView1.Rows.Count &&
-                dataGridView1.Rows[rowIndex].Cells["アクションボタン"].Selected)
-            {
+            // ボタンがクリックされたことを確認する いったん保留
+            // if (rowIndex >= 0 && rowIndex < dataGridView1.Rows.Count && dataGridView1.Rows[rowIndex].Cells["アクションボタン"].Selected){ }
 
+            // view_allの場合
+            if(viewNum == ViewNum.view_all)
+            {
                 // クリックされた行の book_id の値を取得し、null の場合はデフォルト値を設定する
                 string book_id = dataGridView1.Rows[rowIndex].Cells["book_id"].Value.ToString() ?? string.Empty;
 
@@ -320,6 +321,25 @@ namespace BookManagerWinForm
                         break;
                     default: break;
                 }
+            }
+            // view_booksの場合
+            else if (viewNum == ViewNum.view_books)
+            {
+                /*
+                // クリックされた行の book_id の値を取得し、null の場合はデフォルト値を設定する
+                string book_id = dataGridView1.Rows[rowIndex].Cells["book_id"].Value.ToString() ?? string.Empty;
+                EditBook editBook = new(empNum, isEditor, book_id, this);
+                editBook.Show();
+                this.Hide();
+                */
+            }
+            else if (viewNum == ViewNum.view_employees)
+            {
+                // クリックされた行の employee_number の値を取得し、null の場合はデフォルト値を設定する
+                int targetEmployeeNumber = Convert.ToInt32(dataGridView1.Rows[rowIndex].Cells["employee_number"].Value);
+                EditEmployee editEmployee = new(empNum, isEditor, targetEmployeeNumber, this);
+                editEmployee.Show();
+                this.Hide();
             }
         }
         #endregion

@@ -30,8 +30,6 @@
         {
             label1 = new Label();
             buttonBack = new Button();
-            buttonEditEmployee = new Button();
-            buttonEditBook = new Button();
             buttonAddEmployee = new Button();
             buttonAddBook = new Button();
             SuspendLayout();
@@ -56,25 +54,6 @@
             buttonBack.UseVisualStyleBackColor = true;
             buttonBack.Click += buttonBack_Click;
             // 
-            // buttonEditEmployee
-            // 
-            buttonEditEmployee.Location = new Point(82, 209);
-            buttonEditEmployee.Name = "buttonEditEmployee";
-            buttonEditEmployee.Size = new Size(232, 62);
-            buttonEditEmployee.TabIndex = 11;
-            buttonEditEmployee.Text = "edit employee";
-            buttonEditEmployee.UseVisualStyleBackColor = true;
-            buttonEditEmployee.Click += buttonEditEmployee_Click;
-            // 
-            // buttonEditBook
-            // 
-            buttonEditBook.Location = new Point(381, 209);
-            buttonEditBook.Name = "buttonEditBook";
-            buttonEditBook.Size = new Size(232, 62);
-            buttonEditBook.TabIndex = 12;
-            buttonEditBook.Text = "edit book";
-            buttonEditBook.UseVisualStyleBackColor = true;
-            // 
             // buttonAddEmployee
             // 
             buttonAddEmployee.Location = new Point(82, 109);
@@ -98,11 +77,9 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(697, 306);
+            ClientSize = new Size(697, 227);
             Controls.Add(buttonAddBook);
             Controls.Add(buttonAddEmployee);
-            Controls.Add(buttonEditBook);
-            Controls.Add(buttonEditEmployee);
             Controls.Add(buttonBack);
             Controls.Add(label1);
             Name = "Edit";
@@ -115,8 +92,6 @@
 
         private Label label1;
         private Button buttonBack;
-        private Button buttonEditEmployee;
-        private Button buttonEditBook;
         private Button buttonAddEmployee;
         private Button buttonAddBook;
     }
