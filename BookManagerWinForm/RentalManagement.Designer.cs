@@ -115,7 +115,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2165, 450);
+            ClientSize = new Size(2165, 315);
             Controls.Add(buttonCurrentlyRental);
             Controls.Add(buttonReturned);
             Controls.Add(buttonRentalApproval);

@@ -65,7 +65,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 82;
-            dataGridView1.Size = new Size(1661, 175);
+            dataGridView1.Size = new Size(2183, 704);
             dataGridView1.TabIndex = 4;
             // 
             // comboBoxList
@@ -83,7 +83,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1784, 431);
+            ClientSize = new Size(2237, 942);
             Controls.Add(comboBoxList);
             Controls.Add(dataGridView1);
             Controls.Add(buttonBackList);

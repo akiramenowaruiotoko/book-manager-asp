@@ -100,18 +100,18 @@
             buttonPurchaseComplete.UseVisualStyleBackColor = true;
             buttonPurchaseComplete.Click += ButtonPurchaseComplete_Click;
             // 
-            // PurchaseResponse
+            // PurchaseManagement
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2165, 450);
+            ClientSize = new Size(2165, 312);
             Controls.Add(buttonPurchaseComplete);
             Controls.Add(buttonPurchaseApproval);
             Controls.Add(buttonPurchaseDisapproved);
             Controls.Add(dataGridView1);
             Controls.Add(buttonBack);
             Controls.Add(labelTitle);
-            Name = "PurchaseResponse";
+            Name = "PurchaseManagement";
             Text = "PurchaseResponse";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

@@ -43,29 +43,8 @@ namespace BookManagerWinForm
             this.mainMenuForm = mainMenu;
             dbManager = new DatabaseManager();
 
-            // データグリッドビューをパネルに追加し、余白を設定
-            Panel panel = new Panel();
-            panel.Dock = DockStyle.Fill;
-            panel.Padding = new Padding(10);
-            panel.Controls.Add(dataGridView1);
-            this.Controls.Add(panel);
-
             dataGridView1.CellContentClick += DataGridView1_CellContentClick;
             dataGridView1.KeyDown += DataGridView1_KeyDown;
-            dataGridView1.SizeChanged += DataGridView1_SizeChanged;
-        }
-
-        private void DataGridView1_SizeChanged(object sender, EventArgs e)
-        {
-            AdjustFormSize();
-        }
-
-        private void AdjustFormSize()
-        {
-            int dataGridViewWidth = dataGridView1.Columns.GetColumnsWidth(DataGridViewElementStates.Visible);
-            int formWidth = dataGridViewWidth + dataGridView1.Margin.Horizontal + 2 * SystemInformation.VerticalScrollBarWidth + 20; // 余白分追加
-            int formHeight = dataGridView1.Height + dataGridView1.Margin.Vertical + 2 * SystemInformation.HorizontalScrollBarHeight + 20; // 余白分追加
-            this.ClientSize = new Size(formWidth, formHeight);
         }
 
         private void ListDisplay_VisibleChanged(object sender, EventArgs e)
@@ -132,9 +111,26 @@ namespace BookManagerWinForm
             }
 
             dataGridView1.DataSource = data;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            AdjustFormSize();
+            // データグリッドビューの列の幅を自動調整
+            dataGridView1.AutoResizeColumns();
+            // データグリッドビューのサイズを調整
+            ResizeDataGridView();
         }
+
+        private void ResizeDataGridView()
+        {
+            int totalWidth = 0;
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            {
+                totalWidth += col.Width;
+            }
+            // グリッドビューのサイズを調整
+            int dataGridViewWidth = totalWidth + 50; // 右側に50pxの余白を追加
+            dataGridView1.ClientSize = new Size(dataGridViewWidth, dataGridView1.Height);
+            // フォームのサイズを調整
+            this.ClientSize = new Size(dataGridViewWidth + 80, this.ClientSize.Height); // フォームの幅に80pxの余白を追加
+        }
+
 
         private DataTable addActionButton(DataTable data)
         {

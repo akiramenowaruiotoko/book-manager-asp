@@ -114,7 +114,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(980, 389);
+            ClientSize = new Size(689, 272);
             Controls.Add(buttonDeleteBook);
             Controls.Add(textBoxBookName);
             Controls.Add(label3);

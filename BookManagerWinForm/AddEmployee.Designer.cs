@@ -132,7 +132,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(808, 401);
             Controls.Add(checkBoxEditor);
             Controls.Add(textBoxFirstName);
             Controls.Add(label4);

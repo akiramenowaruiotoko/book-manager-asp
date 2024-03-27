@@ -103,7 +103,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(829, 310);
             Controls.Add(textBoxBookName);
             Controls.Add(label3);
             Controls.Add(label2);
