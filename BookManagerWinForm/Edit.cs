@@ -25,5 +25,12 @@
             form.Show();
             this.Hide();
         }
+
+        private void buttonAddBook_Click(object sender, EventArgs e)
+        {
+            AddBook form = new(empNum, isEditor, this);
+            form.Show();
+            this.Hide();
+        }
     }
 }

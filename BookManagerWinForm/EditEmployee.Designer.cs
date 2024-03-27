@@ -38,6 +38,7 @@
             label4 = new Label();
             textBoxFirstName = new TextBox();
             checkBoxEditor = new CheckBox();
+            buttonDeleteEmployee = new Button();
             SuspendLayout();
             // 
             // label1
@@ -62,9 +63,9 @@
             // 
             // buttonEditEmployee
             // 
-            buttonEditEmployee.Location = new Point(28, 314);
+            buttonEditEmployee.Location = new Point(28, 313);
             buttonEditEmployee.Name = "buttonEditEmployee";
-            buttonEditEmployee.Size = new Size(294, 51);
+            buttonEditEmployee.Size = new Size(245, 51);
             buttonEditEmployee.TabIndex = 12;
             buttonEditEmployee.Text = "EditEmployee";
             buttonEditEmployee.UseVisualStyleBackColor = true;
@@ -128,11 +129,22 @@
             checkBoxEditor.Text = "Editor";
             checkBoxEditor.UseVisualStyleBackColor = true;
             // 
+            // buttonDeleteEmployee
+            // 
+            buttonDeleteEmployee.Location = new Point(305, 313);
+            buttonDeleteEmployee.Name = "buttonDeleteEmployee";
+            buttonDeleteEmployee.Size = new Size(245, 51);
+            buttonDeleteEmployee.TabIndex = 21;
+            buttonDeleteEmployee.Text = "Delete Employee";
+            buttonDeleteEmployee.UseVisualStyleBackColor = true;
+            buttonDeleteEmployee.Click += buttonDeleteEmployee_Click;
+            // 
             // EditEmployee
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(660, 389);
+            Controls.Add(buttonDeleteEmployee);
             Controls.Add(checkBoxEditor);
             Controls.Add(textBoxFirstName);
             Controls.Add(label4);
@@ -161,5 +173,6 @@
         private Label label4;
         private TextBox textBoxFirstName;
         private CheckBox checkBoxEditor;
+        private Button buttonDeleteEmployee;
     }
 }

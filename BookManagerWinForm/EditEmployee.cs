@@ -20,7 +20,7 @@ namespace BookManagerWinForm
             this.targetEmployeeNumber = targetEmployeeNumber;
             this.listDisplayForm = listDisplayForm;
             dbManager = new DatabaseManager();
-            DataTable data = dbManager.GetRecordDataFromView(viewName, targetEmployeeNumber);
+            DataTable data = dbManager.GetEmployeeRecordFromView(viewName, targetEmployeeNumber);
             textBoxEmployeeNumber.Text = data.Rows[0]["employee_number"].ToString();
             textBoxEmployeePassword.Text = data.Rows[0]["employee_password"].ToString();
             textBoxFirstName.Text = data.Rows[0]["first_name"].ToString();
@@ -50,6 +50,21 @@ namespace BookManagerWinForm
             {
                 MessageBox.Show("編集後の従業員番号は既に存在しています。\n申請を中止します。");
             }
+        }
+
+        private void buttonDeleteEmployee_Click(object sender, EventArgs e)
+        {
+            if (dbManager.DeleteEmployee(targetEmployeeNumber))
+            {
+                MessageBox.Show("処理が完了しました。");
+                listDisplayForm.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("削除対象が存在しません。\n申請を中止します。");
+            }
+
         }
     }
 }
