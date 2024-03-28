@@ -47,9 +47,9 @@
             // 
             // buttonBackList
             // 
-            buttonBackList.Location = new Point(537, 19);
+            buttonBackList.Location = new Point(342, 19);
             buttonBackList.Name = "buttonBackList";
-            buttonBackList.Size = new Size(302, 60);
+            buttonBackList.Size = new Size(212, 60);
             buttonBackList.TabIndex = 3;
             buttonBackList.Text = "back";
             buttonBackList.UseVisualStyleBackColor = true;
@@ -65,7 +65,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 82;
-            dataGridView1.Size = new Size(2183, 704);
+            dataGridView1.Size = new Size(806, 357);
             dataGridView1.TabIndex = 4;
             // 
             // comboBoxList
@@ -74,7 +74,7 @@
             comboBoxList.Items.AddRange(new object[] { "all", "books", "employees", "statuses" });
             comboBoxList.Location = new Point(33, 93);
             comboBoxList.Name = "comboBoxList";
-            comboBoxList.Size = new Size(488, 40);
+            comboBoxList.Size = new Size(521, 40);
             comboBoxList.TabIndex = 5;
             comboBoxList.Text = "all";
             comboBoxList.SelectedIndexChanged += comboBoxList_SelectedIndexChanged;
@@ -83,7 +83,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2237, 942);
+            ClientSize = new Size(873, 566);
             Controls.Add(comboBoxList);
             Controls.Add(dataGridView1);
             Controls.Add(buttonBackList);

@@ -12,7 +12,7 @@ namespace BookManagerWinForm
         private readonly MainMenu mainMenuForm;
         private readonly DatabaseManager dbManager;
         private ViewNum viewNum;
-        private string viewName;
+        private string viewName = "view_all";
 
         enum ViewNum
         {
@@ -111,9 +111,7 @@ namespace BookManagerWinForm
             }
 
             dataGridView1.DataSource = data;
-            // データグリッドビューの列の幅を自動調整
             dataGridView1.AutoResizeColumns();
-            // データグリッドビューのサイズを調整
             ResizeDataGridView();
         }
 
@@ -122,8 +120,7 @@ namespace BookManagerWinForm
             int totalWidth = 0;
             int rowCount = dataGridView1.Rows.Count;
 
-            // グリッドビューの高さを調整
-            int dataGridViewHeight = Math.Min(rowCount * dataGridView1.Rows[0].Height + 80, 1000); // データグリッドビューの高さに余白100を追加し、最大で1000まで
+            int dataGridViewHeight = Math.Min(rowCount * dataGridView1.Rows[0].Height + 80, 1200); 
             dataGridView1.ClientSize = new Size(dataGridView1.ClientSize.Width, dataGridViewHeight);
 
             foreach (DataGridViewColumn col in dataGridView1.Columns)
@@ -131,16 +128,13 @@ namespace BookManagerWinForm
                 totalWidth += col.Width;
             }
 
-            // グリッドビューの幅を調整
-            int dataGridViewWidth = totalWidth + 40; // 右側に50pxの余白を追加
+            int dataGridViewWidth = totalWidth + 40;
             dataGridView1.ClientSize = new Size(dataGridViewWidth, dataGridView1.ClientSize.Height);
 
-            // フォームのサイズを調整
             int formWidth = dataGridViewWidth + 64;
-            int formHeight = dataGridViewHeight + 200; // ラベル、コンボボックス、ボタンの高さを考慮
-            this.ClientSize = new Size(formWidth, Math.Min(formHeight, 1500)); // 最大で高さ1000まで
+            int formHeight = dataGridViewHeight + 200;
+            this.ClientSize = new Size(formWidth, Math.Min(formHeight, 1700));
         }
-
 
         private DataTable addActionButton(DataTable data)
         {
