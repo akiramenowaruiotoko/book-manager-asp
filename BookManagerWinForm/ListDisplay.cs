@@ -1,12 +1,10 @@
-﻿using System;
-using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Data;
 
 namespace BookManagerWinForm
 {
     public partial class ListDisplay : Form
     {
+        #region define
         private readonly int empNum;
         private readonly bool isEditor;
         private readonly MainMenu mainMenuForm;
@@ -34,7 +32,9 @@ namespace BookManagerWinForm
             Currently_Rental = 7,
             Currently_Rental_Past = 8
         }
+        #endregion
 
+        #region constructor
         public ListDisplay(int empNum, bool isEditor, MainMenu mainMenu)
         {
             InitializeComponent();
@@ -46,7 +46,9 @@ namespace BookManagerWinForm
             dataGridView1.CellContentClick += DataGridView1_CellContentClick;
             dataGridView1.KeyDown += DataGridView1_KeyDown;
         }
+        #endregion
 
+        #region eventhandler
         private void ListDisplay_VisibleChanged(object sender, EventArgs e)
         {
             viewSet();
@@ -57,6 +59,32 @@ namespace BookManagerWinForm
             viewSet();
         }
 
+
+        private void DataGridView1_CellContentClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count && dataGridView1.Rows[e.RowIndex].Cells["アクションボタン"].Selected)
+            {
+                HandleAction(e.RowIndex);
+            }
+        }
+
+        private void DataGridView1_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                int rowIndex = dataGridView1.CurrentCell.RowIndex;
+                HandleAction(rowIndex);
+            }
+        }
+
+        private void ButtonBackListDisplay_Click(object? sender, EventArgs e)
+        {
+            mainMenuForm.Show();
+            this.Close();
+        }
+        #endregion
+
+        #region load data from view and resize form
         private void viewSet()
         {
             viewNum = (ViewNum)comboBoxList.SelectedIndex;
@@ -135,7 +163,9 @@ namespace BookManagerWinForm
             int formHeight = dataGridViewHeight + 200;
             this.ClientSize = new Size(formWidth, Math.Min(formHeight, 1700));
         }
+        #endregion
 
+        #region add column and button in data grid view
         private DataTable addActionButton(DataTable data)
         {
             DataGridViewButtonColumn buttonColumn = new()
@@ -177,7 +207,9 @@ namespace BookManagerWinForm
             data.Columns.Add(status);
             return data;
         }
+        #endregion
 
+        #region set text to button and column
         private DataTable setActionButton(DataTable data)
         {
             for (int i = 0; i < data.Rows.Count; i++)
@@ -266,24 +298,9 @@ namespace BookManagerWinForm
             }
             return data;
         }
+        #endregion
 
-        private void DataGridView1_CellContentClick(object? sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count && dataGridView1.Rows[e.RowIndex].Cells["アクションボタン"].Selected)
-            {
-                HandleAction(e.RowIndex);
-            }
-        }
-
-        private void DataGridView1_KeyDown(object? sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                int rowIndex = dataGridView1.CurrentCell.RowIndex;
-                HandleAction(rowIndex);
-            }
-        }
-
+        #region handle action button
         private void HandleAction(int rowIndex)
         {
             if (viewNum == ViewNum.view_all)
@@ -332,12 +349,7 @@ namespace BookManagerWinForm
                 this.Hide();
             }
         }
-
-        private void ButtonBackListDisplay_Click(object? sender, EventArgs e)
-        {
-            mainMenuForm.Show();
-            this.Close();
-        }
+        #endregion
     }
 }
 
