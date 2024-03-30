@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataGridViewAutoFilter\DataGridViewAutoFilter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="AddBook.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using DataGridViewAutoFilter;
 
 namespace BookManagerWinForm
 {
@@ -43,6 +44,7 @@ namespace BookManagerWinForm
             this.mainMenuForm = mainMenu;
             dbManager = new DatabaseManager();
 
+            // add event handler
             dataGridView1.CellContentClick += DataGridView1_CellContentClick;
             dataGridView1.KeyDown += DataGridView1_KeyDown;
         }
@@ -138,12 +140,26 @@ namespace BookManagerWinForm
                     break;
             }
 
-            dataGridView1.DataSource = data;
+            // データをバインドする
+            var bindSrc = new BindingSource();
+            bindSrc.DataSource = data;
+            dataGridView1.DataSource = bindSrc;
+            if (dataGridView1.DataSource == null)
+            {
+                return;
+            }
+
+            // 各列にフィルタを設定する
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            {
+                col.HeaderCell = new
+                    DataGridViewAutoFilterColumnHeaderCell(col.HeaderCell);
+            }
             dataGridView1.AutoResizeColumns();
-            ResizeDataGridView();
+            ResizeDataGridViewAndForm();
         }
 
-        private void ResizeDataGridView()
+        private void ResizeDataGridViewAndForm()
         {
             int totalWidth = 0;
             int rowCount = dataGridView1.Rows.Count;
