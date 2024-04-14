@@ -133,7 +133,6 @@
         #endregion
 
         private Label labelTitle;
-        private Button buttonBackRentalComplete;
         private DataGridView dataGridView1;
         private Button buttonUnavailableRental;
         private Button buttonReturned;

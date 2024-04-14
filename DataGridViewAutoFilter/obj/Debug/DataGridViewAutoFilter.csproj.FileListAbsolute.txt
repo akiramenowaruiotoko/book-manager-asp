@@ -4,3 +4,11 @@ C:\Users\akiramenowaruiotoko\Downloads\DataGridViewAutoFilter\DataGridViewAutoFi
 C:\Users\akiramenowaruiotoko\Downloads\DataGridViewAutoFilter\DataGridViewAutoFilter\CS\DataGridViewAutoFilter\DataGridViewAutoFilter\obj\Debug\DataGridViewAutoFilter.csproj.CoreCompileInputs.cache
 C:\Users\akiramenowaruiotoko\Downloads\DataGridViewAutoFilter\DataGridViewAutoFilter\CS\DataGridViewAutoFilter\DataGridViewAutoFilter\obj\Debug\DataGridViewAutoFilter.dll
 C:\Users\akiramenowaruiotoko\Downloads\DataGridViewAutoFilter\DataGridViewAutoFilter\CS\DataGridViewAutoFilter\DataGridViewAutoFilter\obj\Debug\DataGridViewAutoFilter.pdb
+C:\Users\akiramenowaruiotoko\Desktop\github\book-manager-prototype2\DataGridViewAutoFilter\bin\Debug\DataGridViewAutoFilter.dll
+C:\Users\akiramenowaruiotoko\Desktop\github\book-manager-prototype2\DataGridViewAutoFilter\bin\Debug\DataGridViewAutoFilter.pdb
+C:\Users\akiramenowaruiotoko\Desktop\github\book-manager-prototype2\DataGridViewAutoFilter\obj\Debug\DataGridViewAutoFilter.csproj.AssemblyReference.cache
+C:\Users\akiramenowaruiotoko\Desktop\github\book-manager-prototype2\DataGridViewAutoFilter\obj\Debug\DataGridViewAutoFilter.FormUserFilter.resources
+C:\Users\akiramenowaruiotoko\Desktop\github\book-manager-prototype2\DataGridViewAutoFilter\obj\Debug\DataGridViewAutoFilter.csproj.GenerateResource.cache
+C:\Users\akiramenowaruiotoko\Desktop\github\book-manager-prototype2\DataGridViewAutoFilter\obj\Debug\DataGridViewAutoFilter.csproj.CoreCompileInputs.cache
+C:\Users\akiramenowaruiotoko\Desktop\github\book-manager-prototype2\DataGridViewAutoFilter\obj\Debug\DataGridViewAutoFilter.dll
+C:\Users\akiramenowaruiotoko\Desktop\github\book-manager-prototype2\DataGridViewAutoFilter\obj\Debug\DataGridViewAutoFilter.pdb

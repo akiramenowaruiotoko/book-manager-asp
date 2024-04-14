@@ -121,10 +121,8 @@
         #endregion
 
         private Label labelTitle;
-        private Button buttonBackPurchaseComplete;
         private DataGridView dataGridView1;
         private Button buttonPurchaseDisapproved;
-        private Button button1;
         private Button buttonPurchaseComplete;
         private Button buttonBack;
         private Button buttonPurchaseApproval;
