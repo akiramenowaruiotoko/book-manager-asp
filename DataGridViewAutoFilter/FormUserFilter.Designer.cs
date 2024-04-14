@@ -1,6 +1,6 @@
 ﻿namespace DataGridViewAutoFilter
 {
-    partial class FormUserFilter
+    partial class formUserFilter
     {
         /// <summary>
         /// Required designer variable.
@@ -28,118 +28,130 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.cmbSelect1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxSelect1 = new System.Windows.Forms.ComboBox();
-            this.comboBoxSelect2 = new System.Windows.Forms.ComboBox();
-            this.comboBoxFilter1 = new System.Windows.Forms.ComboBox();
-            this.comboBoxFilter2 = new System.Windows.Forms.ComboBox();
-            this.radioButtonAnd = new System.Windows.Forms.RadioButton();
-            this.radioButtonOr = new System.Windows.Forms.RadioButton();
-            this.buttonOk = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
+            this.cmbSelect2 = new System.Windows.Forms.ComboBox();
+            this.cmbFilter1 = new System.Windows.Forms.ComboBox();
+            this.cmbFilter2 = new System.Windows.Forms.ComboBox();
+            this.radAnd = new System.Windows.Forms.RadioButton();
+            this.radOr = new System.Windows.Forms.RadioButton();
+            this.formUserFilterBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.formUserFilterBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchInfoBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // btnOk
+            // 
+            this.btnOk.Location = new System.Drawing.Point(319, 228);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(178, 36);
+            this.btnOk.TabIndex = 0;
+            this.btnOk.Text = "OK";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(537, 228);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(178, 36);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "キャンセル";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // cmbSelect1
+            // 
+            this.cmbSelect1.FormattingEnabled = true;
+            this.cmbSelect1.Location = new System.Drawing.Point(12, 48);
+            this.cmbSelect1.Name = "cmbSelect1";
+            this.cmbSelect1.Size = new System.Drawing.Size(500, 32);
+            this.cmbSelect1.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 25);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(269, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Specifying user conditions";
+            this.label1.Size = new System.Drawing.Size(186, 24);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "抽出条件の指定：";
             // 
-            // comboBoxSelect1
+            // cmbSelect2
             // 
-            this.comboBoxSelect1.FormattingEnabled = true;
-            this.comboBoxSelect1.Location = new System.Drawing.Point(27, 52);
-            this.comboBoxSelect1.Name = "comboBoxSelect1";
-            this.comboBoxSelect1.Size = new System.Drawing.Size(559, 32);
-            this.comboBoxSelect1.TabIndex = 1;
+            this.cmbSelect2.FormattingEnabled = true;
+            this.cmbSelect2.Location = new System.Drawing.Point(16, 157);
+            this.cmbSelect2.Name = "cmbSelect2";
+            this.cmbSelect2.Size = new System.Drawing.Size(500, 32);
+            this.cmbSelect2.TabIndex = 4;
             // 
-            // comboBoxSelect2
+            // cmbFilter1
             // 
-            this.comboBoxSelect2.FormattingEnabled = true;
-            this.comboBoxSelect2.Location = new System.Drawing.Point(27, 157);
-            this.comboBoxSelect2.Name = "comboBoxSelect2";
-            this.comboBoxSelect2.Size = new System.Drawing.Size(559, 32);
-            this.comboBoxSelect2.TabIndex = 2;
+            this.cmbFilter1.FormattingEnabled = true;
+            this.cmbFilter1.Location = new System.Drawing.Point(571, 48);
+            this.cmbFilter1.Name = "cmbFilter1";
+            this.cmbFilter1.Size = new System.Drawing.Size(144, 32);
+            this.cmbFilter1.TabIndex = 5;
             // 
-            // comboBoxFilter1
+            // cmbFilter2
             // 
-            this.comboBoxFilter1.FormattingEnabled = true;
-            this.comboBoxFilter1.Location = new System.Drawing.Point(602, 52);
-            this.comboBoxFilter1.Name = "comboBoxFilter1";
-            this.comboBoxFilter1.Size = new System.Drawing.Size(181, 32);
-            this.comboBoxFilter1.TabIndex = 3;
+            this.cmbFilter2.FormattingEnabled = true;
+            this.cmbFilter2.Location = new System.Drawing.Point(571, 157);
+            this.cmbFilter2.Name = "cmbFilter2";
+            this.cmbFilter2.Size = new System.Drawing.Size(144, 32);
+            this.cmbFilter2.TabIndex = 6;
             // 
-            // comboBoxFilter2
+            // radAnd
             // 
-            this.comboBoxFilter2.FormattingEnabled = true;
-            this.comboBoxFilter2.Location = new System.Drawing.Point(602, 157);
-            this.comboBoxFilter2.Name = "comboBoxFilter2";
-            this.comboBoxFilter2.Size = new System.Drawing.Size(181, 32);
-            this.comboBoxFilter2.TabIndex = 4;
+            this.radAnd.AutoSize = true;
+            this.radAnd.Location = new System.Drawing.Point(44, 102);
+            this.radAnd.Name = "radAnd";
+            this.radAnd.Size = new System.Drawing.Size(87, 28);
+            this.radAnd.TabIndex = 7;
+            this.radAnd.Text = "AND";
+            this.radAnd.UseVisualStyleBackColor = true;
             // 
-            // radioButtonAnd
+            // radOr
             // 
-            this.radioButtonAnd.AutoSize = true;
-            this.radioButtonAnd.Location = new System.Drawing.Point(27, 106);
-            this.radioButtonAnd.Name = "radioButtonAnd";
-            this.radioButtonAnd.Size = new System.Drawing.Size(87, 31);
-            this.radioButtonAnd.TabIndex = 5;
-            this.radioButtonAnd.TabStop = true;
-            this.radioButtonAnd.Text = "AND";
-            this.radioButtonAnd.UseCompatibleTextRendering = true;
-            this.radioButtonAnd.UseVisualStyleBackColor = true;
+            this.radOr.AutoSize = true;
+            this.radOr.Location = new System.Drawing.Point(200, 102);
+            this.radOr.Name = "radOr";
+            this.radOr.Size = new System.Drawing.Size(73, 28);
+            this.radOr.TabIndex = 8;
+            this.radOr.Text = "OR";
+            this.radOr.UseVisualStyleBackColor = true;
             // 
-            // radioButtonOr
+            // formUserFilterBindingSource
             // 
-            this.radioButtonOr.AutoSize = true;
-            this.radioButtonOr.Location = new System.Drawing.Point(179, 106);
-            this.radioButtonOr.Name = "radioButtonOr";
-            this.radioButtonOr.Size = new System.Drawing.Size(72, 31);
-            this.radioButtonOr.TabIndex = 6;
-            this.radioButtonOr.TabStop = true;
-            this.radioButtonOr.Text = "OR";
-            this.radioButtonOr.UseCompatibleTextRendering = true;
-            this.radioButtonOr.UseVisualStyleBackColor = true;
+            this.formUserFilterBindingSource.DataSource = typeof(DataGridViewAutoFilter.formUserFilter);
             // 
-            // buttonOk
+            // searchInfoBindingSource
             // 
-            this.buttonOk.Location = new System.Drawing.Point(405, 220);
-            this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(181, 42);
-            this.buttonOk.TabIndex = 7;
-            this.buttonOk.Text = "OK";
-            this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            this.searchInfoBindingSource.DataSource = typeof(DataGridViewAutoFilter.SearchInfo);
             // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Location = new System.Drawing.Point(602, 220);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(181, 42);
-            this.buttonCancel.TabIndex = 8;
-            this.buttonCancel.Text = "CANCEL";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
-            // FormUserFilter
+            // formUserFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 304);
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonOk);
-            this.Controls.Add(this.radioButtonOr);
-            this.Controls.Add(this.radioButtonAnd);
-            this.Controls.Add(this.comboBoxFilter2);
-            this.Controls.Add(this.comboBoxFilter1);
-            this.Controls.Add(this.comboBoxSelect2);
-            this.Controls.Add(this.comboBoxSelect1);
+            this.ClientSize = new System.Drawing.Size(761, 298);
+            this.Controls.Add(this.radOr);
+            this.Controls.Add(this.radAnd);
+            this.Controls.Add(this.cmbFilter2);
+            this.Controls.Add(this.cmbFilter1);
+            this.Controls.Add(this.cmbSelect2);
             this.Controls.Add(this.label1);
-            this.Name = "FormUserFilter";
-            this.Text = "FormUserFilter";
+            this.Controls.Add(this.cmbSelect1);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOk);
+            this.Name = "formUserFilter";
+            this.Text = "ユーザー設定フィルタ";
+            this.Load += new System.EventHandler(this.formUserFilter_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.formUserFilterBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchInfoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,14 +159,16 @@
 
         #endregion
 
+        private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ComboBox cmbSelect1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBoxSelect1;
-        private System.Windows.Forms.ComboBox comboBoxSelect2;
-        private System.Windows.Forms.ComboBox comboBoxFilter1;
-        private System.Windows.Forms.ComboBox comboBoxFilter2;
-        private System.Windows.Forms.RadioButton radioButtonAnd;
-        private System.Windows.Forms.RadioButton radioButtonOr;
-        private System.Windows.Forms.Button buttonOk;
-        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.ComboBox cmbSelect2;
+        private System.Windows.Forms.ComboBox cmbFilter1;
+        private System.Windows.Forms.ComboBox cmbFilter2;
+        private System.Windows.Forms.RadioButton radAnd;
+        private System.Windows.Forms.RadioButton radOr;
+        private System.Windows.Forms.BindingSource searchInfoBindingSource;
+        private System.Windows.Forms.BindingSource formUserFilterBindingSource;
     }
 }

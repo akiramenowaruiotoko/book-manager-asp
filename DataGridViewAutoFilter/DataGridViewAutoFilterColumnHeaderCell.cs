@@ -27,6 +27,12 @@ namespace DataGridViewAutoFilter
     public class DataGridViewAutoFilterColumnHeaderCell : DataGridViewColumnHeaderCell
     {
         /// <summary>
+        /// search information table
+        /// </summary>
+        private Dictionary<string, SearchInfo> sInfo = new Dictionary<string, SearchInfo>();
+
+
+        /// <summary>
         /// The ListBox used for all drop-down lists. 
         /// </summary>
         private static FilterListBox dropDownListBox = new FilterListBox();
@@ -1028,6 +1034,7 @@ namespace DataGridViewAutoFilter
             // along with null values, since unformatted representations
             // are not needed. 
             filters.Insert(0, "(All)", null);
+            filters.Insert(1, "(ﾕｰｻﾞｰ設定ﾌｨﾙﾀ)", null);
             if (containsBlanks && containsNonBlanks)
             {
                 filters.Add("(Blanks)", null);
@@ -1088,7 +1095,8 @@ namespace DataGridViewAutoFilter
         private void UpdateFilter()
         {
             // Continue only if the selection has changed.
-            if (dropDownListBox.SelectedItem.ToString().Equals(selectedFilterValue))
+            if (dropDownListBox.SelectedItem.ToString().Equals(selectedFilterValue) &&
+                !dropDownListBox.SelectedItem.ToString().Equals("(ﾕｰｻﾞｰ設定ﾌｨﾙﾀ)"))
             {
                 return;
             }
@@ -1097,7 +1105,7 @@ namespace DataGridViewAutoFilter
             selectedFilterValue = dropDownListBox.SelectedItem.ToString();
 
             // Cast the data source to an IBindingListView.
-            IBindingListView data = 
+            IBindingListView data =
                 this.DataGridView.DataSource as IBindingListView;
 
             Debug.Assert(data != null && data.SupportsFiltering,
@@ -1118,7 +1126,7 @@ namespace DataGridViewAutoFilter
 
             // Store the column name in a form acceptable to the Filter property, 
             // using a backslash to escape any closing square brackets. 
-            String columnProperty = 
+            String columnProperty =
                 OwningColumn.DataPropertyName.Replace("]", @"\]");
 
             // Determine the column filter string based on the user selection.
@@ -1137,11 +1145,25 @@ namespace DataGridViewAutoFilter
                         "LEN(ISNULL(CONVERT([{0}],'System.String'),''))>0",
                         columnProperty);
                     break;
+                case "(ﾕｰｻﾞｰ設定ﾌｨﾙﾀ)":
+                    SearchInfo wkinfo = new SearchInfo();
+                    if (sInfo.ContainsKey(columnProperty))
+                    {
+                        wkinfo = sInfo[columnProperty];
+                    }
+                    formUserFilter fu = new formUserFilter(filters, wkinfo, columnProperty);
+                    if (fu.ShowDialog() == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+                    newColumnFilter = fu.GetSearchString();
+                    SetLastSerchInfo(columnProperty, fu.GetSearchInfo());
+                    break;
                 default:
                     newColumnFilter = String.Format("[{0}]='{1}'",
                         columnProperty,
                         ((String)filters[selectedFilterValue])
-                        .Replace("'", "''"));  
+                        .Replace("'", "''"));
                     break;
             }
 
@@ -1149,6 +1171,7 @@ namespace DataGridViewAutoFilter
             // filter string from the BindingSource.Filter value, then appending 
             // the new column filter string, using " AND " as appropriate. 
             String newFilter = FilterWithoutCurrentColumn(data.Filter);
+            String tempFilter = newFilter;
             if (String.IsNullOrEmpty(newFilter))
             {
                 newFilter += newColumnFilter;
@@ -1164,10 +1187,26 @@ namespace DataGridViewAutoFilter
             {
                 data.Filter = newFilter;
             }
-            catch (InvalidExpressionException ex)
+            catch (InvalidExpressionException)
             {
-                throw new NotSupportedException(
-                    "Invalid expression: " + newFilter, ex);
+                //throw new NotSupportedException(
+                //    "Invalid expression: " + newFilter, ex);
+
+                //フィルタ設定が不正の場合はすべて表示にする 
+                MessageBox.Show("ﾕｰｻﾞｰ設定ﾌｨﾙﾀ 入力値エラー",
+                                "設定エラー",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+
+                data.Filter = tempFilter;
+                newFilter = tempFilter;
+                filtered = false;
+                currentColumnFilter = String.Empty;
+
+                dropDownListBox.SelectedIndex = 0;
+                selectedFilterValue = dropDownListBox.SelectedItem.ToString();
+
+                return;
             }
 
             // Indicate that the column is currently filtered
@@ -1175,6 +1214,23 @@ namespace DataGridViewAutoFilter
             // calls to the FilterWithoutCurrentColumn method. 
             filtered = true;
             currentColumnFilter = newColumnFilter;
+        }
+
+        /// <summary>
+        /// 検索情報設定
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="si"></param>
+        private void SetLastSerchInfo(string key, SearchInfo si)
+        {
+            if (sInfo.ContainsKey(key))
+            {
+                sInfo[key] = si;
+            }
+            else
+            {
+                sInfo.Add(key, si);
+            }
         }
 
         /// <summary>
@@ -1558,4 +1614,3 @@ namespace DataGridViewAutoFilter
     }
 
 }
-

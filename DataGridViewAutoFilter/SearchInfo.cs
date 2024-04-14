@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 namespace DataGridViewAutoFilter
 {
     /// <summary>
-    /// search data
+    /// 検索データ
     /// </summary>
     public class SearchInfo
     {
-        public string search1;
-        public string search2;
-        public int filter1;
-        public int filter2;
-        public int sel; // And Or select
+        public string search1;      //検索文字列1
+        public string search2;      //検索文字列2
+        public int filter1;         //検索フィルタ1
+        public int filter2;         //検索フィルタ2
+        public int sel;             //And Or選択
 
         /// <summary>
-        /// constructor
+        /// コンストラクタ
         /// </summary>
         public SearchInfo()
         {

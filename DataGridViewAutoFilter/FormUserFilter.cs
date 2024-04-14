@@ -1,60 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Net.NetworkInformation;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DataGridViewAutoFilter
 {
-    public partial class FormUserFilter : Form
+    public partial class formUserFilter : Form
     {
         /// <summary>
-        /// filter condition
+        /// フィルタ条件
         /// </summary>
-        private string[] filterCategory = new string[]
-        {
+        private string[] filterCategory = new string[13] {
             "",
-            "equal to",
-            "not equal to",
-            "greater than",
-            "greater than or equal to",
-            "less than",
-            "less than or equal to",
-            "begins with",
-            "does not begin with",
-            "ends with",
-            "dose not end with",
-            "contains",
-            "does not contain"
+            "と等しい",
+            "と等しくない",
+            "より大きい",
+            "以上",
+            "より小さい",
+            "以下",
+            "で始まる",
+            "で始まらない",
+            "で終わる",
+            "で終わらない",
+            "を含む",
+            "を含まない"
         };
 
-        // control array
+        // コントロール配列(AND・OR ラジオボタン)
         private const int RAD_ZERO = 0;
         private const int RAD_ONE = 1;
         private const int RAD_BUTTON_NUM = 2;
         private RadioButton[] radSelect = new RadioButton[RAD_BUTTON_NUM];
 
-        // target data
-        private OrderedDictionary filters = new OrderedDictionary();
+        // 対象データ
+        private System.Collections.Specialized.OrderedDictionary filters = new System.Collections.Specialized.OrderedDictionary();
 
-        // search condition
-        private SearchInfo sInfo; // search condition
-        private string column; // search column name
-        private string searchStr; // search string
+        // 検索条件
+        private SearchInfo sInfo;       // 検索条件
+        private string column;          // 検索カラム名
+        private string searchStr;       // 検索文字列
 
         /// <summary>
-        /// constructor
+        /// コンストラクタ
         /// </summary>
-        /// <param name="Filters"></param>
-        /// <param name="SInfo"></param>
-        /// <param name="Column"></param>
-        public FormUserFilter(OrderedDictionary Filters, SearchInfo SInfo, string Column)
+        /// <param name="Filters">対象データ</param>
+        /// <param name="SearcInfo">検索条件</param>
+        /// <param name="Column">対象カラム</param>
+        public formUserFilter(System.Collections.Specialized.OrderedDictionary Filters,
+                                SearchInfo SInfo,
+                                string Column)
         {
             InitializeComponent();
 
@@ -65,32 +62,36 @@ namespace DataGridViewAutoFilter
         }
 
         /// <summary>
-        /// form load
+        /// フォームロード
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void formUserFilter_Load(object sender, EventArgs e)
         {
+
             SetCmbFilter();
+
             SetCmbSelect();
+
             SetControlArray();
+
             SetSearchInfo();
         }
 
         /// <summary>
-        /// Previous Search Information Setting
+        /// 前回検索情報設定
         /// </summary>
         private void SetSearchInfo()
         {
             try
             {
-                comboBoxSelect1.Text = sInfo.search1;
-                comboBoxSelect2.Text = sInfo.search2;
+                cmbSelect1.Text = sInfo.search1;
+                cmbSelect2.Text = sInfo.search2;
 
-                comboBoxFilter1.SelectedIndex = sInfo.filter1;
-                comboBoxFilter2.SelectedIndex = sInfo.filter2;
+                cmbFilter1.SelectedIndex = sInfo.filter1;
+                cmbFilter2.SelectedIndex = sInfo.filter2;
 
-                radSelect[RAD_ZERO].Checked = true;
+                radSelect[sInfo.sel].Checked = true;
             }
             catch (Exception e)
             {
@@ -98,53 +99,53 @@ namespace DataGridViewAutoFilter
         }
 
         /// <summary>
-        /// set control array
+        /// コントロール配列設定
         /// </summary>
         private void SetControlArray()
         {
-            radSelect[RAD_ZERO] = radioButtonAnd;
-            radSelect[RAD_ONE] = radioButtonOr;
+            radSelect[RAD_ZERO] = radAnd;
+            radSelect[RAD_ONE] = radOr;
 
             radSelect[RAD_ZERO].Checked = true;
         }
 
         /// <summary>
-        /// set combo box condition
+        /// コンボボックス(条件)設定
         /// </summary>
         private void SetCmbFilter()
         {
-            comboBoxSelect1.BeginUpdate();
-            comboBoxSelect2.BeginUpdate();
+            cmbSelect1.BeginUpdate();
+            cmbSelect2.BeginUpdate();
 
-            comboBoxSelect1.Items.Add("");
-            comboBoxSelect2.Items.Add("");
+            cmbSelect1.Items.Add("");
+            cmbSelect2.Items.Add("");
 
             foreach (string val in filters.Values)
             {
                 if (val != null)
                 {
-                    comboBoxSelect1.Items.Add (val);
-                    comboBoxSelect2.Items.Add (val);
+                    cmbSelect1.Items.Add(val);
+                    cmbSelect2.Items.Add(val);
                 }
             }
 
-            comboBoxSelect1.EndUpdate();
-            comboBoxSelect2.EndUpdate();
+            cmbSelect1.EndUpdate();
+            cmbSelect2.EndUpdate();
         }
 
         /// <summary>
-        /// set combo box filter
+        /// コンボボックス(フィルタ)設定
         /// </summary>
         private void SetCmbSelect()
         {
-            comboBoxFilter1.Items.AddRange(filterCategory);
-            comboBoxFilter1.SelectedIndex = 1;
+            cmbFilter1.Items.AddRange(filterCategory);
+            cmbFilter1.SelectedIndex = 1;
 
-            comboBoxFilter2.Items.AddRange(filterCategory);
+            cmbFilter2.Items.AddRange(filterCategory);
         }
 
         /// <summary>
-        /// serch string setting process
+        /// 検索文字列設定処理
         /// </summary>
         /// <param name="str"></param>
         /// <param name="indx"></param>
@@ -155,76 +156,76 @@ namespace DataGridViewAutoFilter
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
             sb.Append(column);
-            sb.Append(']');
+            sb.Append("]");
 
             target = str.Replace("'", "''");
 
             switch (indx)
             {
-                case 1: // "equal to",
+                case 1:     // と等しい
                     sb.Append("=");
                     sb.Append("'");
                     sb.Append(target);
                     sb.Append("'");
                     break;
-                case 2: // "not equal to",
+                case 2:     // と等しくない
                     sb.Append("<>");
                     sb.Append("'");
                     sb.Append(target);
                     sb.Append("'");
                     break;
-                case 3: // "greater than",
+                case 3:     // より大きい
                     sb.Append(">");
                     sb.Append("'");
                     sb.Append(target);
                     sb.Append("'");
                     break;
-                case 4: // "greater than or equal to",
+                case 4:     // 以上
                     sb.Append(">=");
                     sb.Append("'");
                     sb.Append(target);
                     sb.Append("'");
                     break;
-                case 5: // "less than",
+                case 5:     // より小さい
                     sb.Append("<");
                     sb.Append("'");
                     sb.Append(target);
                     sb.Append("'");
                     break;
-                case 6: // "less than or equal to",
+                case 6:     // 以下
                     sb.Append("<=");
                     sb.Append("'");
                     sb.Append(target);
                     sb.Append("'");
                     break;
-                case 7: // "begins with",
+                case 7:     // で始まる
                     sb.Append("LIKE '");
                     sb.Append(target);
                     sb.Append("%'");
                     break;
-                case 8: // "does not begin with",
+                case 8:     // で始まらない
                     sb.Append("NOT LIKE '");
                     sb.Append(target);
                     sb.Append("%'");
                     break;
-                case 9: // "ends with",
+                case 9:     // で終わる
                     sb.Append("LIKE ");
                     sb.Append("'");
                     sb.Append(target);
                     sb.Append("%'");
                     break;
-                case 10: // "dose not end with",
+                case 10:     // で終わらない
                     sb.Append("NOT LIKE ");
                     sb.Append("'%");
                     sb.Append(target);
                     sb.Append("'");
                     break;
-                case 11: // "contains",
+                case 11:    // を含む
                     sb.Append("LIKE '%");
                     sb.Append(target);
                     sb.Append("%'");
                     break;
-                case 12: // "does not contain"
+                case 12:    // を含まない
                     sb.Append("NOT LIKE '%");
                     sb.Append(target);
                     sb.Append("%'");
@@ -233,13 +234,13 @@ namespace DataGridViewAutoFilter
                     break;
             }
 
-            // setting of current search information
-            sInfo.search1 = comboBoxSelect1.Text;
-            sInfo.search2 = comboBoxSelect2.Text;
-            sInfo.filter1 = comboBoxFilter1.SelectedIndex;
-            sInfo.filter2 = comboBoxFilter2.SelectedIndex;
+            // 今回検索情報の設定
+            sInfo.search1 = cmbSelect1.Text;
+            sInfo.search2 = cmbSelect2.Text;
+            sInfo.filter1 = cmbFilter1.SelectedIndex;
+            sInfo.filter2 = cmbFilter2.SelectedIndex;
 
-            for(int i = 0; i < radSelect.Length; i++)
+            for (int i = 0; i < radSelect.Length; i++)
             {
                 if (radSelect[i].Checked)
                 {
@@ -251,32 +252,32 @@ namespace DataGridViewAutoFilter
         }
 
         /// <summary>
-        /// OK button press processing
+        /// OKボタン押下処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonOk_Click(object sender, EventArgs e)
+        private void btnOk_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
 
-            if (comboBoxFilter1.Text != "")
+            if (cmbFilter1.Text != "")
             {
-                searchStr = SetFilterCondition(comboBoxSelect1.Text, comboBoxFilter1.SelectedIndex);
+                searchStr = SetFilterCondition(cmbSelect1.Text, cmbFilter1.SelectedIndex);
             }
 
-            if (comboBoxFilter2.Text != "")
+            if (cmbFilter2.Text != "")
             {
-                // if there are two or more conditions, enclose them in parentheses ()
+                // 条件が2つ以上の場合は、カッコ( )で囲む
                 searchStr = "(" + searchStr;
                 if (radSelect[RAD_ZERO].Checked)
                 {
-                    searchStr += "AND";
+                    searchStr += " AND ";
                 }
                 else if (radSelect[RAD_ONE].Checked)
                 {
-                    searchStr += "OR";
+                    searchStr += " OR ";
                 }
-                searchStr += SetFilterCondition(comboBoxSelect2.Text, comboBoxFilter2.SelectedIndex);
+                searchStr += SetFilterCondition(cmbSelect2.Text, cmbFilter2.SelectedIndex);
                 searchStr += ")";
             }
 
@@ -284,17 +285,17 @@ namespace DataGridViewAutoFilter
         }
 
         /// <summary>
-        /// Cancel button press processing
+        /// キャンセルボタン押下処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
 
         /// <summary>
-        /// get search string processing
+        /// 検索文字列取得処理
         /// </summary>
         /// <returns></returns>
         public string GetSearchString()
@@ -303,7 +304,7 @@ namespace DataGridViewAutoFilter
         }
 
         /// <summary>
-        /// search information
+        /// 検索情報
         /// </summary>
         /// <returns></returns>
         public SearchInfo GetSearchInfo()

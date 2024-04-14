@@ -62,7 +62,6 @@
             textBoxEmpNum.Name = "textBoxEmpNum";
             textBoxEmpNum.Size = new Size(302, 39);
             textBoxEmpNum.TabIndex = 2;
-            textBoxEmpNum.Text = "11";
             // 
             // textBoxEmpPass
             // 
@@ -70,7 +69,6 @@
             textBoxEmpPass.Name = "textBoxEmpPass";
             textBoxEmpPass.Size = new Size(302, 39);
             textBoxEmpPass.TabIndex = 3;
-            textBoxEmpPass.Text = "aa";
             // 
             // label1
             // 
